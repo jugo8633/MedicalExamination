@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">醫療檢測</string>
+    <string name="content_descript" />
+    <string name="person_info">基本資料</string>
+    <string name="name">姓名</string>
+    <string name="sex">性別</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="birthday">出生日期</string>
+    <string name="ad">西元</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="education_age">教育年齡</string>
+    <string name="literacy">識字能力</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="date_of_checking">檢查日期</string>
+    <string name="login">登入</string>
+    <string name="hint_login_name">帳 號</string>
+    <string name="hint_login_password">密 碼</string>
+    <string name="login_error">帳號密碼錯誤</string>
+    <string name="history">檢測紀錄</string>
+    <string name="basic_test">基本檢測</string>
+    <string name="attentiveness">專注力</string>
+
+</resources>
