@@ -3,7 +3,10 @@ package com.medical.medicalexamination;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.medical.medicalexamination.common.EventMessage;
+import com.medical.medicalexamination.controller.FlipperMenuController;
+import com.medical.medicalexamination.controller.SlideMenuController;
+import com.medical.medicalexamination.model.EventMessage;
+import com.medical.medicalexamination.model.SqliteHandler;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -20,19 +23,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
 
 public class MainActivity extends Activity
 {
-	private DrawerLayout		drawerLayout		= null;
-	private ImageView			listMenuBtn			= null;
-	private View				view1, view2, view3;
-	private List<View>			viewList;
-	private ViewPager			viewPager			= null;
-	private MenuHandler			menuHandler			= null;
-	private FlipperMenuHandler	flipperMenuHandler	= null;
+	private DrawerLayout			drawerLayout			= null;
+	private ImageView				listMenuBtn				= null;
+	private View					view1, view2, view3;
+	private List<View>				viewList;
+	private ViewPager				viewPager				= null;
+	private SlideMenuController				menuHandler				= null;
+	private FlipperMenuController	flipperMenuController	= null;
+
+	//private SqliteHandler		sqliteHandler		= null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +48,9 @@ public class MainActivity extends Activity
 		/** load content */
 		setContentView(R.layout.activity_main);
 
+		/** init sqlite */
+		//sqliteHandler = new SqliteHandler(this);
+
 		/** init Drawer Layout */
 		initDrawerLayout();
 
@@ -52,11 +58,16 @@ public class MainActivity extends Activity
 		initViewPager();
 
 		/** init menu */
-		menuHandler = new MenuHandler(this, selfHandler);
+		menuHandler = new SlideMenuController(this, selfHandler);
 
 		/** init flipper menu */
-		flipperMenuHandler = new FlipperMenuHandler(this);
-		flipperMenuHandler.setNotifyHandler(selfHandler);
+		flipperMenuController = new FlipperMenuController(this);
+		flipperMenuController.setNotifyHandler(selfHandler);
+
+		/** show login */
+		flipperMenuController.setHideEnable(false);
+		flipperMenuController.showLogin();
+
 	}
 
 	private void initDrawerLayout()
@@ -187,13 +198,15 @@ public class MainActivity extends Activity
 											{
 												switch (msg.what)
 												{
-												case EventMessage.MSG_LOGIN:
+												case EventMessage.MSG_LOGIN: // login success
+													flipperMenuController.setHideEnable(true);
+													flipperMenuController.close();
 													break;
 												case EventMessage.MSG_SHOW_LOGIN:
-													flipperMenuHandler.showLogin();
+													flipperMenuController.showLogin();
 													break;
 												case EventMessage.MSG_SHOW_HISTORY:
-													flipperMenuHandler.showCalendar();
+													flipperMenuController.showCalendar();
 													break;
 												}
 											}
