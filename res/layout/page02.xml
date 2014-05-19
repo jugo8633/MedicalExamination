@@ -25,4 +25,38 @@
         android:layout_marginRight="40dp"
         android:background="@color/separate_line" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/separate_line"
+        android:layout_alignRight="@+id/separate_line"
+        android:layout_below="@+id/separate_line"
+        android:layout_marginTop="20dp"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/imageViewEyeTest"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/eye" />
+
+        <ImageView
+            android:id="@+id/imageViewEarTest"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ear" />
+
+        <ImageView
+            android:id="@+id/imageViewFinger"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/hand" />
+        
+    </LinearLayout>
+
 </RelativeLayout>

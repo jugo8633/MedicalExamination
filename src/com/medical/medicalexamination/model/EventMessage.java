@@ -10,8 +10,9 @@ public class EventMessage
 	public static final int	MSG_CUSTOM			= 1024;
 	public static final int	MSG_FLIPPER_CLOSE	= MSG_CUSTOM + 1;
 	public static final int	MSG_LOGIN			= MSG_CUSTOM + 2;
-	public static final int	MSG_SHOW_LOGIN		= MSG_CUSTOM + 3;
-	public static final int	MSG_SHOW_HISTORY	= MSG_CUSTOM + 4;
+	public static final int	MSG_LOGINED			= MSG_CUSTOM + 3;
+	public static final int	MSG_SHOW_LOGIN		= MSG_CUSTOM + 4;
+	public static final int	MSG_SHOW_HISTORY	= MSG_CUSTOM + 5;
 
 	/**
 	 * @author jugo

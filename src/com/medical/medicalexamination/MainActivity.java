@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.medical.medicalexamination.controller.FlipperMenuController;
+import com.medical.medicalexamination.controller.Page2Controller;
 import com.medical.medicalexamination.controller.SlideMenuController;
 import com.medical.medicalexamination.model.EventMessage;
 import com.medical.medicalexamination.model.SqliteHandler;
@@ -32,7 +33,8 @@ public class MainActivity extends Activity
 	private View					view1, view2, view3;
 	private List<View>				viewList;
 	private ViewPager				viewPager				= null;
-	private SlideMenuController				menuHandler				= null;
+	private Page2Controller			page2Controller			= null;
+	private SlideMenuController		menuHandler				= null;
 	private FlipperMenuController	flipperMenuController	= null;
 
 	//private SqliteHandler		sqliteHandler		= null;
@@ -124,6 +126,8 @@ public class MainActivity extends Activity
 		view1 = lf.inflate(R.layout.page01, null);
 		view2 = lf.inflate(R.layout.page02, null);
 		view3 = lf.inflate(R.layout.page03, null);
+
+		page2Controller = new Page2Controller(view2);
 
 		viewList = new ArrayList<View>();
 		viewList.add(view1);

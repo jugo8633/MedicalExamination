@@ -22,24 +22,18 @@ public class FlipperMenuController
 
 	private FlipperView		flipperView			= null;
 	private MenuID			menuId				= null;
-	//	private RelativeLayout	loginMainLayout		= null;
 	private RelativeLayout	historyMainLayout	= null;
 	private RelativeLayout	calendarLayout		= null;
+	private RelativeLayout	eyeTestLayout		= null;
 	private Handler			notifyHandler		= null;
 	private LoginController	loginController		= null;
-
-	public class LoginData
-	{
-		public String	mstrName		= null;
-		public String	mstrPassword	= null;
-	}
 
 	private class MenuID
 	{
 		public int	mnLoginId			= Type.INVALID;
 		public int	mnHistoryId			= Type.INVALID;
 		public int	mnCalendarId		= Type.INVALID;
-		public int	mnSubscribeId		= Type.INVALID;
+		public int	mnEyeTestId			= Type.INVALID;
 		public int	mnAccountAdd		= Type.INVALID;
 		public int	mnForgetPassword	= Type.INVALID;
 	}
@@ -64,11 +58,9 @@ public class FlipperMenuController
 		menuId.mnLoginId = flipperView.addChild(R.layout.login);
 		menuId.mnHistoryId = flipperView.addChild(R.layout.history);
 		menuId.mnCalendarId = flipperView.addChild(R.layout.calendar);
+		menuId.mnEyeTestId = flipperView.addChild(R.layout.eye_test);
 
 		loginController = new LoginController(activity);
-		//		loginMainLayout = (RelativeLayout) flipperView.findViewById(R.id.login_main_layout);
-		//		loginMainLayout.setOnTouchListener(mainLayoutTouch);
-		//		loginHandle(activity);
 
 		historyMainLayout = (RelativeLayout) flipperView.findViewById(R.id.history_main_layout);
 		historyMainLayout.setOnTouchListener(mainLayoutTouch);
@@ -76,6 +68,9 @@ public class FlipperMenuController
 
 		calendarLayout = (RelativeLayout) flipperView.findViewById(R.id.calendar_main_layout);
 		calendarLayout.setOnTouchListener(mainLayoutTouch);
+
+		eyeTestLayout = (RelativeLayout) flipperView.findViewById(R.id.eyetest_main_layout);
+		eyeTestLayout.setOnTouchListener(mainLayoutTouch);
 
 	}
 
@@ -106,39 +101,15 @@ public class FlipperMenuController
 		flipperView.showView(menuId.mnCalendarId);
 	}
 
+	public void showEyeTest()
+	{
+		flipperView.showView(menuId.mnEyeTestId);
+	}
+
 	public void close()
 	{
 		flipperView.close();
 	}
-
-	//	private void loginHandle(final Activity activity)
-	//	{
-	//
-	//		TextView loginBtn = (TextView) loginMainLayout.findViewById(R.id.start_login);
-	//		loginBtn.setOnClickListener(new OnClickListener()
-	//		{
-	//			@Override
-	//			public void onClick(View v)
-	//			{
-	//				EditText editText = (EditText) loginMainLayout.findViewById(R.id.login_name);
-	//				String strName = editText.getText().toString();
-	//				editText = (EditText) loginMainLayout.findViewById(R.id.login_password);
-	//				String strPassword = editText.getText().toString();
-	//
-	//				if (null != strName && 0 < strName.length() && null != strPassword && 0 < strPassword.length())
-	//				{
-	//					LoginData data = new LoginData();
-	//					data.mstrName = strName;
-	//					data.mstrPassword = strPassword;
-	//					EventHandler.notify(notifyHandler, EventMessage.MSG_LOGIN, 0, 0, data);
-	//					data = null;
-	//					flipperView.close();
-	//				}
-	//
-	//			}
-	//		});
-	//
-	//	}
 
 	private void historyHandler(final Activity activity)
 	{
