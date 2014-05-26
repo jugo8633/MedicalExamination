@@ -9,6 +9,7 @@ import com.medical.medicalexamination.view.FlipperView;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -81,6 +82,7 @@ public class FlipperMenuController
 		flipperView.setNotifyHandler(handler);
 		notifyHandler = handler;
 		loginController.setNotifyHandler(handler);
+		eyeTestController.setNotifyHandler(selfHandler);
 	}
 
 	public void setHideEnable(boolean bEnable)
@@ -131,5 +133,21 @@ public class FlipperMenuController
 													}
 													return false;
 												}
+											};
+
+	private Handler			selfHandler		= new Handler()
+											{
+
+												@Override
+												public void handleMessage(Message msg)
+												{
+													switch (msg.what)
+													{
+													case EventMessage.MSG_FLIPPER_CLOSE:
+														close();
+														break;
+													}
+												}
+
 											};
 }

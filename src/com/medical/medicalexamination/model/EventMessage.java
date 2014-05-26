@@ -14,6 +14,7 @@ public class EventMessage
 	public static final int	MSG_SHOW_LOGIN		= MSG_CUSTOM + 4;
 	public static final int	MSG_SHOW_HISTORY	= MSG_CUSTOM + 5;
 	public static final int	MSG_TEST_EYE		= MSG_CUSTOM + 6;
+	
 
 	/**
 	 * @author jugo

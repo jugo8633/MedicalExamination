@@ -216,6 +216,7 @@ public class MainActivity extends Activity
 												case EventMessage.MSG_TEST_EYE:
 													flipperMenuController.showEyeTest();
 													break;
+												
 												}
 											}
 
