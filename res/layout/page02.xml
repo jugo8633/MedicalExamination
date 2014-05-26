@@ -26,13 +26,15 @@
         android:background="@color/separate_line" />
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignLeft="@+id/separate_line"
         android:layout_alignRight="@+id/separate_line"
         android:layout_below="@+id/separate_line"
         android:layout_marginTop="20dp"
-        android:gravity="center" >
+        android:gravity="center"
+        android:orientation="horizontal" >
 
         <ImageView
             android:id="@+id/imageViewEyeTest"
@@ -56,7 +58,72 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/hand" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" >
+
+        <TextView
+            android:id="@+id/textViewLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:text="@string/language"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/Focus_Blue" />
+
+        <View
+            android:id="@+id/separate_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/textViewLanguage"
+            android:background="@color/separate_line" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/separate_line"
+        android:layout_alignRight="@+id/separate_line"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
         
+         <ImageView
+             android:id="@+id/imageViewExpressionTest"
+             android:layout_width="120dp"
+             android:layout_height="match_parent"
+             android:scaleType="fitXY"
+             android:src="@drawable/expression" />
+
+        <ImageView
+            android:id="@+id/imageViewLanguageTest"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/language_fluency" />
+
+        <ImageView
+            android:id="@+id/imageViewBaseLanguage"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/base_language" />
+
     </LinearLayout>
 
 </RelativeLayout>
