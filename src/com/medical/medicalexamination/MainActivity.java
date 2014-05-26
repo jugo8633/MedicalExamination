@@ -127,7 +127,7 @@ public class MainActivity extends Activity
 		view2 = lf.inflate(R.layout.page02, null);
 		view3 = lf.inflate(R.layout.page03, null);
 
-		page2Controller = new Page2Controller(view2);
+		page2Controller = new Page2Controller(view2, selfHandler);
 
 		viewList = new ArrayList<View>();
 		viewList.add(view1);
@@ -211,6 +211,9 @@ public class MainActivity extends Activity
 													break;
 												case EventMessage.MSG_SHOW_HISTORY:
 													flipperMenuController.showCalendar();
+													break;
+												case EventMessage.MSG_TEST_EYE:
+													flipperMenuController.showEyeTest();
 													break;
 												}
 											}
