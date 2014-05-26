@@ -1,7 +1,6 @@
 package com.medical.medicalexamination.controller;
 
 import com.medical.medicalexamination.R;
-import com.medical.medicalexamination.controller.FlipperMenuController;
 import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
 

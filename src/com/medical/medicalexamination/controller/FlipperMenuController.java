@@ -20,13 +20,14 @@ import android.widget.TextView;
 public class FlipperMenuController
 {
 
-	private FlipperView		flipperView			= null;
-	private MenuID			menuId				= null;
-	private RelativeLayout	historyMainLayout	= null;
-	private RelativeLayout	calendarLayout		= null;
-	private RelativeLayout	eyeTestLayout		= null;
-	private Handler			notifyHandler		= null;
-	private LoginController	loginController		= null;
+	private FlipperView			flipperView			= null;
+	private MenuID				menuId				= null;
+	private RelativeLayout		historyMainLayout	= null;
+	private RelativeLayout		calendarLayout		= null;
+	private RelativeLayout		eyeTestLayout		= null;
+	private Handler				notifyHandler		= null;
+	private LoginController		loginController		= null;
+	private EyeTestController	eyeTestController	= null;
 
 	private class MenuID
 	{
@@ -61,6 +62,7 @@ public class FlipperMenuController
 		menuId.mnEyeTestId = flipperView.addChild(R.layout.eye_test);
 
 		loginController = new LoginController(activity);
+		eyeTestController = new EyeTestController(activity);
 
 		historyMainLayout = (RelativeLayout) flipperView.findViewById(R.id.history_main_layout);
 		historyMainLayout.setOnTouchListener(mainLayoutTouch);
