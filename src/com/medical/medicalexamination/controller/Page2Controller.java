@@ -11,17 +11,20 @@ import android.widget.ImageView;
 
 public class Page2Controller
 {
-	private View		viewPage2	= null;
-	private ImageView	imageEye	= null;
-	private Handler		theHandler	= null;
+	private Handler	theHandler	= null;
 
 	public Page2Controller(View view, Handler handler)
 	{
 		super();
-		viewPage2 = view;
-		imageEye = (ImageView) view.findViewById(R.id.imageViewEyeTest);
-		imageEye.setOnClickListener(buttonClickListener);
 		theHandler = handler;
+		ImageView imageView = null;
+
+		imageView = (ImageView) view.findViewById(R.id.imageViewEyeTest);
+		imageView.setOnClickListener(buttonClickListener);
+
+		imageView = (ImageView) view.findViewById(R.id.imageViewHearTest);
+		imageView.setOnClickListener(buttonClickListener);
+
 	}
 
 	private OnClickListener	buttonClickListener	= new OnClickListener()
@@ -33,7 +36,12 @@ public class Page2Controller
 														switch (v.getId())
 														{
 														case R.id.imageViewEyeTest:
-															EventHandler.notify(theHandler, EventMessage.MSG_TEST_EYE, 0, 0, null);
+															EventHandler.notify(theHandler, EventMessage.MSG_TEST_EYE,
+																	0, 0, null);
+															break;
+														case R.id.imageViewHearTest:
+															EventHandler.notify(theHandler, EventMessage.MSG_TEST_HEAR,
+																	0, 0, null);
 															break;
 														}
 													}

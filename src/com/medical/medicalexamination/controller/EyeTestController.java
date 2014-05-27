@@ -4,37 +4,36 @@ import com.medical.medicalexamination.R;
 import com.medical.medicalexamination.model.Device;
 import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
+import com.medical.medicalexamination.model.ImageViewTouchHandler;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Handler;
+import android.os.Message;
 import android.util.SparseIntArray;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 public class EyeTestController
 {
-	private Activity		theActivity		= null;
-	private ImageView		imgViewE		= null;
-	private ImageView		imgViewUp		= null;
-	private ImageView		imgViewDown		= null;
-	private ImageView		imgViewLeft		= null;
-	private ImageView		imgViewRight	= null;
-	private ImageView		imgClose		= null;
-	private RelativeLayout	layoutE			= null;
-	private SparseIntArray	listTestData	= null;
-	private int				mnLevel			= 0;
-	private Handler			notifyHandler	= null;
+	private Activity				theActivity			= null;
+	private ImageView				imgViewE			= null;
+	private ImageView				imgViewUp			= null;
+	private ImageView				imgViewDown			= null;
+	private ImageView				imgViewLeft			= null;
+	private ImageView				imgViewRight		= null;
+	private ImageView				imgClose			= null;
+	private RelativeLayout			layoutE				= null;
+	private SparseIntArray			listTestData		= null;
+	private int						mnLevel				= 0;
+	private Handler					notifyHandler		= null;
+	private ImageViewTouchHandler	imageViewHandler	= null;
 
 	public EyeTestController(Activity activity)
 	{
 		super();
 		theActivity = activity;
-		initView(activity);
 
+		imageViewHandler = new ImageViewTouchHandler();
 		listTestData = new SparseIntArray();
 		listTestData.put(0, R.drawable.big_e_right);
 		listTestData.put(1, R.drawable.big_e_up);
@@ -45,6 +44,7 @@ public class EyeTestController
 		listTestData.put(6, R.drawable.big_e_down);
 		listTestData.put(7, R.drawable.big_e_up);
 
+		initView(activity);
 	}
 
 	@Override
@@ -52,6 +52,7 @@ public class EyeTestController
 	{
 		listTestData.clear();
 		listTestData = null;
+		imageViewHandler = null;
 		super.finalize();
 	}
 
@@ -70,64 +71,11 @@ public class EyeTestController
 		imgClose = (ImageView) activity.findViewById(R.id.imageViewClose);
 		layoutE = (RelativeLayout) activity.findViewById(R.id.relativeLayoutEMain);
 
-		setTouchEvent(imgViewE);
-		setTouchEvent(imgViewUp);
-		setTouchEvent(imgViewDown);
-		setTouchEvent(imgViewLeft);
-		setTouchEvent(imgViewRight);
-		setTouchEvent(imgClose);
-	}
-
-	private void setTouchEvent(View view)
-	{
-		view.setOnTouchListener(new OnTouchListener()
-		{
-			@Override
-			public boolean onTouch(View v, MotionEvent event)
-			{
-
-				switch (event.getAction())
-				{
-				case MotionEvent.ACTION_DOWN:
-					if (v instanceof ImageView)
-					{
-						setColorFilter((ImageView) v, "#CCC7F50E");
-					}
-					break;
-				case MotionEvent.ACTION_UP:
-					if (v instanceof ImageView)
-					{
-						setColorFilter((ImageView) v, Color.TRANSPARENT);
-						if (R.id.imageViewClose == v.getId())
-						{
-							close();
-						}
-						else
-						{
-							checkAnswer(v.getId());
-						}
-					}
-					break;
-				case MotionEvent.ACTION_CANCEL:
-					if (v instanceof ImageView)
-					{
-						setColorFilter((ImageView) v, Color.TRANSPARENT);
-					}
-					break;
-				}
-				return true;
-			}
-		});
-	}
-
-	private void setColorFilter(ImageView imageView, String strColor)
-	{
-		imageView.setColorFilter(Color.parseColor(strColor));
-	}
-
-	private void setColorFilter(ImageView imageView, int nColor)
-	{
-		imageView.setColorFilter(nColor);
+		imageViewHandler.setTouchEvent(imgViewUp, selfHandler);
+		imageViewHandler.setTouchEvent(imgViewDown, selfHandler);
+		imageViewHandler.setTouchEvent(imgViewLeft, selfHandler);
+		imageViewHandler.setTouchEvent(imgViewRight, selfHandler);
+		imageViewHandler.setTouchEvent(imgClose, selfHandler);
 	}
 
 	private void setLevel(int nLevel)
@@ -173,7 +121,7 @@ public class EyeTestController
 			break;
 		case R.id.imageViewArrowUp:
 			break;
-		case R.id.imageViewArrowLeft:
+		case R.id.imageViewHearLeft:
 			break;
 		case R.id.imageViewArrowDown:
 			break;
@@ -191,4 +139,30 @@ public class EyeTestController
 	{
 		EventHandler.notify(notifyHandler, EventMessage.MSG_FLIPPER_CLOSE, 0, 0, null);
 	}
+
+	private void touchHandler(final int nResId)
+	{
+		if (R.id.imageViewClose == nResId)
+		{
+			close();
+		}
+		else
+		{
+			checkAnswer(nResId);
+		}
+	}
+
+	private Handler	selfHandler	= new Handler()
+								{
+									@Override
+									public void handleMessage(Message msg)
+									{
+										switch (msg.what)
+										{
+										case EventMessage.MSG_SELECTED:
+											touchHandler(msg.arg1);
+											break;
+										}
+									}
+								};
 }

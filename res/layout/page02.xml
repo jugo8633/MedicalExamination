@@ -44,7 +44,7 @@
             android:src="@drawable/eye" />
 
         <ImageView
-            android:id="@+id/imageViewEarTest"
+            android:id="@+id/imageViewHearTest"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="40dp"
@@ -100,13 +100,13 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal" >
-        
-         <ImageView
-             android:id="@+id/imageViewExpressionTest"
-             android:layout_width="120dp"
-             android:layout_height="match_parent"
-             android:scaleType="fitXY"
-             android:src="@drawable/expression" />
+
+        <ImageView
+            android:id="@+id/imageViewExpressionTest"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/expression" />
 
         <ImageView
             android:id="@+id/imageViewLanguageTest"
@@ -123,7 +123,6 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:src="@drawable/base_language" />
-
     </LinearLayout>
 
 </RelativeLayout>

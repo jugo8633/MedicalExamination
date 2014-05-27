@@ -21,7 +21,6 @@
             android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
             android:src="@drawable/big_e_right" />
-
     </RelativeLayout>
 
     <RelativeLayout

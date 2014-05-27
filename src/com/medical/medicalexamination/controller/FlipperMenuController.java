@@ -1,7 +1,6 @@
 package com.medical.medicalexamination.controller;
 
 import com.medical.medicalexamination.R;
-import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
 import com.medical.medicalexamination.model.Logs;
 import com.medical.medicalexamination.model.Type;
@@ -12,11 +11,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
 
 public class FlipperMenuController
 {
@@ -29,21 +26,31 @@ public class FlipperMenuController
 	private Handler				notifyHandler		= null;
 	private LoginController		loginController		= null;
 	private EyeTestController	eyeTestController	= null;
+	private HearTestController	hearTestController	= null;
 
 	private class MenuID
 	{
-		public int	mnLoginId			= Type.INVALID;
-		public int	mnHistoryId			= Type.INVALID;
-		public int	mnCalendarId		= Type.INVALID;
-		public int	mnEyeTestId			= Type.INVALID;
-		public int	mnAccountAdd		= Type.INVALID;
-		public int	mnForgetPassword	= Type.INVALID;
+		public int	mnLoginId		= Type.INVALID;
+		public int	mnHistoryId		= Type.INVALID;
+		public int	mnCalendarId	= Type.INVALID;
+		public int	mnEyeTestId		= Type.INVALID;
+		public int	mnHearTestId	= Type.INVALID;
 	}
 
 	public FlipperMenuController(Activity activity)
 	{
 		super();
 		init(activity);
+	}
+
+	@Override
+	protected void finalize() throws Throwable
+	{
+		menuId = null;
+		loginController = null;
+		eyeTestController = null;
+		hearTestController = null;
+		super.finalize();
 	}
 
 	private void init(Activity activity)
@@ -61,9 +68,11 @@ public class FlipperMenuController
 		menuId.mnHistoryId = flipperView.addChild(R.layout.history);
 		menuId.mnCalendarId = flipperView.addChild(R.layout.calendar);
 		menuId.mnEyeTestId = flipperView.addChild(R.layout.eye_test);
+		menuId.mnHearTestId = flipperView.addChild(R.layout.hearing_test);
 
 		loginController = new LoginController(activity);
 		eyeTestController = new EyeTestController(activity);
+		hearTestController = new HearTestController(activity);
 
 		historyMainLayout = (RelativeLayout) flipperView.findViewById(R.id.history_main_layout);
 		historyMainLayout.setOnTouchListener(mainLayoutTouch);
@@ -83,6 +92,7 @@ public class FlipperMenuController
 		notifyHandler = handler;
 		loginController.setNotifyHandler(handler);
 		eyeTestController.setNotifyHandler(selfHandler);
+		hearTestController.setNotifyHandler(selfHandler);
 	}
 
 	public void setHideEnable(boolean bEnable)
@@ -108,6 +118,11 @@ public class FlipperMenuController
 	public void showEyeTest()
 	{
 		flipperView.showView(menuId.mnEyeTestId);
+	}
+
+	public void showHearTest()
+	{
+		flipperView.showView(menuId.mnHearTestId);
 	}
 
 	public void close()
