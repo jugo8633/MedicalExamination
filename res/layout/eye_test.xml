@@ -79,7 +79,7 @@
     </RelativeLayout>
 
     <ImageView
-        android:id="@+id/imageViewClose"
+        android:id="@+id/imageViewEyeClose"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentRight="true"

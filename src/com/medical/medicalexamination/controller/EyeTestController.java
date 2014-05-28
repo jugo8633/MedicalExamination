@@ -68,7 +68,7 @@ public class EyeTestController
 		imgViewDown = (ImageView) activity.findViewById(R.id.imageViewArrowDown);
 		imgViewLeft = (ImageView) activity.findViewById(R.id.imageViewArrowLeft);
 		imgViewRight = (ImageView) activity.findViewById(R.id.imageViewArrowRight);
-		imgClose = (ImageView) activity.findViewById(R.id.imageViewClose);
+		imgClose = (ImageView) activity.findViewById(R.id.imageViewEyeClose);
 		layoutE = (RelativeLayout) activity.findViewById(R.id.relativeLayoutEMain);
 
 		imageViewHandler.setTouchEvent(imgViewUp, selfHandler);
@@ -142,7 +142,7 @@ public class EyeTestController
 
 	private void touchHandler(final int nResId)
 	{
-		if (R.id.imageViewClose == nResId)
+		if (R.id.imageViewEyeClose == nResId)
 		{
 			close();
 		}

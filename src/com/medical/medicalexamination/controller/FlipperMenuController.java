@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.RelativeLayout;
 
-
 public class FlipperMenuController
 {
 
@@ -84,6 +83,8 @@ public class FlipperMenuController
 		eyeTestLayout = (RelativeLayout) flipperView.findViewById(R.id.eyetest_main_layout);
 		eyeTestLayout.setOnTouchListener(mainLayoutTouch);
 
+		flipperView.findViewById(R.id.hear_test_main_layout).setOnTouchListener(mainLayoutTouch);
+
 	}
 
 	public void setNotifyHandler(Handler handler)
@@ -122,6 +123,7 @@ public class FlipperMenuController
 
 	public void showHearTest()
 	{
+		hearTestController.init();
 		flipperView.showView(menuId.mnHearTestId);
 	}
 
