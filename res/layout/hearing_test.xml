@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/White" >
 
+    <include
+        android:id="@+id/subTestAreaHeader"
+        android:layout_alignParentTop="true"
+        layout="@layout/test_area_header" />
+
     <RelativeLayout
         android:id="@+id/RelativeLayoutHearingMain"
         android:layout_width="match_parent"
@@ -63,17 +68,6 @@
             android:src="@drawable/e_right" />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/imageViewHearClose"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/content_descript"
-        android:src="@drawable/close" />
-
     <RelativeLayout
         android:id="@+id/RelativeLayoutHearingPlayMain"
         android:layout_width="match_parent"
@@ -91,7 +85,6 @@
             android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
             android:src="@drawable/play" />
-
     </RelativeLayout>
 
 </RelativeLayout>

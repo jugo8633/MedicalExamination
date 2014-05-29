@@ -8,6 +8,7 @@ import com.medical.medicalexamination.model.Logs;
 
 import android.os.Handler;
 import android.os.Message;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -20,14 +21,28 @@ public class TestAreaHeaderController
 	private ImageView				imgViewClose		= null;
 	private Handler					notifyHandler		= null;
 	private ImageViewTouchHandler	imageViewHandler	= null;
+	private OnClosedListener		onClosedListener	= null;
 
-	public TestAreaHeaderController(RelativeLayout testMainLayout, Handler handler)
+	public interface OnClosedListener
+	{
+		void OnClosed();
+	}
+
+	public void setOnClosedListener(OnClosedListener listener)
+	{
+		if (null != listener)
+		{
+			onClosedListener = listener;
+		}
+	}
+
+	public TestAreaHeaderController(ViewGroup parent, Handler handler)
 	{
 		super();
 		imageViewHandler = new ImageViewTouchHandler();
 		notifyHandler = handler;
-		imgViewInfo = (ImageView) testMainLayout.findViewById(RES_ID_INFO);
-		imgViewClose = (ImageView) testMainLayout.findViewById(RES_ID_CLOSE);
+		imgViewInfo = (ImageView) parent.findViewById(RES_ID_INFO);
+		imgViewClose = (ImageView) parent.findViewById(RES_ID_CLOSE);
 		imageViewHandler.setTouchEvent(imgViewInfo, selfHandler);
 		imageViewHandler.setTouchEvent(imgViewClose, selfHandler);
 	}
@@ -41,6 +56,7 @@ public class TestAreaHeaderController
 
 	public void close()
 	{
+		onClosedListener.OnClosed();
 		EventHandler.notify(notifyHandler, EventMessage.MSG_FLIPPER_CLOSE, 0, 0, null);
 	}
 

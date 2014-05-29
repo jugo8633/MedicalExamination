@@ -73,7 +73,7 @@ public class FlipperMenuController
 
 		loginController = new LoginController(activity, handler);
 		eyeTestController = new EyeTestController(activity, selfHandler);
-		hearTestController = new HearTestController(activity, handler);
+		hearTestController = new HearTestController(activity, selfHandler);
 
 		historyMainLayout = (RelativeLayout) flipperView.findViewById(R.id.history_main_layout);
 		historyMainLayout.setOnTouchListener(mainLayoutTouch);
@@ -110,6 +110,7 @@ public class FlipperMenuController
 
 	public void showEyeTest()
 	{
+		eyeTestController.init();
 		flipperView.showView(menuId.mnEyeTestId);
 	}
 

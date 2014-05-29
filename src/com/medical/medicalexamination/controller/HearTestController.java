@@ -5,8 +5,6 @@ import java.io.IOException;
 import com.medical.medicalexamination.R;
 import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
-import com.medical.medicalexamination.model.ImageViewTouchHandler;
-import com.medical.medicalexamination.model.Logs;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
@@ -19,29 +17,27 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
-public class HearTestController
+public class HearTestController extends TestAreaController
 {
-	private Handler					notifyHandler		= null;
-	private ImageView				imgViewSpeakerLeft	= null;
-	private ImageView				imgViewSpeakerRight	= null;
-	private ImageView				imgViewLeft			= null;
-	private ImageView				imgViewRight		= null;
-	private ImageView				imgClose			= null;
-	private ImageView				imgPlay				= null;
-	private ImageViewTouchHandler	imageViewHandler	= null;
-	private int						mnLevel				= 0;
-	private MediaPlayer				mPlayer				= null;
-	private AudioManager			audioManager		= null;
-	private int						mnMaxVolume			= 0;
-	private boolean					mbSpeakerShake		= false;
-	private int						mnShakeMsg			= 666;
+	private ImageView		imgViewSpeakerLeft	= null;
+	private ImageView		imgViewSpeakerRight	= null;
+	private ImageView		imgPlay				= null;
+
+	private int				mnLevel				= 0;
+	private MediaPlayer		mPlayer				= null;
+	private AudioManager	audioManager		= null;
+	private int				mnMaxVolume			= 0;
+	private boolean			mbSpeakerShake		= false;
+	private int				mnShakeMsg			= 666;
+
+	private int[]			listImgViewResId	= { R.id.imageViewHearLeft, R.id.imageViewHearRight,
+			R.id.imageViewHearPlay				};
 
 	public HearTestController(Activity activity, Handler handler)
 	{
-		super();
-		notifyHandler = handler;
-		imageViewHandler = new ImageViewTouchHandler();
+		super(activity, handler);
 		initView(activity);
 
 		mPlayer = MediaPlayer.create(activity, R.raw.hear_test);
@@ -83,27 +79,27 @@ public class HearTestController
 		audioManager = null;
 		mPlayer.release();
 		mPlayer = null;
-		imageViewHandler = null;
 		super.finalize();
 	}
 
 	private void initView(Activity activity)
 	{
-		imgViewSpeakerLeft = (ImageView) activity.findViewById(R.id.imageViewSpeakerLeft);
-		imgViewSpeakerRight = (ImageView) activity.findViewById(R.id.imageViewSpeakerRight);
-		imgViewLeft = (ImageView) activity.findViewById(R.id.imageViewHearLeft);
-		imgViewRight = (ImageView) activity.findViewById(R.id.imageViewHearRight);
-		imgClose = (ImageView) activity.findViewById(R.id.imageViewHearClose);
-		imgPlay = (ImageView) activity.findViewById(R.id.imageViewHearPlay);
+		RelativeLayout mainLayout = (RelativeLayout) activity.findViewById(R.id.hear_test_main_layout);
+		initHeader(mainLayout);
+		addImageViewResId(mainLayout, listImgViewResId, selfHandler);
 
-		imageViewHandler.setTouchEvent(imgViewLeft, selfHandler);
-		imageViewHandler.setTouchEvent(imgViewRight, selfHandler);
-		imageViewHandler.setTouchEvent(imgClose, selfHandler);
-		imageViewHandler.setTouchEvent(imgPlay, selfHandler);
+		imgViewSpeakerLeft = (ImageView) mainLayout.findViewById(R.id.imageViewSpeakerLeft);
+		imgViewSpeakerRight = (ImageView) mainLayout.findViewById(R.id.imageViewSpeakerRight);
+		imgPlay = (ImageView) mainLayout.findViewById(R.id.imageViewHearPlay);
 	}
 
 	private void checkAnswer(int nArrow)
 	{
+		if (!mPlayer.isPlaying())
+		{
+			return;
+		}
+
 		switch (nArrow)
 		{
 		case R.id.imageViewHearLeft:
@@ -153,15 +149,6 @@ public class HearTestController
 
 	}
 
-	private void close()
-	{
-		mbSpeakerShake = false;
-		mPlayer.pause();
-		mPlayer.seekTo(0);
-		setPlayIcon(false);
-		EventHandler.notify(notifyHandler, EventMessage.MSG_FLIPPER_CLOSE, 0, 0, null);
-	}
-
 	private void touchHandler(final int nResId)
 	{
 		switch (nResId)
@@ -169,9 +156,6 @@ public class HearTestController
 		case R.id.imageViewHearLeft:
 		case R.id.imageViewHearRight:
 			checkAnswer(nResId);
-			break;
-		case R.id.imageViewHearClose:
-			close();
 			break;
 		case R.id.imageViewHearPlay:
 			setPlayIcon(playSound());
@@ -301,4 +285,18 @@ public class HearTestController
 														}
 													}
 												};
+
+	@Override
+	protected boolean onClose()
+	{
+		mbSpeakerShake = false;
+		mPlayer.pause();
+		mPlayer.seekTo(0);
+		setPlayIcon(false);
+
+		mPlayer.setVolume(1.0f, 1.0f);
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
+
+		return false;
+	}
 }

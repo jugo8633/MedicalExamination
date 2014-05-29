@@ -24,6 +24,7 @@ public class EyeTestController extends TestAreaController
 	public EyeTestController(Activity activity, Handler handler)
 	{
 		super(activity, handler);
+		initView(activity, handler);
 
 		listTestData = new SparseIntArray();
 		listTestData.put(0, R.drawable.big_e_right);
@@ -35,7 +36,6 @@ public class EyeTestController extends TestAreaController
 		listTestData.put(6, R.drawable.big_e_down);
 		listTestData.put(7, R.drawable.big_e_up);
 
-		initView(activity, handler);
 	}
 
 	@Override
@@ -46,13 +46,19 @@ public class EyeTestController extends TestAreaController
 		super.finalize();
 	}
 
+	public void init()
+	{
+		mnLevel = 0;
+		setLevel(0);
+	}
+
 	private void initView(Activity activity, Handler handler)
 	{
 		RelativeLayout eyeTestLayout = (RelativeLayout) activity.findViewById(R.id.eyetest_main_layout);
 		initHeader(eyeTestLayout);
+		addImageViewResId(eyeTestLayout, listImgViewResId, selfHandler);
 		imgViewE = (ImageView) eyeTestLayout.findViewById(R.id.imageViewE);
 		layoutE = (RelativeLayout) eyeTestLayout.findViewById(R.id.relativeLayoutEMain);
-		addImageViewResId(eyeTestLayout, listImgViewResId, selfHandler);
 	}
 
 	private void setLevel(int nLevel)
@@ -63,6 +69,9 @@ public class EyeTestController extends TestAreaController
 		Device device = new Device(theActivity);
 		switch (nLevel)
 		{
+		case 0:
+			nPadding = 0;
+			break;
 		case 1:
 			nPadding = device.ScaleSize(40);
 			break;
@@ -125,4 +134,10 @@ public class EyeTestController extends TestAreaController
 										}
 									}
 								};
+
+	@Override
+	protected boolean onClose()
+	{
+		return false;
+	}
 }

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-public class TestAreaController
+public abstract class TestAreaController
 {
 
 	protected Activity					theActivity			= null;
@@ -38,11 +38,21 @@ public class TestAreaController
 		super.finalize();
 	}
 
+	protected abstract boolean onClose();
+
 	protected void initHeader(RelativeLayout mainLayout)
 	{
 		if (null != mainLayout)
 		{
 			headerController = new TestAreaHeaderController(mainLayout, notifyHandler);
+			headerController.setOnClosedListener(new TestAreaHeaderController.OnClosedListener()
+			{
+				@Override
+				public void OnClosed()
+				{
+					onClose();
+				}
+			});
 		}
 	}
 
