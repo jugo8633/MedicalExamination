@@ -36,10 +36,11 @@ public class FlipperMenuController
 		public int	mnHearTestId	= Type.INVALID;
 	}
 
-	public FlipperMenuController(Activity activity)
+	public FlipperMenuController(Activity activity, Handler handler)
 	{
 		super();
-		init(activity);
+		notifyHandler = handler;
+		init(activity, handler);
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class FlipperMenuController
 		super.finalize();
 	}
 
-	private void init(Activity activity)
+	private void init(Activity activity, Handler handler)
 	{
 		menuId = new MenuID();
 
@@ -62,6 +63,7 @@ public class FlipperMenuController
 			Logs.showTrace("Flipper view is invalid");
 			return;
 		}
+		flipperView.setNotifyHandler(handler);
 
 		menuId.mnLoginId = flipperView.addChild(R.layout.login);
 		menuId.mnHistoryId = flipperView.addChild(R.layout.history);
@@ -69,9 +71,9 @@ public class FlipperMenuController
 		menuId.mnEyeTestId = flipperView.addChild(R.layout.eye_test);
 		menuId.mnHearTestId = flipperView.addChild(R.layout.hearing_test);
 
-		loginController = new LoginController(activity);
-		eyeTestController = new EyeTestController(activity);
-		hearTestController = new HearTestController(activity);
+		loginController = new LoginController(activity, handler);
+		eyeTestController = new EyeTestController(activity, selfHandler);
+		hearTestController = new HearTestController(activity, handler);
 
 		historyMainLayout = (RelativeLayout) flipperView.findViewById(R.id.history_main_layout);
 		historyMainLayout.setOnTouchListener(mainLayoutTouch);
@@ -84,16 +86,6 @@ public class FlipperMenuController
 		eyeTestLayout.setOnTouchListener(mainLayoutTouch);
 
 		flipperView.findViewById(R.id.hear_test_main_layout).setOnTouchListener(mainLayoutTouch);
-
-	}
-
-	public void setNotifyHandler(Handler handler)
-	{
-		flipperView.setNotifyHandler(handler);
-		notifyHandler = handler;
-		loginController.setNotifyHandler(handler);
-		eyeTestController.setNotifyHandler(selfHandler);
-		hearTestController.setNotifyHandler(selfHandler);
 	}
 
 	public void setHideEnable(boolean bEnable)

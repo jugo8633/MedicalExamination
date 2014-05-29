@@ -2,9 +2,7 @@ package com.medical.medicalexamination.controller;
 
 import com.medical.medicalexamination.R;
 import com.medical.medicalexamination.model.Device;
-import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
-import com.medical.medicalexamination.model.ImageViewTouchHandler;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -13,27 +11,20 @@ import android.util.SparseIntArray;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-public class EyeTestController
+public class EyeTestController extends TestAreaController
 {
-	private Activity				theActivity			= null;
-	private ImageView				imgViewE			= null;
-	private ImageView				imgViewUp			= null;
-	private ImageView				imgViewDown			= null;
-	private ImageView				imgViewLeft			= null;
-	private ImageView				imgViewRight		= null;
-	private ImageView				imgClose			= null;
-	private RelativeLayout			layoutE				= null;
-	private SparseIntArray			listTestData		= null;
-	private int						mnLevel				= 0;
-	private Handler					notifyHandler		= null;
-	private ImageViewTouchHandler	imageViewHandler	= null;
+	private ImageView		imgViewE			= null;
+	private RelativeLayout	layoutE				= null;
+	private SparseIntArray	listTestData		= null;
+	private int				mnLevel				= 0;
 
-	public EyeTestController(Activity activity)
+	private int[]			listImgViewResId	= { R.id.imageViewArrowUp, R.id.imageViewArrowDown,
+			R.id.imageViewArrowLeft, R.id.imageViewArrowRight };
+
+	public EyeTestController(Activity activity, Handler handler)
 	{
-		super();
-		theActivity = activity;
+		super(activity, handler);
 
-		imageViewHandler = new ImageViewTouchHandler();
 		listTestData = new SparseIntArray();
 		listTestData.put(0, R.drawable.big_e_right);
 		listTestData.put(1, R.drawable.big_e_up);
@@ -44,7 +35,7 @@ public class EyeTestController
 		listTestData.put(6, R.drawable.big_e_down);
 		listTestData.put(7, R.drawable.big_e_up);
 
-		initView(activity);
+		initView(activity, handler);
 	}
 
 	@Override
@@ -52,30 +43,16 @@ public class EyeTestController
 	{
 		listTestData.clear();
 		listTestData = null;
-		imageViewHandler = null;
 		super.finalize();
 	}
 
-	public void setNotifyHandler(Handler handler)
+	private void initView(Activity activity, Handler handler)
 	{
-		notifyHandler = handler;
-	}
-
-	private void initView(Activity activity)
-	{
-		imgViewE = (ImageView) activity.findViewById(R.id.imageViewE);
-		imgViewUp = (ImageView) activity.findViewById(R.id.imageViewArrowUp);
-		imgViewDown = (ImageView) activity.findViewById(R.id.imageViewArrowDown);
-		imgViewLeft = (ImageView) activity.findViewById(R.id.imageViewArrowLeft);
-		imgViewRight = (ImageView) activity.findViewById(R.id.imageViewArrowRight);
-		imgClose = (ImageView) activity.findViewById(R.id.imageViewEyeClose);
-		layoutE = (RelativeLayout) activity.findViewById(R.id.relativeLayoutEMain);
-
-		imageViewHandler.setTouchEvent(imgViewUp, selfHandler);
-		imageViewHandler.setTouchEvent(imgViewDown, selfHandler);
-		imageViewHandler.setTouchEvent(imgViewLeft, selfHandler);
-		imageViewHandler.setTouchEvent(imgViewRight, selfHandler);
-		imageViewHandler.setTouchEvent(imgClose, selfHandler);
+		RelativeLayout eyeTestLayout = (RelativeLayout) activity.findViewById(R.id.eyetest_main_layout);
+		initHeader(eyeTestLayout);
+		imgViewE = (ImageView) eyeTestLayout.findViewById(R.id.imageViewE);
+		layoutE = (RelativeLayout) eyeTestLayout.findViewById(R.id.relativeLayoutEMain);
+		addImageViewResId(eyeTestLayout, listImgViewResId, selfHandler);
 	}
 
 	private void setLevel(int nLevel)
@@ -135,23 +112,6 @@ public class EyeTestController
 		setLevel(mnLevel);
 	}
 
-	private void close()
-	{
-		EventHandler.notify(notifyHandler, EventMessage.MSG_FLIPPER_CLOSE, 0, 0, null);
-	}
-
-	private void touchHandler(final int nResId)
-	{
-		if (R.id.imageViewEyeClose == nResId)
-		{
-			close();
-		}
-		else
-		{
-			checkAnswer(nResId);
-		}
-	}
-
 	private Handler	selfHandler	= new Handler()
 								{
 									@Override
@@ -160,7 +120,7 @@ public class EyeTestController
 										switch (msg.what)
 										{
 										case EventMessage.MSG_SELECTED:
-											touchHandler(msg.arg1);
+											checkAnswer(msg.arg1);
 											break;
 										}
 									}

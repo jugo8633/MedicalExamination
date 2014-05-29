@@ -39,5 +39,9 @@ public class EventHandler extends EventMessage
 			msg.obj = object;
 			handler.sendMessage(msg);
 		}
+		else
+		{
+			Logs.showTrace("Event Handler Error: Invalid Handler !!");
+		}
 	}
 }

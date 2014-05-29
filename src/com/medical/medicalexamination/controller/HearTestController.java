@@ -37,9 +37,10 @@ public class HearTestController
 	private boolean					mbSpeakerShake		= false;
 	private int						mnShakeMsg			= 666;
 
-	public HearTestController(Activity activity)
+	public HearTestController(Activity activity, Handler handler)
 	{
 		super();
+		notifyHandler = handler;
 		imageViewHandler = new ImageViewTouchHandler();
 		initView(activity);
 
@@ -84,11 +85,6 @@ public class HearTestController
 		mPlayer = null;
 		imageViewHandler = null;
 		super.finalize();
-	}
-
-	public void setNotifyHandler(Handler handler)
-	{
-		notifyHandler = handler;
 	}
 
 	private void initView(Activity activity)

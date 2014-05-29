@@ -21,28 +21,24 @@ public class SensorActivity extends Activity implements SensorEventListener
 	@Override
 	protected void onResume()
 	{
-		// TODO Auto-generated method stub
 		super.onResume();
 	}
 
 	@Override
 	protected void onPause()
 	{
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
 	@Override
 	public void onSensorChanged(SensorEvent event)
 	{
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy)
 	{
-		// TODO Auto-generated method stub
 		
 	}
 

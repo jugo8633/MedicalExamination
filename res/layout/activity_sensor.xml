@@ -5,4 +5,9 @@
     android:layout_height="match_parent"
     android:background="@color/Black_Gray" >
 
+    <include
+        android:id="@+id/subTestAreaHeader"
+        android:layout_alignParentTop="true"
+        layout="@layout/test_area_header" />
+
 </RelativeLayout>

@@ -65,8 +65,7 @@ public class MainActivity extends Activity
 		menuHandler = new SlideMenuController(this, selfHandler);
 
 		/** init flipper menu */
-		flipperMenuController = new FlipperMenuController(this);
-		flipperMenuController.setNotifyHandler(selfHandler);
+		flipperMenuController = new FlipperMenuController(this, selfHandler);
 
 		/** show login */
 		flipperMenuController.setHideEnable(false);

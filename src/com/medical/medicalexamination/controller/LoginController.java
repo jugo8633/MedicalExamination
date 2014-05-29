@@ -26,10 +26,11 @@ public class LoginController
 		public String	mstrPassword	= null;
 	}
 
-	public LoginController(Activity activity)
+	public LoginController(Activity activity, Handler handler)
 	{
 		super();
 		theActivity = activity;
+		notifyHandler = handler;
 		loginMainLayout = (RelativeLayout) activity.findViewById(R.id.login_main_layout);
 		loginMainLayout.setOnTouchListener(mainLayoutTouch);
 		loginHandle(activity);
@@ -39,11 +40,6 @@ public class LoginController
 	protected void finalize() throws Throwable
 	{
 		super.finalize();
-	}
-
-	public void setNotifyHandler(Handler handler)
-	{
-		notifyHandler = handler;
 	}
 
 	private void loginHandle(final Activity activity)
