@@ -25,6 +25,9 @@ public class Page2Controller
 		imageView = (ImageView) view.findViewById(R.id.imageViewHearTest);
 		imageView.setOnClickListener(buttonClickListener);
 
+		imageView = (ImageView) view.findViewById(R.id.imageViewFinger);
+		imageView.setOnClickListener(buttonClickListener);
+
 	}
 
 	private OnClickListener	buttonClickListener	= new OnClickListener()
@@ -41,6 +44,10 @@ public class Page2Controller
 															break;
 														case R.id.imageViewHearTest:
 															EventHandler.notify(theHandler, EventMessage.MSG_TEST_HEAR,
+																	0, 0, null);
+															break;
+														case R.id.imageViewFinger:
+															EventHandler.notify(theHandler, EventMessage.MSG_TEST_ABSORPTION,
 																	0, 0, null);
 															break;
 														}

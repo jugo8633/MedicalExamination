@@ -16,6 +16,7 @@ public class EventMessage
 	public static final int	MSG_TEST_EYE		= MSG_CUSTOM + 6;
 	public static final int	MSG_SELECTED		= MSG_CUSTOM + 7;
 	public static final int	MSG_TEST_HEAR		= MSG_CUSTOM + 8;
+	public static final int	MSG_TEST_ABSORPTION	= MSG_CUSTOM + 9;
 
 	/**
 	 * @author jugo

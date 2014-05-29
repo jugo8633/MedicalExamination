@@ -11,6 +11,7 @@ import com.medical.medicalexamination.model.EventMessage;
 import com.medical.medicalexamination.model.SqliteHandler;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -186,6 +187,12 @@ public class MainActivity extends Activity
 		}
 	}
 
+	private void showSensorActivity()
+	{
+		Intent intent = new Intent(MainActivity.this, SensorActivity.class);
+		startActivity(intent);
+	}
+
 	private OnClickListener	buttonClick	= new OnClickListener()
 										{
 											@Override
@@ -218,6 +225,9 @@ public class MainActivity extends Activity
 													break;
 												case EventMessage.MSG_TEST_HEAR:
 													flipperMenuController.showHearTest();
+													break;
+												case EventMessage.MSG_TEST_ABSORPTION:
+													showSensorActivity();
 													break;
 
 												}
