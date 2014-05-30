@@ -4,15 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:layout_gravity="top"
-    android:background="@color/Gray" >
+    android:background="@drawable/header_bar" >
 
     <ImageView
         android:id="@+id/imageViewTestAreaHeaderInfo"
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/content_descript"
+        android:padding="5dp"
         android:scaleType="fitXY"
         android:src="@drawable/info" />
 
@@ -22,8 +24,10 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_gravity="right"
+        android:layout_marginRight="10dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/content_descript"
+        android:padding="5dp"
         android:scaleType="fitXY"
         android:src="@drawable/close" />
 

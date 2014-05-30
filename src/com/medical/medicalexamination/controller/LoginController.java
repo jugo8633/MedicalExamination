@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 public class LoginController
 {
-	private Activity		theActivity		= null;
 	private RelativeLayout	loginMainLayout	= null;
 	private Handler			notifyHandler	= null;
 
@@ -29,7 +28,6 @@ public class LoginController
 	public LoginController(Activity activity, Handler handler)
 	{
 		super();
-		theActivity = activity;
 		notifyHandler = handler;
 		loginMainLayout = (RelativeLayout) activity.findViewById(R.id.login_main_layout);
 		loginMainLayout.setOnTouchListener(mainLayoutTouch);
@@ -40,6 +38,11 @@ public class LoginController
 	protected void finalize() throws Throwable
 	{
 		super.finalize();
+	}
+
+	public void init()
+	{
+
 	}
 
 	private void loginHandle(final Activity activity)

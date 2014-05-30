@@ -40,11 +40,11 @@ public abstract class TestAreaController
 
 	protected abstract boolean onClose();
 
-	protected void initHeader(RelativeLayout mainLayout)
+	protected void initHeader(ViewGroup parent)
 	{
-		if (null != mainLayout)
+		if (null != parent)
 		{
-			headerController = new TestAreaHeaderController(mainLayout, notifyHandler);
+			headerController = new TestAreaHeaderController(parent, notifyHandler);
 			headerController.setOnClosedListener(new TestAreaHeaderController.OnClosedListener()
 			{
 				@Override

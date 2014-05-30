@@ -22,7 +22,6 @@ public class FlipperMenuController
 	private RelativeLayout		historyMainLayout	= null;
 	private RelativeLayout		calendarLayout		= null;
 	private RelativeLayout		eyeTestLayout		= null;
-	private Handler				notifyHandler		= null;
 	private LoginController		loginController		= null;
 	private EyeTestController	eyeTestController	= null;
 	private HearTestController	hearTestController	= null;
@@ -39,7 +38,6 @@ public class FlipperMenuController
 	public FlipperMenuController(Activity activity, Handler handler)
 	{
 		super();
-		notifyHandler = handler;
 		init(activity, handler);
 	}
 
@@ -95,6 +93,7 @@ public class FlipperMenuController
 
 	public void showLogin()
 	{
+		loginController.init();
 		flipperView.showView(menuId.mnLoginId);
 	}
 

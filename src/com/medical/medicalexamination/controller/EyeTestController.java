@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.util.SparseIntArray;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -54,11 +55,11 @@ public class EyeTestController extends TestAreaController
 
 	private void initView(Activity activity, Handler handler)
 	{
-		RelativeLayout eyeTestLayout = (RelativeLayout) activity.findViewById(R.id.eyetest_main_layout);
-		initHeader(eyeTestLayout);
-		addImageViewResId(eyeTestLayout, listImgViewResId, selfHandler);
-		imgViewE = (ImageView) eyeTestLayout.findViewById(R.id.imageViewE);
-		layoutE = (RelativeLayout) eyeTestLayout.findViewById(R.id.relativeLayoutEMain);
+		ViewGroup parent = (ViewGroup) activity.findViewById(R.id.eyetest_main_layout);
+		initHeader(parent);
+		addImageViewResId(parent, listImgViewResId, selfHandler);
+		imgViewE = (ImageView) parent.findViewById(R.id.imageViewE);
+		layoutE = (RelativeLayout) parent.findViewById(R.id.relativeLayoutEMain);
 	}
 
 	private void setLevel(int nLevel)
