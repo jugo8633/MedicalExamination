@@ -22,6 +22,7 @@ public class FlipperMenuController
 	private Comprehension1Controller	comprehension1Controller	= null;
 	private Comprehension2Controller	comprehension2Controller	= null;
 	private Comprehension3Controller	comprehension3Controller	= null;
+	private Memory1Controller			memory1Controller			= null;
 
 	/**
 	 * list android layout of medical test
@@ -53,6 +54,7 @@ public class FlipperMenuController
 		comprehension1Controller = null;
 		comprehension2Controller = null;
 		comprehension3Controller = null;
+		memory1Controller = null;
 		super.finalize();
 	}
 
@@ -77,6 +79,7 @@ public class FlipperMenuController
 		comprehension1Controller = new Comprehension1Controller(activity, selfHandler);
 		comprehension2Controller = new Comprehension2Controller(activity, selfHandler);
 		comprehension3Controller = new Comprehension3Controller(activity, selfHandler);
+		memory1Controller = new Memory1Controller(activity, selfHandler);
 		historyHandler(activity);
 
 		for (int j = 0; j < listTestMainLayoutId.length; ++j)
@@ -152,6 +155,7 @@ public class FlipperMenuController
 
 	public void showMemory1()
 	{
+		memory1Controller.init();
 		flipperView.showView(getLayoutIndex(R.layout.memory1));
 	}
 
