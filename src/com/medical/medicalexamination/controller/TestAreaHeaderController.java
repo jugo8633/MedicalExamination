@@ -4,13 +4,11 @@ import com.medical.medicalexamination.R;
 import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
 import com.medical.medicalexamination.model.ImageViewTouchHandler;
-import com.medical.medicalexamination.model.Logs;
 
 import android.os.Handler;
 import android.os.Message;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 public class TestAreaHeaderController
 {

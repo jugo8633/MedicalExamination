@@ -30,7 +30,6 @@ public class SensorActivity extends Activity implements SensorEventListener
 	private SensorManager		sensorManager		= null;
 	private float				xPosition, xAcceleration, xVelocity = 0.0f;
 	private float				yPosition, yAcceleration, yVelocity = 0.0f;
-	private float				zAcceleration		= 0.0f;
 	private float				xmax, ymax;
 	private float				frameTime			= 0.666f;
 	private Bitmap				mBitmap;
@@ -98,7 +97,6 @@ public class SensorActivity extends Activity implements SensorEventListener
 		if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)
 		{
 			// Set sensor values as acceleration
-			zAcceleration = event.values[0];
 			yAcceleration = event.values[1];
 			xAcceleration = event.values[2];
 
