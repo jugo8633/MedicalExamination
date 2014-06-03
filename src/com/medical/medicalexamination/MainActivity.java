@@ -215,6 +215,13 @@ public class MainActivity extends Activity
 		case R.id.imageViewComprehensionTest3:
 			flipperMenuController.showComprehension3();
 			break;
+		case R.id.imageViewMemoryTest1:
+			flipperMenuController.showMemory1();
+			break;
+		case R.id.imageViewMemoryTest2:
+			break;
+		case R.id.imageViewMemoryTest3:
+			break;
 		}
 	}
 

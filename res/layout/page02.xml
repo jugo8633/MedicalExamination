@@ -116,7 +116,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
-            android:src="@drawable/comprehension" />
+            android:src="@drawable/expression" />
 
         <ImageView
             android:id="@+id/imageViewComprehensionTest2"
@@ -142,7 +142,7 @@
  </RelativeLayout>
  
     <RelativeLayout
-        android:id="@+id/RelativeLayoutLanguageTestMain"
+        android:id="@+id/RelativeLayoutMemoryTestMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/RelativeLayoutComprehensionTestMain"
@@ -152,13 +152,13 @@
         android:paddingRight="40dp" >
 
         <TextView
-            android:id="@+id/textViewLanguage"
+            android:id="@+id/textViewMemory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:text="@string/language"
+            android:text="@string/memory"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/Focus_Blue" />
 
@@ -166,11 +166,11 @@
             android:id="@+id/separate_line2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/textViewLanguage"
+            android:layout_below="@id/textViewMemory"
             android:background="@color/separate_line" />
    
     <LinearLayout
-        android:id="@+id/linearLayoutLanguageTestMain"
+        android:id="@+id/linearLayoutMemoryTestMain"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@id/separate_line2"
@@ -179,16 +179,16 @@
         android:orientation="horizontal" >
 
         <ImageView
-            android:id="@+id/imageViewExpressionTest"
+            android:id="@+id/imageViewMemoryTest1"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
-            android:src="@drawable/expression" />
+            android:src="@drawable/memory_card" />
 
         <ImageView
-            android:id="@+id/imageViewLanguageTest"
+            android:id="@+id/imageViewMemoryTest2"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="40dp"
@@ -199,7 +199,7 @@
             android:src="@drawable/language_fluency" />
 
         <ImageView
-            android:id="@+id/imageViewBaseLanguage"
+            android:id="@+id/imageViewMemoryTest3"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"

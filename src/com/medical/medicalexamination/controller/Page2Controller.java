@@ -11,32 +11,20 @@ import android.widget.ImageView;
 
 public class Page2Controller
 {
-	private Handler	theHandler	= null;
+	private Handler		theHandler	= null;
+
+	private final int[]	listButton	= { R.id.imageViewEyeTest, R.id.imageViewHearTest, R.id.imageViewFinger,
+			R.id.imageViewComprehensionTest1, R.id.imageViewComprehensionTest2, R.id.imageViewComprehensionTest3,
+			R.id.imageViewMemoryTest1, R.id.imageViewMemoryTest2, R.id.imageViewMemoryTest3 };
 
 	public Page2Controller(View view, Handler handler)
 	{
 		super();
 		theHandler = handler;
-		ImageView imageView = null;
-
-		imageView = (ImageView) view.findViewById(R.id.imageViewEyeTest);
-		imageView.setOnClickListener(buttonClickListener);
-
-		imageView = (ImageView) view.findViewById(R.id.imageViewHearTest);
-		imageView.setOnClickListener(buttonClickListener);
-
-		imageView = (ImageView) view.findViewById(R.id.imageViewFinger);
-		imageView.setOnClickListener(buttonClickListener);
-		
-		imageView = (ImageView)view.findViewById(R.id.imageViewComprehensionTest1);
-		imageView.setOnClickListener(buttonClickListener);
-		
-		imageView = (ImageView)view.findViewById(R.id.imageViewComprehensionTest2);
-		imageView.setOnClickListener(buttonClickListener);
-		
-		imageView = (ImageView)view.findViewById(R.id.imageViewComprehensionTest3);
-		imageView.setOnClickListener(buttonClickListener);
-
+		for (int i = 0; i < listButton.length; ++i)
+		{
+			view.findViewById(listButton[i]).setOnClickListener(buttonClickListener);
+		}
 	}
 
 	private OnClickListener	buttonClickListener	= new OnClickListener()
@@ -45,10 +33,10 @@ public class Page2Controller
 													@Override
 													public void onClick(View v)
 													{
-														if(v instanceof ImageView)
+														if (v instanceof ImageView)
 														{
-															EventHandler.notify(theHandler, EventMessage.MSG_TEST_SELECTED,
-																	v.getId(), 0, null);
+															EventHandler.notify(theHandler,
+																	EventMessage.MSG_TEST_SELECTED, v.getId(), 0, null);
 														}
 													}
 												};

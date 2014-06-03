@@ -29,7 +29,7 @@ public class FlipperMenuController
 	 */
 	private final int[]					listTestLayout				= { R.layout.login, R.layout.history,
 			R.layout.calendar, R.layout.eye_test, R.layout.hearing_test, R.layout.comprehension1,
-			R.layout.comprehension2, R.layout.comprehension3		};
+			R.layout.comprehension2, R.layout.comprehension3, R.layout.memory1 };
 
 	/**
 	 * list main layout id that in medical test layout, for ignore click
@@ -37,7 +37,7 @@ public class FlipperMenuController
 	private final int[]					listTestMainLayoutId		= { R.id.history_main_layout,
 			R.id.calendar_main_layout, R.id.eyetest_main_layout, R.id.hear_test_main_layout,
 			R.id.RelativeLayoutComprehension1Main, R.id.RelativeLayoutComprehension2Main,
-			R.id.RelativeLayoutComprehension3Main					};
+			R.id.RelativeLayoutComprehension3Main, R.id.RelativeLayoutMemory1Main };
 
 	public FlipperMenuController(Activity activity, Handler handler)
 	{
@@ -149,6 +149,11 @@ public class FlipperMenuController
 	{
 		comprehension3Controller.init();
 		flipperView.showView(getLayoutIndex(R.layout.comprehension3));
+	}
+
+	public void showMemory1()
+	{
+		flipperView.showView(getLayoutIndex(R.layout.memory1));
 	}
 
 	public void close()
