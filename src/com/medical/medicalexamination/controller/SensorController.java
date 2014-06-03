@@ -33,4 +33,10 @@ public class SensorController extends TestAreaController
 		return false;
 	}
 
+	@Override
+	protected void init()
+	{
+		
+	}
+
 }

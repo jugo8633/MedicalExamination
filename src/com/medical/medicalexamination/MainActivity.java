@@ -7,6 +7,7 @@ import com.medical.medicalexamination.controller.EyeTestController;
 import com.medical.medicalexamination.controller.FlipperMenuController;
 import com.medical.medicalexamination.controller.Page2Controller;
 import com.medical.medicalexamination.controller.SlideMenuController;
+import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
 import com.medical.medicalexamination.model.SqliteHandler;
 
@@ -192,6 +193,31 @@ public class MainActivity extends Activity
 		startActivity(intent);
 	}
 
+	private void showTest(int nButtonId)
+	{
+		switch (nButtonId)
+		{
+		case R.id.imageViewEyeTest:
+			flipperMenuController.showEyeTest();
+			break;
+		case R.id.imageViewHearTest:
+			flipperMenuController.showHearTest();
+			break;
+		case R.id.imageViewFinger:
+			showSensorActivity();
+			break;
+		case R.id.imageViewComprehensionTest1:
+			flipperMenuController.showComprehension1();
+			break;
+		case R.id.imageViewComprehensionTest2:
+			flipperMenuController.showComprehension2();
+			break;
+		case R.id.imageViewComprehensionTest3:
+			flipperMenuController.showComprehension3();
+			break;
+		}
+	}
+
 	private OnClickListener	buttonClick	= new OnClickListener()
 										{
 											@Override
@@ -219,14 +245,8 @@ public class MainActivity extends Activity
 												case EventMessage.MSG_SHOW_HISTORY:
 													flipperMenuController.showCalendar();
 													break;
-												case EventMessage.MSG_TEST_EYE:
-													flipperMenuController.showEyeTest();
-													break;
-												case EventMessage.MSG_TEST_HEAR:
-													flipperMenuController.showHearTest();
-													break;
-												case EventMessage.MSG_TEST_ABSORPTION:
-													showSensorActivity();
+												case EventMessage.MSG_TEST_SELECTED:
+													showTest(msg.arg1);
 													break;
 
 												}

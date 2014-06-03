@@ -27,6 +27,15 @@ public class Page2Controller
 
 		imageView = (ImageView) view.findViewById(R.id.imageViewFinger);
 		imageView.setOnClickListener(buttonClickListener);
+		
+		imageView = (ImageView)view.findViewById(R.id.imageViewComprehensionTest1);
+		imageView.setOnClickListener(buttonClickListener);
+		
+		imageView = (ImageView)view.findViewById(R.id.imageViewComprehensionTest2);
+		imageView.setOnClickListener(buttonClickListener);
+		
+		imageView = (ImageView)view.findViewById(R.id.imageViewComprehensionTest3);
+		imageView.setOnClickListener(buttonClickListener);
 
 	}
 
@@ -36,20 +45,10 @@ public class Page2Controller
 													@Override
 													public void onClick(View v)
 													{
-														switch (v.getId())
+														if(v instanceof ImageView)
 														{
-														case R.id.imageViewEyeTest:
-															EventHandler.notify(theHandler, EventMessage.MSG_TEST_EYE,
-																	0, 0, null);
-															break;
-														case R.id.imageViewHearTest:
-															EventHandler.notify(theHandler, EventMessage.MSG_TEST_HEAR,
-																	0, 0, null);
-															break;
-														case R.id.imageViewFinger:
-															EventHandler.notify(theHandler, EventMessage.MSG_TEST_ABSORPTION,
-																	0, 0, null);
-															break;
+															EventHandler.notify(theHandler, EventMessage.MSG_TEST_SELECTED,
+																	v.getId(), 0, null);
 														}
 													}
 												};

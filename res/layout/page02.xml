@@ -3,71 +3,150 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/textViewBasicTest"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutBasicTestMain"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:paddingTop="20dp"
-        android:text="@string/basic_test"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/Focus_Blue" />
+        android:layout_marginTop="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" >
 
-    <View
-        android:id="@+id/separate_line"
+        <TextView
+            android:id="@+id/textViewBasicTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingTop="20dp"
+            android:text="@string/basic_test"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/Focus_Blue" />
+
+        <View
+            android:id="@+id/separate_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/textViewBasicTest"
+            android:background="@color/separate_line" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutBasicTestMain"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignLeft="@+id/separate_line"
+            android:layout_alignRight="@+id/separate_line"
+            android:layout_below="@+id/separate_line"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/imageViewEyeTest"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/content_descript"
+                android:scaleType="fitXY"
+                android:src="@drawable/eye" />
+
+            <ImageView
+                android:id="@+id/imageViewHearTest"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:contentDescription="@string/content_descript"
+                android:scaleType="fitXY"
+                android:src="@drawable/ear" />
+
+            <ImageView
+                android:id="@+id/imageViewFinger"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/content_descript"
+                android:scaleType="fitXY"
+                android:src="@drawable/hand" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutComprehensionTestMain"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/textViewBasicTest"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@color/separate_line" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RelativeLayoutBasicTestMain"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp" >
 
+        <TextView
+            android:id="@+id/textViewComprehension"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:text="@string/comprehension"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/Focus_Blue" />
+
+        <View
+            android:id="@+id/separate_line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/textViewComprehension"
+            android:background="@color/separate_line" />
+   
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/linearLayoutComprehensionTestMain"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignLeft="@+id/separate_line"
-        android:layout_alignRight="@+id/separate_line"
-        android:layout_below="@+id/separate_line"
+        android:layout_height="100dp"
+        android:layout_below="@id/separate_line1"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal" >
 
         <ImageView
-            android:id="@+id/imageViewEyeTest"
+            android:id="@+id/imageViewComprehensionTest1"
             android:layout_width="120dp"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
-            android:src="@drawable/eye" />
+            android:src="@drawable/comprehension" />
 
         <ImageView
-            android:id="@+id/imageViewHearTest"
+            android:id="@+id/imageViewComprehensionTest2"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
-            android:src="@drawable/ear" />
+            android:src="@drawable/language_fluency" />
 
         <ImageView
-            android:id="@+id/imageViewFinger"
+            android:id="@+id/imageViewComprehensionTest3"
             android:layout_width="120dp"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
-            android:src="@drawable/hand" />
-    </LinearLayout>
+            android:src="@drawable/base_language" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    </LinearLayout>
+ </RelativeLayout>
+ 
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutLanguageTestMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:gravity="center_horizontal"
+        android:layout_below="@id/RelativeLayoutComprehensionTestMain"
+        android:layout_marginTop="60dp"
         android:orientation="vertical"
         android:paddingLeft="40dp"
         android:paddingRight="40dp" >
@@ -76,6 +155,7 @@
             android:id="@+id/textViewLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:text="@string/language"
@@ -83,20 +163,17 @@
             android:textColor="@color/Focus_Blue" />
 
         <View
-            android:id="@+id/separate_line1"
+            android:id="@+id/separate_line2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/textViewLanguage"
             android:background="@color/separate_line" />
-    </LinearLayout>
-
+   
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/linearLayoutLanguageTestMain"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignLeft="@+id/separate_line"
-        android:layout_alignRight="@+id/separate_line"
-        android:layout_below="@+id/linearLayout2"
+        android:layout_height="100dp"
+        android:layout_below="@id/separate_line2"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal" >
@@ -105,6 +182,8 @@
             android:id="@+id/imageViewExpressionTest"
             android:layout_width="120dp"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
             android:src="@drawable/expression" />
 
@@ -114,6 +193,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
             android:src="@drawable/language_fluency" />
 
@@ -121,8 +202,13 @@
             android:id="@+id/imageViewBaseLanguage"
             android:layout_width="120dp"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
             android:src="@drawable/base_language" />
-    </LinearLayout>
 
+    </LinearLayout>
+ </RelativeLayout>
+ 
+    
 </RelativeLayout>

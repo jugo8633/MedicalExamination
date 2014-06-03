@@ -38,6 +38,8 @@ public abstract class TestAreaController
 		super.finalize();
 	}
 
+	protected abstract void init();
+
 	protected abstract boolean onClose();
 
 	protected void initHeader(ViewGroup parent)

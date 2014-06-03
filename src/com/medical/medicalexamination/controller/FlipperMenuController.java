@@ -3,7 +3,6 @@ package com.medical.medicalexamination.controller;
 import com.medical.medicalexamination.R;
 import com.medical.medicalexamination.model.EventMessage;
 import com.medical.medicalexamination.model.Logs;
-import com.medical.medicalexamination.model.Type;
 import com.medical.medicalexamination.view.FlipperView;
 
 import android.app.Activity;
@@ -17,23 +16,24 @@ import android.widget.RelativeLayout;
 public class FlipperMenuController
 {
 
-	private FlipperView			flipperView			= null;
-	private MenuID				menuId				= null;
-	private RelativeLayout		historyMainLayout	= null;
-	private RelativeLayout		calendarLayout		= null;
-	private RelativeLayout		eyeTestLayout		= null;
-	private LoginController		loginController		= null;
-	private EyeTestController	eyeTestController	= null;
-	private HearTestController	hearTestController	= null;
+	private FlipperView					flipperView					= null;
+	private LoginController				loginController				= null;
+	private EyeTestController			eyeTestController			= null;
+	private HearTestController			hearTestController			= null;
+	private Comprehension1Controller	comprehension1Controller	= null;
 
-	private class MenuID
-	{
-		public int	mnLoginId		= Type.INVALID;
-		public int	mnHistoryId		= Type.INVALID;
-		public int	mnCalendarId	= Type.INVALID;
-		public int	mnEyeTestId		= Type.INVALID;
-		public int	mnHearTestId	= Type.INVALID;
-	}
+	/**
+	 * list android layout of medical test
+	 */
+	private final int[]					listTestLayout				= { R.layout.login, R.layout.history,
+			R.layout.calendar, R.layout.eye_test, R.layout.hearing_test, R.layout.comprehension1 };
+
+	/**
+	 * list main layout id that in medical test layout, for ignore click
+	 */
+	private final int[]					listTestMainLayoutId		= { R.id.history_main_layout,
+			R.id.calendar_main_layout, R.id.eyetest_main_layout, R.id.hear_test_main_layout,
+			R.id.RelativeLayoutComprehension1Main					};
 
 	public FlipperMenuController(Activity activity, Handler handler)
 	{
@@ -44,17 +44,15 @@ public class FlipperMenuController
 	@Override
 	protected void finalize() throws Throwable
 	{
-		menuId = null;
 		loginController = null;
 		eyeTestController = null;
 		hearTestController = null;
+		comprehension1Controller = null;
 		super.finalize();
 	}
 
 	private void init(Activity activity, Handler handler)
 	{
-		menuId = new MenuID();
-
 		flipperView = (FlipperView) activity.findViewById(R.id.fliper_menu_option);
 		if (null == flipperView)
 		{
@@ -63,27 +61,34 @@ public class FlipperMenuController
 		}
 		flipperView.setNotifyHandler(handler);
 
-		menuId.mnLoginId = flipperView.addChild(R.layout.login);
-		menuId.mnHistoryId = flipperView.addChild(R.layout.history);
-		menuId.mnCalendarId = flipperView.addChild(R.layout.calendar);
-		menuId.mnEyeTestId = flipperView.addChild(R.layout.eye_test);
-		menuId.mnHearTestId = flipperView.addChild(R.layout.hearing_test);
+		for (int i = 0; i < listTestLayout.length; ++i)
+		{
+			flipperView.addChild(listTestLayout[i]);
+		}
 
 		loginController = new LoginController(activity, handler);
 		eyeTestController = new EyeTestController(activity, selfHandler);
 		hearTestController = new HearTestController(activity, selfHandler);
-
-		historyMainLayout = (RelativeLayout) flipperView.findViewById(R.id.history_main_layout);
-		historyMainLayout.setOnTouchListener(mainLayoutTouch);
+		comprehension1Controller = new Comprehension1Controller(activity, selfHandler);
 		historyHandler(activity);
 
-		calendarLayout = (RelativeLayout) flipperView.findViewById(R.id.calendar_main_layout);
-		calendarLayout.setOnTouchListener(mainLayoutTouch);
+		for (int j = 0; j < listTestMainLayoutId.length; ++j)
+		{
+			flipperView.findViewById(listTestMainLayoutId[j]).setOnTouchListener(mainLayoutTouch);
+		}
+	}
 
-		eyeTestLayout = (RelativeLayout) flipperView.findViewById(R.id.eyetest_main_layout);
-		eyeTestLayout.setOnTouchListener(mainLayoutTouch);
-
-		flipperView.findViewById(R.id.hear_test_main_layout).setOnTouchListener(mainLayoutTouch);
+	private int getLayoutIndex(int nLayoutResId)
+	{
+		int nIndex = 0;
+		for (nIndex = 0; nIndex < listTestLayout.length; ++nIndex)
+		{
+			if (listTestLayout[nIndex] == nLayoutResId)
+			{
+				break;
+			}
+		}
+		return (++nIndex);
 	}
 
 	public void setHideEnable(boolean bEnable)
@@ -94,29 +99,46 @@ public class FlipperMenuController
 	public void showLogin()
 	{
 		loginController.init();
-		flipperView.showView(menuId.mnLoginId);
+
+		flipperView.showView(getLayoutIndex(R.layout.login));
 	}
 
 	public void showHistory()
 	{
-		flipperView.showView(menuId.mnHistoryId);
+		flipperView.showView(getLayoutIndex(R.layout.history));
 	}
 
 	public void showCalendar()
 	{
-		flipperView.showView(menuId.mnCalendarId);
+		flipperView.showView(getLayoutIndex(R.layout.calendar));
 	}
 
 	public void showEyeTest()
 	{
 		eyeTestController.init();
-		flipperView.showView(menuId.mnEyeTestId);
+		flipperView.showView(getLayoutIndex(R.layout.eye_test));
 	}
 
 	public void showHearTest()
 	{
 		hearTestController.init();
-		flipperView.showView(menuId.mnHearTestId);
+		flipperView.showView(getLayoutIndex(R.layout.hearing_test));
+	}
+
+	public void showComprehension1()
+	{
+		comprehension1Controller.init();
+		flipperView.showView(getLayoutIndex(R.layout.comprehension1));
+	}
+
+	public void showComprehension2()
+	{
+
+	}
+
+	public void showComprehension3()
+	{
+
 	}
 
 	public void close()

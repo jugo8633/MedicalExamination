@@ -25,6 +25,9 @@
     <string name="history">History</string>
     <string name="basic_test">Basic Test</string>
     <string name="attentiveness">Attentiveness</string>
-    <string name="language">語言表達</string>
+    <string name="language">Language</string>
+    <string name="comprehension">Comprehension</string>
+    <string name="how_many_egg">How many egg?</string>
+    <string name="how_many_apple">How many apple?</string>
 
 </resources>

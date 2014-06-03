@@ -26,5 +26,8 @@
     <string name="basic_test">基本檢測</string>
     <string name="attentiveness">專注力</string>
     <string name="language">語言表達</string>
+    <string name="comprehension">理解能力</string>
+    <string name="how_many_egg">有幾顆蛋?</string>
+    <string name="how_many_apple">有幾顆蘋果?</string>
 
 </resources>
