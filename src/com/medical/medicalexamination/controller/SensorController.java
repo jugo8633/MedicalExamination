@@ -4,10 +4,7 @@ import com.medical.medicalexamination.R;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 public class SensorController extends TestAreaController
 {

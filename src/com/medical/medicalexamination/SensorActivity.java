@@ -35,7 +35,7 @@ public class SensorActivity extends Activity implements SensorEventListener
 	private float				frameTime			= 0.666f;
 	private Bitmap				mBitmap;
 	private ImageView			sensorBall			= null;
-	private final int			SENSOR_EDGE			= 5;
+	private final int			SENSOR_EDGE			= 2;
 	private boolean				mbStartTest			= false;
 
 	@Override
@@ -102,8 +102,7 @@ public class SensorActivity extends Activity implements SensorEventListener
 			yAcceleration = event.values[1];
 			xAcceleration = event.values[2];
 
-			sensorBall.animate().translationX(xAcceleration * 10).translationY(yAcceleration * 10).setDuration(5)
-					.setInterpolator(new AccelerateDecelerateInterpolator());
+			sensorBall.animate().translationX(xAcceleration * 10).translationY(yAcceleration * 10).setDuration(100);
 
 			if (SENSOR_EDGE < xAcceleration || SENSOR_EDGE < yAcceleration || (0 - SENSOR_EDGE) > xAcceleration
 					|| (0 - SENSOR_EDGE) > yAcceleration)
@@ -163,7 +162,7 @@ public class SensorActivity extends Activity implements SensorEventListener
 	protected void SetSensor()
 	{
 		sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
-				SensorManager.SENSOR_DELAY_GAME);
+				SensorManager.SENSOR_DELAY_NORMAL);
 
 		//		List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ORIENTATION);
 		//		//如果有取到該手機的方位感測器，就註冊他。
@@ -196,7 +195,7 @@ public class SensorActivity extends Activity implements SensorEventListener
 			{
 				imgStart.setImageResource(R.drawable.play);
 				sensorBall.animate().translationX(0).translationY(0).setDuration(5)
-				.setInterpolator(new AccelerateDecelerateInterpolator());
+						.setInterpolator(new AccelerateDecelerateInterpolator());
 				sensorBall.clearAnimation();
 				sensorBall.setColorFilter(Color.TRANSPARENT);
 			}
