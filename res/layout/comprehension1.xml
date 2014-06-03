@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayoutComprehension1Main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White" >
+
+    <include
+        android:id="@+id/subTestAreaHeader"
+        android:layout_alignParentTop="true"
+        layout="@layout/test_area_header" />
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutComprehensionMain1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/subTestAreaHeader"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/menu_option" >
+
+        <ImageView
+            android:id="@+id/imageViewEgg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/egg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/imageViewEgg"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textViewEgg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/how_many_egg"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Blue"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <NumberPicker
+                android:id="@+id/numberPickerEgg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewEgg"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutComprehensionMain2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/RelativeLayoutComprehensionMain1"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/menu_option" >
+
+        <ImageView
+            android:id="@+id/imageViewFruit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/fruit" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/imageViewFruit"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textViewApple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/how_many_apple"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Blue"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <NumberPicker
+                android:id="@+id/numberPickerApple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewApple"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutComprehensionMainFinish"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/header_bar" >
+
+        <ImageView
+            android:id="@+id/imageViewComprehension1OK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ok" />
+    </RelativeLayout>
+
+</RelativeLayout>
