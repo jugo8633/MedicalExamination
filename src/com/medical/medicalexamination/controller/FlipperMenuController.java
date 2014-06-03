@@ -21,19 +21,23 @@ public class FlipperMenuController
 	private EyeTestController			eyeTestController			= null;
 	private HearTestController			hearTestController			= null;
 	private Comprehension1Controller	comprehension1Controller	= null;
+	private Comprehension2Controller	comprehension2Controller	= null;
+	private Comprehension3Controller	comprehension3Controller	= null;
 
 	/**
 	 * list android layout of medical test
 	 */
 	private final int[]					listTestLayout				= { R.layout.login, R.layout.history,
-			R.layout.calendar, R.layout.eye_test, R.layout.hearing_test, R.layout.comprehension1 };
+			R.layout.calendar, R.layout.eye_test, R.layout.hearing_test, R.layout.comprehension1,
+			R.layout.comprehension2, R.layout.comprehension3		};
 
 	/**
 	 * list main layout id that in medical test layout, for ignore click
 	 */
 	private final int[]					listTestMainLayoutId		= { R.id.history_main_layout,
 			R.id.calendar_main_layout, R.id.eyetest_main_layout, R.id.hear_test_main_layout,
-			R.id.RelativeLayoutComprehension1Main					};
+			R.id.RelativeLayoutComprehension1Main, R.id.RelativeLayoutComprehension2Main,
+			R.id.RelativeLayoutComprehension3Main					};
 
 	public FlipperMenuController(Activity activity, Handler handler)
 	{
@@ -48,6 +52,8 @@ public class FlipperMenuController
 		eyeTestController = null;
 		hearTestController = null;
 		comprehension1Controller = null;
+		comprehension2Controller = null;
+		comprehension3Controller = null;
 		super.finalize();
 	}
 
@@ -70,6 +76,8 @@ public class FlipperMenuController
 		eyeTestController = new EyeTestController(activity, selfHandler);
 		hearTestController = new HearTestController(activity, selfHandler);
 		comprehension1Controller = new Comprehension1Controller(activity, selfHandler);
+		comprehension2Controller = new Comprehension2Controller(activity, selfHandler);
+		comprehension3Controller = new Comprehension3Controller(activity, selfHandler);
 		historyHandler(activity);
 
 		for (int j = 0; j < listTestMainLayoutId.length; ++j)
@@ -133,12 +141,14 @@ public class FlipperMenuController
 
 	public void showComprehension2()
 	{
-
+		comprehension2Controller.init();
+		flipperView.showView(getLayoutIndex(R.layout.comprehension2));
 	}
 
 	public void showComprehension3()
 	{
-
+		comprehension3Controller.init();
+		flipperView.showView(getLayoutIndex(R.layout.comprehension3));
 	}
 
 	public void close()

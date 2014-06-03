@@ -12,7 +12,9 @@ import android.widget.NumberPicker;
 public class Comprehension1Controller extends TestAreaController
 {
 
-	private int[]	listImgViewResId	= { R.id.imageViewComprehension1OK };
+	private NumberPicker	numberPicker1		= null;
+	private NumberPicker	numberPicker2		= null;
+	private int[]			listImgViewResId	= { R.id.imageViewComprehension1OK };
 
 	public Comprehension1Controller(Activity activity, Handler handler)
 	{
@@ -31,13 +33,13 @@ public class Comprehension1Controller extends TestAreaController
 		ViewGroup parent = (ViewGroup) activity.findViewById(R.id.RelativeLayoutComprehension1Main);
 		initHeader(parent);
 		addImageViewResId(parent, listImgViewResId, selfHandler);
-		NumberPicker numberPicker = (NumberPicker) parent.findViewById(R.id.numberPickerEgg);
-		numberPicker.setMinValue(0);
-		numberPicker.setMaxValue(9);
-		
-		numberPicker = (NumberPicker) parent.findViewById(R.id.numberPickerApple);
-		numberPicker.setMinValue(0);
-		numberPicker.setMaxValue(9);
+		numberPicker1 = (NumberPicker) parent.findViewById(R.id.numberPickerEgg);
+		numberPicker1.setMinValue(0);
+		numberPicker1.setMaxValue(9);
+
+		numberPicker2 = (NumberPicker) parent.findViewById(R.id.numberPickerApple);
+		numberPicker2.setMinValue(0);
+		numberPicker2.setMaxValue(9);
 	}
 
 	private void onButtonClicked(int nResId)
@@ -67,6 +69,7 @@ public class Comprehension1Controller extends TestAreaController
 	@Override
 	protected void init()
 	{
-
+		numberPicker1.setValue(0);
+		numberPicker2.setValue(0);
 	}
 }

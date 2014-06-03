@@ -29,5 +29,7 @@
     <string name="comprehension">Comprehension</string>
     <string name="how_many_egg">How many egg?</string>
     <string name="how_many_apple">How many apple?</string>
+    <string name="what_is_this">What is this?</string>
+    <string name="what_is_number">What is number?</string>
 
 </resources>
