@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayoutComprehension2Main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White" >
+
+    <include
+        android:id="@+id/subTestAreaHeader"
+        android:layout_alignParentTop="true"
+        layout="@layout/test_area_header" />
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutComprehensionMain1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/subTestAreaHeader"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/menu_option" >
+
+        <ImageView
+            android:id="@+id/imageViewLion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/lion" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/imageViewLion"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textViewLion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/what_is_this"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Blue"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextLion"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textViewLion"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:inputType="textPersonName"
+                android:textColor="@color/Black"
+                android:textSize="24sp" >
+
+                <requestFocus />
+            </EditText>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutComprehensionMain2"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/RelativeLayoutComprehensionMain1"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/menu_option" >
+
+        <ImageView
+            android:id="@+id/imageViewCat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/cat" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/imageViewCat"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textViewCat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:text="@string/what_is_this"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Blue"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editTextCat"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textViewCat"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:inputType="textPersonName"
+                android:textColor="@color/Black"
+                android:textSize="24sp" >
+            </EditText>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutComprehensionMainFinish"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/header_bar" >
+
+        <ImageView
+            android:id="@+id/imageViewComprehension1OK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ok" />
+    </RelativeLayout>
+
+</RelativeLayout>
