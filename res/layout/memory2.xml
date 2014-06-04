@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayoutMemory2Main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White" >
+
+    <include
+        android:id="@+id/subTestAreaHeader"
+        android:layout_alignParentTop="true"
+        layout="@layout/test_area_header" />
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutComprehensionMainFinish"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/header_bar" >
+
+        <ImageView
+            android:id="@+id/imageViewComprehension1OK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/content_descript"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ok" />
+    </RelativeLayout>
+
+</RelativeLayout>
