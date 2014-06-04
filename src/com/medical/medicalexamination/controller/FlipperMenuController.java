@@ -23,13 +23,14 @@ public class FlipperMenuController
 	private Comprehension2Controller	comprehension2Controller	= null;
 	private Comprehension3Controller	comprehension3Controller	= null;
 	private Memory1Controller			memory1Controller			= null;
+	private Memory2Controller			memory2Controller			= null;
 
 	/**
 	 * list android layout of medical test
 	 */
 	private final int[]					listTestLayout				= { R.layout.login, R.layout.history,
 			R.layout.calendar, R.layout.eye_test, R.layout.hearing_test, R.layout.comprehension1,
-			R.layout.comprehension2, R.layout.comprehension3, R.layout.memory1 };
+			R.layout.comprehension2, R.layout.comprehension3, R.layout.memory1, R.layout.memory2 };
 
 	/**
 	 * list main layout id that in medical test layout, for ignore click
@@ -37,7 +38,7 @@ public class FlipperMenuController
 	private final int[]					listTestMainLayoutId		= { R.id.history_main_layout,
 			R.id.calendar_main_layout, R.id.eyetest_main_layout, R.id.hear_test_main_layout,
 			R.id.RelativeLayoutComprehension1Main, R.id.RelativeLayoutComprehension2Main,
-			R.id.RelativeLayoutComprehension3Main, R.id.RelativeLayoutMemory1Main };
+			R.id.RelativeLayoutComprehension3Main, R.id.RelativeLayoutMemory1Main, R.id.RelativeLayoutMemory2Main };
 
 	public FlipperMenuController(Activity activity, Handler handler)
 	{
@@ -55,6 +56,7 @@ public class FlipperMenuController
 		comprehension2Controller = null;
 		comprehension3Controller = null;
 		memory1Controller = null;
+		memory2Controller = null;
 		super.finalize();
 	}
 
@@ -80,6 +82,7 @@ public class FlipperMenuController
 		comprehension2Controller = new Comprehension2Controller(activity, selfHandler);
 		comprehension3Controller = new Comprehension3Controller(activity, selfHandler);
 		memory1Controller = new Memory1Controller(activity, selfHandler);
+		memory2Controller = new Memory2Controller(activity, selfHandler);
 		historyHandler(activity);
 
 		for (int j = 0; j < listTestMainLayoutId.length; ++j)
@@ -157,6 +160,12 @@ public class FlipperMenuController
 	{
 		memory1Controller.init();
 		flipperView.showView(getLayoutIndex(R.layout.memory1));
+	}
+
+	public void showMemory2()
+	{
+		memory2Controller.init();
+		flipperView.showView(getLayoutIndex(R.layout.memory2));
 	}
 
 	public void close()

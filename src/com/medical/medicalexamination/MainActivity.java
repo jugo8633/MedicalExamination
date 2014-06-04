@@ -216,6 +216,7 @@ public class MainActivity extends Activity
 			flipperMenuController.showMemory1();
 			break;
 		case R.id.imageViewMemoryTest2:
+			flipperMenuController.showMemory2();
 			break;
 		case R.id.imageViewMemoryTest3:
 			break;

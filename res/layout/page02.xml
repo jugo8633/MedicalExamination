@@ -196,7 +196,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
-            android:src="@drawable/language_fluency" />
+            android:src="@drawable/triangle" />
 
         <ImageView
             android:id="@+id/imageViewMemoryTest3"
@@ -205,7 +205,8 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/content_descript"
             android:scaleType="fitXY"
-            android:src="@drawable/base_language" />
+            android:src="@drawable/base_language"
+            android:visibility="invisible" />
 
     </LinearLayout>
  </RelativeLayout>
