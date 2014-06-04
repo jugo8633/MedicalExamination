@@ -14,17 +14,17 @@
 
         <ImageView
             android:id="@+id/listMenuBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30dp"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/content_descript"
-            android:paddingBottom="10dp"
-            android:paddingRight="5dp"
-            android:paddingTop="10dp"
-            android:scaleType="fitStart"
-            android:src="@drawable/list_normal" />
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/taskbar" />
+
     </RelativeLayout>
 
     <android.support.v4.widget.DrawerLayout

@@ -11,6 +11,7 @@ import com.medical.medicalexamination.model.EventMessage;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -109,11 +110,13 @@ public class MainActivity extends Activity
 	{
 		if (bOpen)
 		{
-			listMenuBtn.setImageResource(R.drawable.list_click);
+			//		listMenuBtn.setImageResource(R.drawable.list_click);
+			listMenuBtn.setColorFilter(Color.parseColor("#CCC7F50E"));
 		}
 		else
 		{
-			listMenuBtn.setImageResource(R.drawable.list_normal);
+			//		listMenuBtn.setImageResource(R.drawable.list_normal);
+			listMenuBtn.setColorFilter(Color.TRANSPARENT);
 		}
 	}
 
