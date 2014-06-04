@@ -6,7 +6,6 @@ import java.util.TimerTask;
 import com.medical.medicalexamination.R;
 import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
-import com.medical.medicalexamination.model.Logs;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;

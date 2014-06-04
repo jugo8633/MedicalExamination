@@ -3,13 +3,10 @@ package com.medical.medicalexamination;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.medical.medicalexamination.controller.EyeTestController;
 import com.medical.medicalexamination.controller.FlipperMenuController;
 import com.medical.medicalexamination.controller.Page2Controller;
 import com.medical.medicalexamination.controller.SlideMenuController;
-import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
-import com.medical.medicalexamination.model.SqliteHandler;
 
 import android.app.Activity;
 import android.content.Intent;
