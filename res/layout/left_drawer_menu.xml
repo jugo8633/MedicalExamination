@@ -15,37 +15,38 @@
         <RelativeLayout
             android:id="@+id/RelativeLayoutLeftDrawerCalendarMain"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_margin="20dp" >
+            android:layout_height="60dp" >
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/RelativeLayoutLeftDrawerPersionMain"
+            android:id="@+id/RelativeLayoutLeftDrawerLogin"
             android:layout_width="match_parent"
-            android:layout_height="160dp" >
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/left_menu_item" >
 
             <ImageView
                 android:id="@+id/imageViewLeftDrawerMenuLogin"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="60dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/content_descript"
                 android:scaleType="fitXY"
-                android:src="@drawable/folder_yellow" />
+                android:src="@drawable/login" />
 
-            <ImageView
-                android:id="@+id/imageViewLeftDrawerMenuHistory"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/content_descript"
-                android:scaleType="fitXY"
-                android:src="@drawable/folder_yellow" />
+            <TextView
+                android:id="@+id/textViewLeftDrawerMenuLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/login"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="30sp" />
 
         </RelativeLayout>
 
