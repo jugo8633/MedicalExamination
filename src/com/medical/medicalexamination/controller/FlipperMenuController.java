@@ -35,8 +35,8 @@ public class FlipperMenuController
 	/**
 	 * list main layout id that in medical test layout, for ignore click
 	 */
-	private final int[]					listTestMainLayoutId		= { R.id.history_main_layout,
-			R.id.calendar_main_layout, R.id.eyetest_main_layout, R.id.hear_test_main_layout,
+	private final int[]					listTestMainLayoutId		= { R.id.login_main_layout,
+			R.id.history_main_layout, R.id.calendar_main_layout, R.id.eyetest_main_layout, R.id.hear_test_main_layout,
 			R.id.RelativeLayoutComprehension1Main, R.id.RelativeLayoutComprehension2Main,
 			R.id.RelativeLayoutComprehension3Main, R.id.RelativeLayoutMemory1Main, R.id.RelativeLayoutMemory2Main };
 

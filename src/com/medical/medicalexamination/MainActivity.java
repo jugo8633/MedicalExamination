@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.medical.medicalexamination.controller.FlipperMenuController;
 import com.medical.medicalexamination.controller.Page2Controller;
-import com.medical.medicalexamination.controller.SlideMenuController;
+import com.medical.medicalexamination.controller.LeftDrawerMenuController;
 import com.medical.medicalexamination.model.EventMessage;
 
 import android.app.Activity;
@@ -29,14 +29,14 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity
 {
-	private DrawerLayout			drawerLayout			= null;
-	private ImageView				listMenuBtn				= null;
-	private View					view1, view2, view3;
-	private List<View>				viewList;
-	private ViewPager				viewPager				= null;
-	private Page2Controller			page2Controller			= null;
-	private SlideMenuController		menuHandler				= null;
-	private FlipperMenuController	flipperMenuController	= null;
+	private DrawerLayout				drawerLayout			= null;
+	private ImageView					listMenuBtn				= null;
+	private View						view1, view2, view3 = null;
+	private List<View>					viewList				= null;
+	private ViewPager					viewPager				= null;
+	private Page2Controller				page2Controller			= null;
+	private LeftDrawerMenuController	menuHandler				= null;
+	private FlipperMenuController		flipperMenuController	= null;
 
 	//private SqliteHandler		sqliteHandler		= null;
 
@@ -54,14 +54,14 @@ public class MainActivity extends Activity
 		/** init sqlite */
 		//sqliteHandler = new SqliteHandler(this);
 
-		/** init Drawer Layout */
+		/** init Left Drawer Layout */
 		initDrawerLayout();
 
 		/** init viewpager */
 		initViewPager();
 
-		/** init menu */
-		menuHandler = new SlideMenuController(this, selfHandler);
+		/** init left drawer menu */
+		menuHandler = new LeftDrawerMenuController(this, selfHandler);
 
 		/** init flipper menu */
 		flipperMenuController = new FlipperMenuController(this, selfHandler);
@@ -110,12 +110,10 @@ public class MainActivity extends Activity
 	{
 		if (bOpen)
 		{
-			//		listMenuBtn.setImageResource(R.drawable.list_click);
 			listMenuBtn.setColorFilter(Color.parseColor("#CCC7F50E"));
 		}
 		else
 		{
-			//		listMenuBtn.setImageResource(R.drawable.list_normal);
 			listMenuBtn.setColorFilter(Color.TRANSPARENT);
 		}
 	}

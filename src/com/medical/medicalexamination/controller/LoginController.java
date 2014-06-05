@@ -6,18 +6,14 @@ import com.medical.medicalexamination.model.EventMessage;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class LoginController
 {
-	private RelativeLayout	loginMainLayout	= null;
-	private Handler			notifyHandler	= null;
 
 	public class LoginData
 	{
@@ -28,10 +24,8 @@ public class LoginController
 	public LoginController(Activity activity, Handler handler)
 	{
 		super();
-		notifyHandler = handler;
-		loginMainLayout = (RelativeLayout) activity.findViewById(R.id.login_main_layout);
-		loginMainLayout.setOnTouchListener(mainLayoutTouch);
-		loginHandle(activity);
+		initView(activity, handler);
+
 	}
 
 	@Override
@@ -45,17 +39,23 @@ public class LoginController
 
 	}
 
-	private void loginHandle(final Activity activity)
+	private void initView(Activity activity, Handler handler)
 	{
-		TextView loginBtn = (TextView) loginMainLayout.findViewById(R.id.start_login);
+		ViewGroup parent = (ViewGroup) activity.findViewById(R.id.login_main_layout);
+		loginHandle(parent, handler);
+	}
+
+	private void loginHandle(final ViewGroup parent, final Handler handler)
+	{
+		TextView loginBtn = (TextView) parent.findViewById(R.id.start_login);
 		loginBtn.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-				EditText editText = (EditText) loginMainLayout.findViewById(R.id.login_name);
+				EditText editText = (EditText) parent.findViewById(R.id.login_name);
 				String strName = editText.getText().toString();
-				editText = (EditText) loginMainLayout.findViewById(R.id.login_password);
+				editText = (EditText) parent.findViewById(R.id.login_password);
 				String strPassword = editText.getText().toString();
 
 				if (null != strName && 0 < strName.length() && null != strPassword && 0 < strPassword.length())
@@ -63,29 +63,12 @@ public class LoginController
 					LoginData data = new LoginData();
 					data.mstrName = strName;
 					data.mstrPassword = strPassword;
-					EventHandler.notify(notifyHandler, EventMessage.MSG_LOGIN, 0, 0, data);
+					EventHandler.notify(handler, EventMessage.MSG_LOGIN, 0, 0, data);
 					data = null;
-					//		flipperView.close();
 				}
 
 			}
 		});
 
 	}
-
-	private OnTouchListener	mainLayoutTouch	= new OnTouchListener()
-											{
-
-												@Override
-												public boolean onTouch(View v, MotionEvent event)
-												{
-													switch (event.getAction())
-													{
-													case MotionEvent.ACTION_DOWN:
-														return true;
-													}
-													return false;
-												}
-											};
-
 }
