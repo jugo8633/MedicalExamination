@@ -18,13 +18,12 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/content_descript"
             android:padding="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/taskbar" />
-
     </RelativeLayout>
 
     <android.support.v4.widget.DrawerLayout
@@ -66,8 +65,12 @@
             android:layout_width="360dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/drawer_menu_background" >
+            android:background="@drawable/left_background" >
 
+            <include
+                android:id="@+id/subLeftDrawerMenu"
+                layout="@layout/left_drawer_menu" />
+            <!--
             <ListView
                 android:id="@+id/menu_list "
                 android:layout_width="match_parent"
@@ -75,6 +78,7 @@
                 android:choiceMode="singleChoice"
                 android:listSelector="@android:color/darker_gray" >
             </ListView>
+            -->
         </RelativeLayout>
     </android.support.v4.widget.DrawerLayout>
 

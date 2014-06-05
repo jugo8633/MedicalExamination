@@ -23,17 +23,17 @@ public class SlideMenuController
 	private final int		ITEM_LOGIN		= 0;
 	private final int		ITEM_HISTORY	= 1;
 
-	private ListView		listView		= null;
+//	private ListView		listView		= null;
 	private LayoutInflater	inflater		= null;
 	private Activity		theActivity		= null;
 
 	public SlideMenuController(Activity activity, final Handler handler)
 	{
 		super();
-
-		theActivity = activity;
-		listView = (ListView) activity.findViewById(R.id.menu_list);
 		inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		theActivity = activity;
+		
+/*		listView = (ListView) activity.findViewById(R.id.menu_list);
 		MenuAdapter adapter = new MenuAdapter();
 		listView.setAdapter(adapter);
 
@@ -55,7 +55,7 @@ public class SlideMenuController
 					break;
 				}
 			}
-		});
+		});*/
 	}
 
 	public class MenuAdapter extends BaseAdapter
