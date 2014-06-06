@@ -12,11 +12,10 @@ import android.view.View.OnTouchListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.RelativeLayout;
 
-
 public class LeftDrawerMenuController
 {
 	private Handler		notifyHandler	= null;
-	private final int[]	listMenuButton	= { R.id.RelativeLayoutLeftDrawerLogin };
+	private final int[]	listMenuButton	= { R.id.RelativeLayoutLeftDrawerLogin, R.id.RelativeLayoutLeftDrawerHistory };
 
 	public LeftDrawerMenuController(Activity activity, final Handler handler)
 	{

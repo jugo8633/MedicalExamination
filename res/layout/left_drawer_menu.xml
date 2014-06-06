@@ -39,13 +39,50 @@
                 android:id="@+id/imageViewLeftDrawerMenuLogin"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
-                android:layout_toLeftOf="@id/textViewLeftDrawerMenuLogin"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/content_descript"
+                android:padding="5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/login" />
+
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutLeftDrawerHistory"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/left_menu_item" >
+
+            <TextView
+                android:id="@+id/textViewLeftDrawerMenuHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/history"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Gray"
+                android:textSize="26sp" />
+
+            <ImageView
+                android:id="@+id/imageViewLeftDrawerMenuHistory"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_descript"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/history" />
+
         </RelativeLayout>
     </LinearLayout>
 
