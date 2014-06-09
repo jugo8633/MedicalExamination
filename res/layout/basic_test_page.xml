@@ -3,99 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
-        android:id="@+id/RelativeLayoutBasicTestMain"
+    <ListView
+        android:id="@+id/listViewBasicTest"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:background="@color/White"
-        android:orientation="vertical" >
-
-        <RelativeLayout
-            android:id="@+id/RelativeLayoutTestEyeMain"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:background="@drawable/menu_option" >
-
-            <RelativeLayout
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/arrow_yellow" >
-
-                <ImageView
-                    android:id="@+id/imageViewEyeTest"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/content_descript"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/sight" />
-
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/RelativeLayoutTestHearMain"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/menu_option" >
-
-            <RelativeLayout
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/arrow_blue" >
-
-                <ImageView
-                    android:id="@+id/imageViewHearTest"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/content_descript"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/headphones" />
-
-            </RelativeLayout>
-        </RelativeLayout>
-        
-        <RelativeLayout
-            android:id="@+id/RelativeLayoutTestTrembleMain"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/menu_option" >
-
-            <RelativeLayout
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/arrow_red" >
-
-                <ImageView
-                    android:id="@+id/imageViewTrembleTest"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="@string/content_descript"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/hand_shake" />
-
-            </RelativeLayout>
-        </RelativeLayout>
-    </LinearLayout>
+        android:divider="@null"
+        android:dividerHeight="5dp"
+        android:drawSelectorOnTop="false"
+        android:listSelector="@color/Blue"
+        android:scrollbarStyle="outsideOverlay" >
+    </ListView>
 
 </RelativeLayout>
