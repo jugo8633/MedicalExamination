@@ -2,11 +2,14 @@ package com.medical.medicalexamination.view;
 
 import com.medical.medicalexamination.R;
 import com.medical.medicalexamination.model.Device;
+import com.medical.medicalexamination.model.Logs;
 import com.medical.medicalexamination.model.Type;
 import com.medical.medicalexamination.model.Utility;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.Gravity;
@@ -21,7 +24,7 @@ import android.widget.TextView;
 public class TabButton extends RelativeLayout
 {
 
-	private final int							BUTTON_WIDTH	= 90;
+	//	private final int							BUTTON_WIDTH	= 90;
 	private LinearLayout						linearLayout	= null;
 	private ImageView							imageIndicate	= null;
 	private SparseArray<Items>					listItem		= null;
@@ -74,8 +77,7 @@ public class TabButton extends RelativeLayout
 		linearLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		this.addView(linearLayout);
 
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ScaleSize(BUTTON_WIDTH),
-				ScaleSize(10));
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ScaleSize(10), ScaleSize(10));
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 		imageIndicate = new ImageView(context);
 		imageIndicate.setLayoutParams(layoutParams);
@@ -113,7 +115,12 @@ public class TabButton extends RelativeLayout
 		textView.setTextSize(18);
 		textView.setTextColor(Color.GRAY);
 		textView.setGravity(Gravity.CENTER);
-		textView.setLayoutParams(new LayoutParams(ScaleSize(BUTTON_WIDTH), LayoutParams.MATCH_PARENT));
+		//		textView.setLayoutParams(new LayoutParams(ScaleSize(BUTTON_WIDTH), LayoutParams.MATCH_PARENT));
+		Rect bounds = new Rect();
+		Paint textPaint = textView.getPaint();
+		textPaint.getTextBounds(strText, 0, strText.length(), bounds);
+		int width = bounds.width();
+		textView.setLayoutParams(new LayoutParams(ScaleSize(width), LayoutParams.MATCH_PARENT));
 		linearLayout.addView(textView);
 		listItem.put(listItem.size(), new Items(textView, textView.getId()));
 
@@ -136,6 +143,9 @@ public class TabButton extends RelativeLayout
 				mnSelectedId = listItem.get(i).mnId;
 				imageIndicate.clearAnimation();
 				mfX = listItem.get(i).mTextView.getX();
+				int nLeft = listItem.get(i).mTextView.getLeft();
+				Logs.showTrace("x=" + mfX + " left=" + nLeft + " ############################");
+				mfX = nLeft + (listItem.get(i).mTextView.getWidth() / 2) - (ScaleSize(10) / 2);
 				imageIndicate.animate().translationX(mfX).setDuration(200)
 						.setInterpolator(new AccelerateDecelerateInterpolator());
 				listItem.get(i).mTextView.setTextColor(Color.BLUE);

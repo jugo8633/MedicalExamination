@@ -225,6 +225,7 @@ public class MainActivity extends Activity
 												case EventMessage.MSG_LOGIN: // login success
 													flipperMenuController.setHideEnable(true);
 													flipperMenuController.close();
+													homePageController.setTabButton(0);
 													break;
 												case EventMessage.MSG_SHOW_LOGIN:
 													flipperMenuController.showLogin();

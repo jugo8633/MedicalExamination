@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 public class HomePageController
 {
 	private ViewGroup	layoutGroup	= null;
+	private TabButton	tabButton	= null;
 
 	public HomePageController(Activity activity)
 	{
@@ -23,13 +24,18 @@ public class HomePageController
 
 	private void initTabButton(Activity activity, ViewGroup parent)
 	{
-		TabButton tabButton = (TabButton) parent.findViewById(R.id.tabButtonHomePageMedicalTest);
+		tabButton = (TabButton) parent.findViewById(R.id.tabButtonHomePageMedicalTest);
 		if (null != tabButton)
 		{
 			tabButton.addTextButton(activity.getString(R.string.basic_test));
 			tabButton.addTextButton(activity.getString(R.string.comprehension));
 			tabButton.addTextButton(activity.getString(R.string.memory));
 		}
+	}
+
+	public void setTabButton(int nIndex)
+	{
+		tabButton.setItemSelect(nIndex);
 	}
 
 }
