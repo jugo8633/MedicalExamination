@@ -3,21 +3,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/RelativeLayoutBasicTestMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/White" >
+        android:layout_marginTop="20dp"
+        android:background="@color/White"
+        android:orientation="vertical" >
 
-        <include
-            android:id="@+id/subBasicTest"
-            layout="@layout/medical_test_item" />
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutTestEyeMain"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/menu_option" >
 
-        <include
-            android:id="@+id/subBasicTest2"
-            android:layout_below="@id/subBasicTest"
-            layout="@layout/medical_test_item" />
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_yellow" >
 
-    </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imageViewEyeTest"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/content_descript"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/sight" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutTestHearMain"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/menu_option" >
+
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_blue" >
+
+                <ImageView
+                    android:id="@+id/imageViewHearTest"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/content_descript"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/headphones" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutTestTrembleMain"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/menu_option" >
+
+            <RelativeLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_red" >
+
+                <ImageView
+                    android:id="@+id/imageViewTrembleTest"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/content_descript"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/hand_shake" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
