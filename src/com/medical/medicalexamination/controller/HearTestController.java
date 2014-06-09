@@ -42,18 +42,10 @@ public class HearTestController extends TestAreaController
 
 		mPlayer = MediaPlayer.create(activity, R.raw.hear_test);
 		mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-		try
-		{
-			mPlayer.prepare();
-		}
-		catch (IllegalStateException e)
-		{
-			e.printStackTrace();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+		/*
+		 * try { mPlayer.prepare(); } catch (IllegalStateException e) {
+		 * e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
+		 */
 		mPlayer.setOnCompletionListener(new OnCompletionListener()
 		{
 			@Override

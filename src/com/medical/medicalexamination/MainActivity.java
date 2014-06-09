@@ -1,9 +1,9 @@
 package com.medical.medicalexamination;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.medical.medicalexamination.controller.FlipperMenuController;
+import com.medical.medicalexamination.controller.HomePageController;
 import com.medical.medicalexamination.controller.Page2Controller;
 import com.medical.medicalexamination.controller.LeftDrawerMenuController;
 import com.medical.medicalexamination.model.EventMessage;
@@ -16,15 +16,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 public class MainActivity extends Activity
@@ -37,6 +34,7 @@ public class MainActivity extends Activity
 	private Page2Controller				page2Controller			= null;
 	private LeftDrawerMenuController	menuHandler				= null;
 	private FlipperMenuController		flipperMenuController	= null;
+	private HomePageController			homePageController		= null;
 
 	//private SqliteHandler		sqliteHandler		= null;
 
@@ -58,13 +56,16 @@ public class MainActivity extends Activity
 		initDrawerLayout();
 
 		/** init viewpager */
-		initViewPager();
+		//		initViewPager();
 
 		/** init left drawer menu */
 		menuHandler = new LeftDrawerMenuController(this, selfHandler);
 
 		/** init flipper menu */
 		flipperMenuController = new FlipperMenuController(this, selfHandler);
+
+		/** init home page */
+		homePageController = new HomePageController(this);
 
 		/** show login */
 		flipperMenuController.setHideEnable(false);
@@ -118,58 +119,38 @@ public class MainActivity extends Activity
 		}
 	}
 
-	private void initViewPager()
-	{
-		viewPager = (ViewPager) findViewById(R.id.viewpager);
-
-		LayoutInflater lf = LayoutInflater.from(this);
-		view1 = lf.inflate(R.layout.page01, null);
-		view2 = lf.inflate(R.layout.page02, null);
-		view3 = lf.inflate(R.layout.page03, null);
-
-		page2Controller = new Page2Controller(view2, selfHandler);
-
-		viewList = new ArrayList<View>();
-		viewList.add(view1);
-		viewList.add(view2);
-		viewList.add(view3);
-
-		PagerAdapter pagerAdapter = new PagerAdapter()
-		{
-			@Override
-			public int getCount()
-			{
-				return viewList.size();
-			}
-
-			@Override
-			public boolean isViewFromObject(View arg0, Object arg1)
-			{
-				return arg0 == arg1;
-			}
-
-			@Override
-			public void destroyItem(ViewGroup container, int position, Object object)
-			{
-				container.removeView(viewList.get(position));
-			}
-
-			@Override
-			public Object instantiateItem(ViewGroup container, int position)
-			{
-				container.addView(viewList.get(position));
-				return viewList.get(position);
-			}
-
-		};
-
-		viewPager.setAdapter(pagerAdapter);
-
-		/** init focuse */
-		view1.findViewById(R.id.editTextName).requestFocus();
-
-	}
-
+	/*
+	 * private void initViewPager() { viewPager = (ViewPager)
+	 * findViewById(R.id.viewpager);
+	 * 
+	 * LayoutInflater lf = LayoutInflater.from(this); view1 =
+	 * lf.inflate(R.layout.page01, null); view2 = lf.inflate(R.layout.page02,
+	 * null); view3 = lf.inflate(R.layout.page03, null);
+	 * 
+	 * page2Controller = new Page2Controller(view2, selfHandler);
+	 * 
+	 * viewList = new ArrayList<View>(); viewList.add(view1);
+	 * viewList.add(view2); viewList.add(view3);
+	 * 
+	 * PagerAdapter pagerAdapter = new PagerAdapter() {
+	 * 
+	 * @Override public int getCount() { return viewList.size(); }
+	 * 
+	 * @Override public boolean isViewFromObject(View arg0, Object arg1) {
+	 * return arg0 == arg1; }
+	 * 
+	 * @Override public void destroyItem(ViewGroup container, int position,
+	 * Object object) { container.removeView(viewList.get(position)); }
+	 * 
+	 * @Override public Object instantiateItem(ViewGroup container, int
+	 * position) { container.addView(viewList.get(position)); return
+	 * viewList.get(position); }
+	 * 
+	 * };
+	 * 
+	 * viewPager.setAdapter(pagerAdapter);
+	 * view1.findViewById(R.id.editTextName).requestFocus(); }
+	 */
 	private void handleButtonClick(View view)
 	{
 		if (view.getId() == R.id.listMenuBtn)

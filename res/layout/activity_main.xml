@@ -38,26 +38,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewpager"
+            <View
+                android:id="@+id/up_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/Gray" />
+
+            <ViewFlipper
+                android:id="@+id/ViewFlipperMainPage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center" >
+                android:layout_below="@id/up_line" >
 
-                <View
-                    android:id="@+id/up_line"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp"
-                    android:layout_alignParentTop="true"
-                    android:background="@drawable/shadow_up" />
-
-                <View
-                    android:id="@+id/down_line"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/shadow_down" />
-            </android.support.v4.view.ViewPager>
+                <include
+                    android:id="@+id/subHomePage"
+                    layout="@layout/home_page" />
+            </ViewFlipper>
         </RelativeLayout>
 
         <RelativeLayout
@@ -70,15 +67,6 @@
             <include
                 android:id="@+id/subLeftDrawerMenu"
                 layout="@layout/left_drawer_menu" />
-            <!--
-            <ListView
-                android:id="@+id/menu_list "
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:choiceMode="singleChoice"
-                android:listSelector="@android:color/darker_gray" >
-            </ListView>
-            -->
         </RelativeLayout>
     </android.support.v4.widget.DrawerLayout>
 
