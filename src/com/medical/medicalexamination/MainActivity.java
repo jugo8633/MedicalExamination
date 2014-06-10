@@ -1,9 +1,12 @@
 package com.medical.medicalexamination;
 
+import java.util.Locale;
+
 import com.medical.medicalexamination.controller.FlipperMenuController;
 import com.medical.medicalexamination.controller.HomePageController;
 import com.medical.medicalexamination.controller.LeftDrawerMenuController;
 import com.medical.medicalexamination.model.EventMessage;
+import com.medical.medicalexamination.model.Logs;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -64,6 +67,13 @@ public class MainActivity extends Activity
 		flipperMenuController.setHideEnable(false);
 		flipperMenuController.showLogin();
 
+		getDeviceLanguage();
+	}
+
+	private void getDeviceLanguage()
+	{
+		String strLanguage = Locale.getDefault().getLanguage();
+		Logs.showTrace("language=" + strLanguage + " ########################");
 	}
 
 	private void initDrawerLayout()
