@@ -58,14 +58,44 @@
             android:layout_above="@+id/down_line"
             android:layout_below="@+id/up_line"
             android:layout_centerHorizontal="true" >
-            <ViewFlipper
+
+            <ViewFlipper
                 android:id="@+id/ViewFlipperHomePageTestArea"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-                <include
-                    android:id="@+id/subBasicTest"
-                    layout="@layout/basic_test_page" />
+                <ListView
+                    android:id="@+id/listViewBasicTest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:dividerHeight="5dp"
+                    android:drawSelectorOnTop="false"
+                    android:listSelector="@color/Blue"
+                    android:scrollbarStyle="outsideOverlay" >
+                </ListView>
+
+                <ListView
+                    android:id="@+id/listViewComprehensionTest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:dividerHeight="5dp"
+                    android:drawSelectorOnTop="false"
+                    android:listSelector="@color/Blue"
+                    android:scrollbarStyle="outsideOverlay" >
+                </ListView>
+
+                <ListView
+                    android:id="@+id/listViewMemoryTest"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@null"
+                    android:dividerHeight="5dp"
+                    android:drawSelectorOnTop="false"
+                    android:listSelector="@color/Blue"
+                    android:scrollbarStyle="outsideOverlay" >
+                </ListView>
             </ViewFlipper>
         </RelativeLayout>
     </RelativeLayout>

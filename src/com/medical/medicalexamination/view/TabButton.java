@@ -23,8 +23,6 @@ import android.widget.TextView;
 
 public class TabButton extends RelativeLayout
 {
-
-	//	private final int							BUTTON_WIDTH	= 90;
 	private LinearLayout						linearLayout	= null;
 	private ImageView							imageIndicate	= null;
 	private SparseArray<Items>					listItem		= null;
@@ -144,7 +142,6 @@ public class TabButton extends RelativeLayout
 				imageIndicate.clearAnimation();
 				mfX = listItem.get(i).mTextView.getX();
 				int nLeft = listItem.get(i).mTextView.getLeft();
-				Logs.showTrace("x=" + mfX + " left=" + nLeft + " ############################");
 				mfX = nLeft + (listItem.get(i).mTextView.getWidth() / 2) - (ScaleSize(10) / 2);
 				imageIndicate.animate().translationX(mfX).setDuration(200)
 						.setInterpolator(new AccelerateDecelerateInterpolator());

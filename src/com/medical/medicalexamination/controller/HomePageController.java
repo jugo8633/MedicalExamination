@@ -1,16 +1,24 @@
 package com.medical.medicalexamination.controller;
 
 import com.medical.medicalexamination.R;
+import com.medical.medicalexamination.view.AnimationType;
 import com.medical.medicalexamination.view.TabButton;
 
 import android.app.Activity;
 import android.os.Handler;
 import android.view.ViewGroup;
+import android.widget.ViewFlipper;
 
 public class HomePageController
 {
-	private TabButton				tabButton		= null;
-	private BasicTestPageController	basicTestPage	= null;
+	private ViewFlipper						flipperTest			= null;
+	private TabButton						tabButton			= null;
+	@SuppressWarnings("unused")
+	private BasicTestPageController			basicTestPage		= null;
+	@SuppressWarnings("unused")
+	private ComprehensionTestPageController	comprehensionPage	= null;
+	@SuppressWarnings("unused")
+	private MemoryTestPageController		memoryPage			= null;
 
 	public HomePageController(Activity activity, Handler handler)
 	{
@@ -20,9 +28,16 @@ public class HomePageController
 		if (null != layoutGroup)
 		{
 			initTabButton(activity, layoutGroup);
+			AnimationType animationType = new AnimationType();
+			flipperTest = (ViewFlipper) layoutGroup.findViewById(R.id.ViewFlipperHomePageTestArea);
+			flipperTest.setInAnimation(animationType.inFromRightAnimation(200));
+			flipperTest.setOutAnimation(animationType.outToLeftAnimation(200));
+			animationType = null;
 		}
 
 		basicTestPage = new BasicTestPageController(activity, handler);
+		comprehensionPage = new ComprehensionTestPageController(activity, handler);
+		memoryPage = new MemoryTestPageController(activity, handler);
 	}
 
 	private void initTabButton(Activity activity, ViewGroup parent)
@@ -33,6 +48,14 @@ public class HomePageController
 			tabButton.addTextButton(activity.getString(R.string.basic_test));
 			tabButton.addTextButton(activity.getString(R.string.comprehension));
 			tabButton.addTextButton(activity.getString(R.string.memory));
+			tabButton.setOnItemSwitchedListener(new TabButton.OnItemSwitchedListener()
+			{
+				@Override
+				public void onItemSwitched(int nIndex)
+				{
+					flipperTest.setDisplayedChild(nIndex);
+				}
+			});
 		}
 	}
 

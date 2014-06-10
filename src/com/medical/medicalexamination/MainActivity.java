@@ -1,10 +1,7 @@
 package com.medical.medicalexamination;
 
-import java.util.List;
-
 import com.medical.medicalexamination.controller.FlipperMenuController;
 import com.medical.medicalexamination.controller.HomePageController;
-import com.medical.medicalexamination.controller.Page2Controller;
 import com.medical.medicalexamination.controller.LeftDrawerMenuController;
 import com.medical.medicalexamination.model.EventMessage;
 
@@ -16,7 +13,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.Gravity;
@@ -28,10 +24,7 @@ public class MainActivity extends Activity
 {
 	private DrawerLayout				drawerLayout			= null;
 	private ImageView					listMenuBtn				= null;
-	private View						view1, view2, view3 = null;
-	private List<View>					viewList				= null;
-	private ViewPager					viewPager				= null;
-	private Page2Controller				page2Controller			= null;
+	@SuppressWarnings("unused")
 	private LeftDrawerMenuController	menuHandler				= null;
 	private FlipperMenuController		flipperMenuController	= null;
 	private HomePageController			homePageController		= null;
@@ -119,38 +112,6 @@ public class MainActivity extends Activity
 		}
 	}
 
-	/*
-	 * private void initViewPager() { viewPager = (ViewPager)
-	 * findViewById(R.id.viewpager);
-	 * 
-	 * LayoutInflater lf = LayoutInflater.from(this); view1 =
-	 * lf.inflate(R.layout.page01, null); view2 = lf.inflate(R.layout.page02,
-	 * null); view3 = lf.inflate(R.layout.page03, null);
-	 * 
-	 * page2Controller = new Page2Controller(view2, selfHandler);
-	 * 
-	 * viewList = new ArrayList<View>(); viewList.add(view1);
-	 * viewList.add(view2); viewList.add(view3);
-	 * 
-	 * PagerAdapter pagerAdapter = new PagerAdapter() {
-	 * 
-	 * @Override public int getCount() { return viewList.size(); }
-	 * 
-	 * @Override public boolean isViewFromObject(View arg0, Object arg1) {
-	 * return arg0 == arg1; }
-	 * 
-	 * @Override public void destroyItem(ViewGroup container, int position,
-	 * Object object) { container.removeView(viewList.get(position)); }
-	 * 
-	 * @Override public Object instantiateItem(ViewGroup container, int
-	 * position) { container.addView(viewList.get(position)); return
-	 * viewList.get(position); }
-	 * 
-	 * };
-	 * 
-	 * viewPager.setAdapter(pagerAdapter);
-	 * view1.findViewById(R.id.editTextName).requestFocus(); }
-	 */
 	private void handleButtonClick(View view)
 	{
 		if (view.getId() == R.id.listMenuBtn)
@@ -185,22 +146,20 @@ public class MainActivity extends Activity
 		case EventMessage.MSG_SHOW_TEST_TREMBLE:
 			showSensorActivity();
 			break;
-		case R.id.imageViewComprehensionTest1:
+		case EventMessage.MSG_SHOW_TEST_EXPRESSION:
 			flipperMenuController.showComprehension1();
 			break;
-		case R.id.imageViewComprehensionTest2:
+		case EventMessage.MSG_SHOW_TEST_PUZZLE:
 			flipperMenuController.showComprehension2();
 			break;
-		case R.id.imageViewComprehensionTest3:
+		case EventMessage.MSG_SHOW_TEST_WORD:
 			flipperMenuController.showComprehension3();
 			break;
-		case R.id.imageViewMemoryTest1:
+		case EventMessage.MSG_SHOW_TEST_CARD:
 			flipperMenuController.showMemory1();
 			break;
-		case R.id.imageViewMemoryTest2:
+		case EventMessage.MSG_SHOW_TEST_SHAPE:
 			flipperMenuController.showMemory2();
-			break;
-		case R.id.imageViewMemoryTest3:
 			break;
 		}
 	}
@@ -233,12 +192,14 @@ public class MainActivity extends Activity
 												case EventMessage.MSG_SHOW_HISTORY:
 													flipperMenuController.showCalendar();
 													break;
-												//												case EventMessage.MSG_TEST_SELECTED:
-												//													showTest(msg.arg1);
-												//													break;
 												case EventMessage.MSG_SHOW_TEST_EYE:
 												case EventMessage.MSG_SHOW_TEST_HEAR:
 												case EventMessage.MSG_SHOW_TEST_TREMBLE:
+												case EventMessage.MSG_SHOW_TEST_EXPRESSION:
+												case EventMessage.MSG_SHOW_TEST_PUZZLE:
+												case EventMessage.MSG_SHOW_TEST_WORD:
+												case EventMessage.MSG_SHOW_TEST_CARD:
+												case EventMessage.MSG_SHOW_TEST_SHAPE:
 													showTest(msg.what);
 													break;
 
