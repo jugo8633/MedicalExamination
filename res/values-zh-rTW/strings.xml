@@ -32,5 +32,7 @@
     <string name="what_is_this">這是甚麼?</string>
     <string name="what_is_number">這是多少?</string>
     <string name="memory">記憶能力</string>
+    <string name="personal_information">個人資料</string>
+    <string name="examination">檢測開始</string>
 
 </resources>

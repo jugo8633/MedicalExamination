@@ -32,5 +32,7 @@
     <string name="what_is_this">What is this?</string>
     <string name="what_is_number">What is number?</string>
     <string name="memory">Memory</string>
+    <string name="personal_information">Personal Info</string>
+    <string name="examination">Examination</string>
 
 </resources>

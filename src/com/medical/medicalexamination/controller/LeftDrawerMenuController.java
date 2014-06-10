@@ -15,7 +15,9 @@ import android.widget.RelativeLayout;
 public class LeftDrawerMenuController
 {
 	private Handler		notifyHandler	= null;
-	private final int[]	listMenuButton	= { R.id.RelativeLayoutLeftDrawerLogin, R.id.RelativeLayoutLeftDrawerHistory };
+	private final int[]	listMenuButton	= { R.id.RelativeLayoutLeftDrawerLogin,
+			R.id.RelativeLayoutLeftDrawerPersonInfo, R.id.RelativeLayoutLeftDrawerExamination,
+			R.id.RelativeLayoutLeftDrawerHistory };
 
 	public LeftDrawerMenuController(Activity activity, final Handler handler)
 	{
@@ -30,6 +32,14 @@ public class LeftDrawerMenuController
 		{
 			activity.findViewById(listMenuButton[i]).setOnTouchListener(menuButtonTouchListener);
 		}
+		activity.findViewById(R.id.left_drawer_main).setOnTouchListener(new OnTouchListener()
+		{
+			@Override
+			public boolean onTouch(View v, MotionEvent event)
+			{
+				return true;
+			}
+		});
 	}
 
 	private void menuButtonHandler(int nResId)
@@ -44,7 +54,6 @@ public class LeftDrawerMenuController
 
 	private OnTouchListener	menuButtonTouchListener	= new OnTouchListener()
 													{
-
 														@Override
 														public boolean onTouch(View v, MotionEvent event)
 														{
@@ -55,7 +64,7 @@ public class LeftDrawerMenuController
 																case MotionEvent.ACTION_DOWN:
 																	v.animate()
 																			.scaleY(0.8f)
-																			.setDuration(200)
+																			.setDuration(100)
 																			.setInterpolator(
 																					new AccelerateDecelerateInterpolator());
 																	return true;

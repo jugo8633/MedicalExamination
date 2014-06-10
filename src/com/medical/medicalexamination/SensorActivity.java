@@ -24,8 +24,6 @@ import android.widget.ImageView;
 
 public class SensorActivity extends Activity implements SensorEventListener
 {
-
-	private CustomDrawableView	mCustomDrawableView	= null;
 	private SensorController	sensorController	= null;
 	private SensorManager		sensorManager		= null;
 	private float				xPosition, xAcceleration, xVelocity = 0.0f;
@@ -217,25 +215,4 @@ public class SensorActivity extends Activity implements SensorEventListener
 									}
 								};
 
-	public class CustomDrawableView extends View
-	{
-		public CustomDrawableView(Context context)
-		{
-			super(context);
-			Bitmap ball = BitmapFactory.decodeResource(getResources(), R.drawable.eye);
-			final int dstWidth = 50;
-			final int dstHeight = 50;
-			mBitmap = Bitmap.createScaledBitmap(ball, dstWidth, dstHeight, true);
-			//	mWood = BitmapFactory.decodeResource(getResources(), R.drawable.wood);
-
-		}
-
-		protected void onDraw(Canvas canvas)
-		{
-			final Bitmap bitmap = mBitmap;
-			//	canvas.drawBitmap(mWood, 0, 0, null);
-			canvas.drawBitmap(bitmap, xPosition, yPosition, null);
-			invalidate();
-		}
-	}
 }
