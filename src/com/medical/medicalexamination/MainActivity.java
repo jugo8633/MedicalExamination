@@ -65,7 +65,7 @@ public class MainActivity extends Activity
 		flipperMenuController = new FlipperMenuController(this, selfHandler);
 
 		/** init home page */
-		homePageController = new HomePageController(this);
+		homePageController = new HomePageController(this, selfHandler);
 
 		/** show login */
 		flipperMenuController.setHideEnable(false);
@@ -172,17 +172,17 @@ public class MainActivity extends Activity
 		startActivity(intent);
 	}
 
-	private void showTest(int nButtonId)
+	private void showTest(int nWhat)
 	{
-		switch (nButtonId)
+		switch (nWhat)
 		{
-		case R.id.imageViewEyeTest:
+		case EventMessage.MSG_SHOW_TEST_EYE:
 			flipperMenuController.showEyeTest();
 			break;
-		case R.id.imageViewHearTest:
+		case EventMessage.MSG_SHOW_TEST_HEAR:
 			flipperMenuController.showHearTest();
 			break;
-		case R.id.imageViewFinger:
+		case EventMessage.MSG_SHOW_TEST_TREMBLE:
 			showSensorActivity();
 			break;
 		case R.id.imageViewComprehensionTest1:
@@ -233,8 +233,13 @@ public class MainActivity extends Activity
 												case EventMessage.MSG_SHOW_HISTORY:
 													flipperMenuController.showCalendar();
 													break;
-												case EventMessage.MSG_TEST_SELECTED:
-													showTest(msg.arg1);
+												//												case EventMessage.MSG_TEST_SELECTED:
+												//													showTest(msg.arg1);
+												//													break;
+												case EventMessage.MSG_SHOW_TEST_EYE:
+												case EventMessage.MSG_SHOW_TEST_HEAR:
+												case EventMessage.MSG_SHOW_TEST_TREMBLE:
+													showTest(msg.what);
 													break;
 
 												}
