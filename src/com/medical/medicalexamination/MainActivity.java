@@ -73,7 +73,7 @@ public class MainActivity extends Activity
 	private void getDeviceLanguage()
 	{
 		String strLanguage = Locale.getDefault().getLanguage();
-		Logs.showTrace("language=" + strLanguage + " ########################");
+
 	}
 
 	private void initDrawerLayout()
@@ -149,6 +149,17 @@ public class MainActivity extends Activity
 		startActivity(intent);
 	}
 
+	private void showExaminationActivity()
+	{
+		Intent intent = new Intent(MainActivity.this, ExaminationActivity.class);
+		startActivity(intent);
+	}
+
+	private void showHistoryActivity()
+	{
+
+	}
+
 	private void showTest(int nWhat)
 	{
 		switch (nWhat)
@@ -208,8 +219,11 @@ public class MainActivity extends Activity
 												case EventMessage.MSG_SHOW_PERSON_INFO:
 													showPersonInfoActivity();
 													break;
+												case EventMessage.MSG_SHOW_EXAMINATION:
+													showExaminationActivity();
+													break;
 												case EventMessage.MSG_SHOW_HISTORY:
-													flipperMenuController.showCalendar();
+													showHistoryActivity();
 													break;
 												case EventMessage.MSG_SHOW_TEST_EYE:
 												case EventMessage.MSG_SHOW_TEST_HEAR:

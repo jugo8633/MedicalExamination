@@ -7,9 +7,23 @@
         android:id="@+id/RelativeLayoutExaminationMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="28dp"
         android:background="@color/White" >
 
+        <ViewFlipper
+            android:id="@+id/viewFlipperExamination"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inAnimation="@anim/slide_in_from_bottom"
+            android:outAnimation="@anim/slide_out_to_top" >
+
+            <include
+                android:id="@+id/subEyeTest"
+                layout="@layout/eye_test" />
+
+            <include
+                android:id="@+id/subHearTest"
+                layout="@layout/hearing_test" />
+        </ViewFlipper>
     </RelativeLayout>
 
 </RelativeLayout>
