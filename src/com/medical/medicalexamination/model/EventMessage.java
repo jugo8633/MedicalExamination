@@ -23,6 +23,7 @@ public class EventMessage
 	public static final int	MSG_SHOW_TEST_WORD			= MSG_CUSTOM + 13;
 	public static final int	MSG_SHOW_TEST_CARD			= MSG_CUSTOM + 14;
 	public static final int	MSG_SHOW_TEST_SHAPE			= MSG_CUSTOM + 15;
+	public static final int	MSG_SHOW_PERSON_INFO		= MSG_CUSTOM + 16;
 
 	/**
 	 * @author jugo

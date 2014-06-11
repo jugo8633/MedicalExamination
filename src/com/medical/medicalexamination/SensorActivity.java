@@ -24,6 +24,7 @@ import android.widget.ImageView;
 
 public class SensorActivity extends Activity implements SensorEventListener
 {
+	@SuppressWarnings("unused")
 	private SensorController	sensorController	= null;
 	private SensorManager		sensorManager		= null;
 	private float				xPosition, xAcceleration, xVelocity = 0.0f;
@@ -46,13 +47,7 @@ public class SensorActivity extends Activity implements SensorEventListener
 		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		sensorBall = (ImageView) this.findViewById(R.id.imageViewSensorBall);
 
-		//xmax = 400;
-		//ymax = 400;
-
-		//		mCustomDrawableView = new CustomDrawableView(this);
-		//		RelativeLayout sensorArea = (RelativeLayout) this.findViewById(R.id.RelativeLayoutSensorArea);
-
-		//	sensorArea.addView(mCustomDrawableView);
+		
 	}
 
 	@Override

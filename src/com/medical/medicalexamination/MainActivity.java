@@ -143,6 +143,12 @@ public class MainActivity extends Activity
 		startActivity(intent);
 	}
 
+	private void showPersonInfoActivity()
+	{
+		Intent intent = new Intent(MainActivity.this, PersonInfoActivity.class);
+		startActivity(intent);
+	}
+
 	private void showTest(int nWhat)
 	{
 		switch (nWhat)
@@ -198,6 +204,9 @@ public class MainActivity extends Activity
 													break;
 												case EventMessage.MSG_SHOW_LOGIN:
 													flipperMenuController.showLogin();
+													break;
+												case EventMessage.MSG_SHOW_PERSON_INFO:
+													showPersonInfoActivity();
 													break;
 												case EventMessage.MSG_SHOW_HISTORY:
 													flipperMenuController.showCalendar();

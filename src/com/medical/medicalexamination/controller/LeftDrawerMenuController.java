@@ -49,6 +49,9 @@ public class LeftDrawerMenuController
 		case R.id.RelativeLayoutLeftDrawerLogin:
 			EventHandler.notify(notifyHandler, EventMessage.MSG_SHOW_LOGIN, 0, 0, null);
 			break;
+		case R.id.RelativeLayoutLeftDrawerPersonInfo:
+			EventHandler.notify(notifyHandler, EventMessage.MSG_SHOW_PERSON_INFO, 0, 0, null);
+			break;
 		}
 	}
 
