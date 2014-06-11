@@ -18,11 +18,15 @@
 
             <include
                 android:id="@+id/subEyeTest"
-                layout="@layout/eye_test" />
+                layout="@layout/test_eye" />
 
             <include
                 android:id="@+id/subHearTest"
-                layout="@layout/hearing_test" />
+                layout="@layout/test_hear" />
+
+            <include
+                android:id="@+id/subTrembleTest"
+                layout="@layout/test_tremble" />
         </ViewFlipper>
     </RelativeLayout>
 

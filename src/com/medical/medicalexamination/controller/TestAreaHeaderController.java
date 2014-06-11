@@ -7,6 +7,7 @@ import com.medical.medicalexamination.model.ImageViewTouchHandler;
 
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -15,6 +16,8 @@ public class TestAreaHeaderController
 
 	private final int				RES_ID_INFO			= R.id.imageViewTestAreaHeaderInfo;
 	private final int				RES_ID_CLOSE		= R.id.imageViewTestAreaHeaderClose;
+	private final int				RES_ID_LAYOUT		= R.id.RelativeLayoutTestAreaHeaderMain;
+	private ViewGroup				mainLayout			= null;
 	private ImageView				imgViewInfo			= null;
 	private ImageView				imgViewClose		= null;
 	private Handler					notifyHandler		= null;
@@ -43,6 +46,7 @@ public class TestAreaHeaderController
 		imgViewClose = (ImageView) parent.findViewById(RES_ID_CLOSE);
 		imageViewHandler.setTouchEvent(imgViewInfo, selfHandler);
 		imageViewHandler.setTouchEvent(imgViewClose, selfHandler);
+		mainLayout = (ViewGroup) parent.findViewById(RES_ID_LAYOUT);
 	}
 
 	@Override
@@ -61,6 +65,18 @@ public class TestAreaHeaderController
 	private void info()
 	{
 
+	}
+
+	public void hideHeader(boolean bHide)
+	{
+		if (bHide)
+		{
+			mainLayout.setVisibility(View.INVISIBLE);
+		}
+		else
+		{
+			mainLayout.setVisibility(View.VISIBLE);
+		}
 	}
 
 	private void touchHandler(final int nResId)

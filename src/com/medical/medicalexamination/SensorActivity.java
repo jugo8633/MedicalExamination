@@ -1,6 +1,6 @@
 package com.medical.medicalexamination;
 
-import com.medical.medicalexamination.controller.SensorController;
+import com.medical.medicalexamination.controller.TrembleTestController;
 import com.medical.medicalexamination.model.EventMessage;
 
 import android.app.Activity;
@@ -25,7 +25,7 @@ import android.widget.ImageView;
 public class SensorActivity extends Activity implements SensorEventListener
 {
 	@SuppressWarnings("unused")
-	private SensorController	sensorController	= null;
+	private TrembleTestController	sensorController	= null;
 	private SensorManager		sensorManager		= null;
 	private float				xPosition, xAcceleration, xVelocity = 0.0f;
 	private float				yPosition, yAcceleration, yVelocity = 0.0f;
@@ -41,9 +41,9 @@ public class SensorActivity extends Activity implements SensorEventListener
 	{
 		mbStartTest = false;
 		super.onCreate(savedInstanceState);
-		super.setContentView(R.layout.activity_sensor);
+		super.setContentView(R.layout.test_tremble);
 		getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		sensorController = new SensorController(this, selfHandler);
+		sensorController = new TrembleTestController(this, selfHandler);
 		sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		sensorBall = (ImageView) this.findViewById(R.id.imageViewSensorBall);
 

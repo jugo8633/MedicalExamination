@@ -29,7 +29,7 @@ public class FlipperMenuController
 	 * list android layout of medical test
 	 */
 	private final int[]					listTestLayout				= { R.layout.login, R.layout.history,
-			R.layout.calendar, R.layout.eye_test, R.layout.hearing_test, R.layout.comprehension1,
+			R.layout.calendar, R.layout.test_eye, R.layout.test_hear, R.layout.comprehension1,
 			R.layout.comprehension2, R.layout.comprehension3, R.layout.memory1, R.layout.memory2 };
 
 	/**
@@ -77,7 +77,9 @@ public class FlipperMenuController
 
 		loginController = new LoginController(activity, handler);
 		eyeTestController = new EyeTestController(activity, selfHandler);
+		eyeTestController.setExamination(false);
 		hearTestController = new HearTestController(activity, selfHandler);
+		hearTestController.setExamination(false);
 		comprehension1Controller = new Comprehension1Controller(activity, selfHandler);
 		comprehension2Controller = new Comprehension2Controller(activity, selfHandler);
 		comprehension3Controller = new Comprehension3Controller(activity, selfHandler);
@@ -129,13 +131,13 @@ public class FlipperMenuController
 	public void showEyeTest()
 	{
 		eyeTestController.init();
-		flipperView.showView(getLayoutIndex(R.layout.eye_test));
+		flipperView.showView(getLayoutIndex(R.layout.test_eye));
 	}
 
 	public void showHearTest()
 	{
 		hearTestController.init();
-		flipperView.showView(getLayoutIndex(R.layout.hearing_test));
+		flipperView.showView(getLayoutIndex(R.layout.test_hear));
 	}
 
 	public void showComprehension1()

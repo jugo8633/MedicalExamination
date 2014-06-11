@@ -17,6 +17,7 @@ public abstract class TestAreaController
 	private TestAreaHeaderController	headerController	= null;
 	private ImageViewTouchHandler		imageViewHandler	= null;
 	private SparseIntArray				listResId			= null;
+	private boolean						mbIsExamination		= false;
 
 	public TestAreaController(Activity activity, Handler handler)
 	{
@@ -57,6 +58,14 @@ public abstract class TestAreaController
 		}
 	}
 
+	protected void hideHeader(boolean bHide)
+	{
+		if (null != headerController)
+		{
+			headerController.hideHeader(bHide);
+		}
+	}
+
 	protected void close()
 	{
 		headerController.close();
@@ -75,5 +84,15 @@ public abstract class TestAreaController
 			imgView = (ImageView) parent.findViewById(nResIds[i]);
 			setTouchEvent(imgView, handler);
 		}
+	}
+
+	protected void setExaminationMode(boolean bIs)
+	{
+		mbIsExamination = bIs;
+	}
+
+	protected boolean getExaminationMode()
+	{
+		return mbIsExamination;
 	}
 }

@@ -2,6 +2,7 @@ package com.medical.medicalexamination.controller;
 
 import com.medical.medicalexamination.R;
 import com.medical.medicalexamination.model.Device;
+import com.medical.medicalexamination.model.EventHandler;
 import com.medical.medicalexamination.model.EventMessage;
 
 import android.app.Activity;
@@ -51,6 +52,12 @@ public class EyeTestController extends TestAreaController
 	{
 		mnLevel = 0;
 		setLevel(0);
+	}
+
+	public void setExamination(boolean bSet)
+	{
+		hideHeader(bSet);
+		setExaminationMode(bSet);
 	}
 
 	private void initView(Activity activity, Handler handler)
@@ -117,7 +124,14 @@ public class EyeTestController extends TestAreaController
 		if (7 < mnLevel)
 		{
 			mnLevel = 0;
-			close();
+			if (getExaminationMode())
+			{
+				EventHandler.notify(notifyHandler, EventMessage.MSG_TEST_END_EYE, 0, 0, null);
+			}
+			else
+			{
+				close();
+			}
 		}
 		setLevel(mnLevel);
 	}

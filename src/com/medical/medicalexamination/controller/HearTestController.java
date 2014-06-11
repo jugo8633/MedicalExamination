@@ -85,6 +85,12 @@ public class HearTestController extends TestAreaController
 		imgPlay = (ImageView) mainLayout.findViewById(R.id.imageViewHearPlay);
 	}
 
+	public void setExamination(boolean bSet)
+	{
+		hideHeader(bSet);
+		setExaminationMode(bSet);
+	}
+
 	private void checkAnswer(int nArrow)
 	{
 		if (!mPlayer.isPlaying())
@@ -103,7 +109,14 @@ public class HearTestController extends TestAreaController
 		if (5 < mnLevel)
 		{
 			mnLevel = 0;
-			close();
+			if (getExaminationMode())
+			{
+				EventHandler.notify(notifyHandler, EventMessage.MSG_TEST_END_HEAR, 0, 0, null);
+			}
+			else
+			{
+				close();
+			}
 		}
 		setLevel(mnLevel);
 	}

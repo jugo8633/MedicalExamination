@@ -25,6 +25,8 @@ public class EventMessage
 	public static final int	MSG_SHOW_TEST_SHAPE			= MSG_CUSTOM + 15;
 	public static final int	MSG_SHOW_PERSON_INFO		= MSG_CUSTOM + 16;
 	public static final int	MSG_SHOW_EXAMINATION		= MSG_CUSTOM + 17;
+	public static final int	MSG_TEST_END_EYE			= MSG_CUSTOM + 18;
+	public static final int	MSG_TEST_END_HEAR			= MSG_CUSTOM + 19;
 
 	/**
 	 * @author jugo
