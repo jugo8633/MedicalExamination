@@ -6,7 +6,6 @@ import com.medical.medicalexamination.controller.FlipperMenuController;
 import com.medical.medicalexamination.controller.HomePageController;
 import com.medical.medicalexamination.controller.LeftDrawerMenuController;
 import com.medical.medicalexamination.model.EventMessage;
-import com.medical.medicalexamination.model.Logs;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,12 +26,9 @@ public class MainActivity extends Activity
 {
 	private DrawerLayout				drawerLayout			= null;
 	private ImageView					listMenuBtn				= null;
-	@SuppressWarnings("unused")
 	private LeftDrawerMenuController	menuHandler				= null;
 	private FlipperMenuController		flipperMenuController	= null;
 	private HomePageController			homePageController		= null;
-
-	//private SqliteHandler		sqliteHandler		= null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -45,14 +41,8 @@ public class MainActivity extends Activity
 		/** load content */
 		setContentView(R.layout.activity_main);
 
-		/** init sqlite */
-		//sqliteHandler = new SqliteHandler(this);
-
 		/** init Left Drawer Layout */
 		initDrawerLayout();
-
-		/** init viewpager */
-		//		initViewPager();
 
 		/** init left drawer menu */
 		menuHandler = new LeftDrawerMenuController(this, selfHandler);
@@ -64,10 +54,11 @@ public class MainActivity extends Activity
 		homePageController = new HomePageController(this, selfHandler);
 
 		/** show login */
-		flipperMenuController.setHideEnable(false);
-		flipperMenuController.showLogin();
+		//		flipperMenuController.setHideEnable(false);
+		//		flipperMenuController.showLogin();
 
 		getDeviceLanguage();
+		//	homePageController.setTabButton(0);
 	}
 
 	private void getDeviceLanguage()
@@ -155,9 +146,16 @@ public class MainActivity extends Activity
 		startActivity(intent);
 	}
 
+	private void showLoginActivity()
+	{
+		Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+		startActivity(intent);
+	}
+
 	private void showHistoryActivity()
 	{
-
+		Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+		startActivity(intent);
 	}
 
 	private void showTest(int nWhat)
@@ -214,7 +212,7 @@ public class MainActivity extends Activity
 													homePageController.setTabButton(0);
 													break;
 												case EventMessage.MSG_SHOW_LOGIN:
-													flipperMenuController.showLogin();
+													showLoginActivity();
 													break;
 												case EventMessage.MSG_SHOW_PERSON_INFO:
 													showPersonInfoActivity();

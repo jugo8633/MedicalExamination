@@ -34,5 +34,6 @@
     <string name="memory">記憶能力</string>
     <string name="personal_information">個人資料</string>
     <string name="examination">檢測開始</string>
+    <string name="register">註冊帳號</string>
 
 </resources>

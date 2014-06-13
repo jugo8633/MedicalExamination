@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.medical.medicalexamination"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Trans_Black" >
@@ -84,13 +85,28 @@
             android:layout_alignTop="@id/start_login"
             android:background="#707171" />
 
+        <com.medical.medicalexamination.view.ShapButton
+            android:id="@+id/shapButtonRegister"
+            android:layout_width="275dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/login_password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            app:borderColor="@color/White"
+            app:borderColorClick="@color/Gray"
+            app:borderSize="2dp"
+            app:text="@string/register"
+            app:textColor="@color/Blue"
+            app:textColorClick="@color/Focus_Blue"
+            app:textSize="20sp"
+            app:textType="bold" />
+
         <TextView
             android:id="@+id/login_error"
-            android:layout_width="wrap_content"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/login_password"
-            android:layout_alignRight="@+id/login_password"
-            android:layout_below="@id/login_password"
+            android:layout_below="@id/shapButtonRegister"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:paddingTop="10dp"
             android:text="@string/login_error"
@@ -98,7 +114,6 @@
             android:textColor="#d11e25"
             android:textSize="16sp"
             android:visibility="invisible" />
-
     </RelativeLayout>
 
 </RelativeLayout>

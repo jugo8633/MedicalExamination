@@ -2,7 +2,6 @@ package com.medical.medicalexamination.view;
 
 import com.medical.medicalexamination.R;
 import com.medical.medicalexamination.model.Device;
-import com.medical.medicalexamination.model.Logs;
 import com.medical.medicalexamination.model.Type;
 import com.medical.medicalexamination.model.Utility;
 
@@ -30,6 +29,7 @@ public class TabButton extends RelativeLayout
 	private SparseArray<OnItemSwitchedListener>	listItemSwitch	= null;
 	private int									mnSelectedId	= Type.INVALID;
 	private Context								theContext		= null;
+	private boolean								mbInit			= false;
 
 	public static interface OnItemSwitchedListener
 	{
@@ -88,6 +88,17 @@ public class TabButton extends RelativeLayout
 		listItemSwitch = new SparseArray<OnItemSwitchedListener>();
 	}
 
+	@Override
+	protected void onLayout(boolean changed, int l, int t, int r, int b)
+	{
+		super.onLayout(changed, l, t, r, b);
+		if (!mbInit)
+		{
+			mbInit = true;
+			setItemSelect(0);
+		}
+	}
+
 	private int ScaleSize(int nSize)
 	{
 		Device device = new Device(theContext);
@@ -113,7 +124,6 @@ public class TabButton extends RelativeLayout
 		textView.setTextSize(18);
 		textView.setTextColor(Color.GRAY);
 		textView.setGravity(Gravity.CENTER);
-		//		textView.setLayoutParams(new LayoutParams(ScaleSize(BUTTON_WIDTH), LayoutParams.MATCH_PARENT));
 		Rect bounds = new Rect();
 		Paint textPaint = textView.getPaint();
 		textPaint.getTextBounds(strText, 0, strText.length(), bounds);
