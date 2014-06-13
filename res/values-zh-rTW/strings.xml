@@ -36,5 +36,6 @@
     <string name="examination">檢測開始</string>
     <string name="register">註冊帳號</string>
     <string name="smoking">吸菸</string>
+    <string name="age">年齡</string>
 
 </resources>
