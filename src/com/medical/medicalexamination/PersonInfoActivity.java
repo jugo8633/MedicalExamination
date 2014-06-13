@@ -5,6 +5,7 @@ import com.medical.medicalexamination.model.Logs;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class PersonInfoActivity extends Activity
 		{
 		case TYPE_INFO:
 			setTitle(this.getString(R.string.person_info));
+			this.findViewById(R.id.RelativeLayoutLoginMain).setVisibility(View.GONE);
 			break;
 		case TYPE_REGISTER:
 			setTitle(this.getString(R.string.register));
