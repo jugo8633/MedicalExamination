@@ -9,36 +9,102 @@
         android:layout_height="match_parent"
         android:background="@drawable/menu_option" >
 
-        <LinearLayout
-            android:id="@+id/LinearLayoutPersonInfoMain"
+        <ScrollView
+            android:id="@+id/scrollViewPersonInfoMain"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="40dp" >
+            android:layout_height="wrap_content" >
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/LinearLayoutPersonInfoMain"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="40dp" >
 
-                <TextView
-                    android:id="@+id/textViewPersonInfoTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/person_info"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/Focus_Blue" />
-
-                <View
-                    android:id="@+id/separate_line"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/textViewPersonInfoTitle"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:background="@color/separate_line" />
-            </RelativeLayout>
-        </LinearLayout>
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/textViewPersonInfoTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/person_info"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/Focus_Blue" />
+
+                    <View
+                        android:id="@+id/separate_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/textViewPersonInfoTitle"
+                        android:background="@color/separate_line" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayoutLoginMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/menu_option" >
+
+                    <TextView
+                        android:id="@+id/textViewLoginAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/hint_login_name"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/Focus_Blue" />
+
+                    <EditText
+                        android:id="@+id/editTextLoginAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignBaseline="@+id/textViewLoginAccount"
+                        android:layout_alignBottom="@+id/textViewLoginAccount"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_toRightOf="@+id/textViewLoginAccount"
+                        android:ems="10"
+                        android:hint="Google Email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress" >
+
+                        <requestFocus />
+                    </EditText>
+
+                    <TextView
+                        android:id="@+id/textViewLoginPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@+id/textViewLoginAccount"
+                        android:layout_below="@+id/textViewLoginAccount"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/hint_login_password"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/Focus_Blue" />
+
+                    <EditText
+                        android:id="@+id/editTextLoginPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignBaseline="@+id/textViewLoginPassword"
+                        android:layout_alignBottom="@+id/textViewLoginPassword"
+                        android:layout_alignLeft="@+id/editTextLoginAccount"
+                        android:layout_alignRight="@+id/editTextLoginAccount"
+                        android:ems="10"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 
 </RelativeLayout>
