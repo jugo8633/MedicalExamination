@@ -2,8 +2,8 @@ package com.medici.app;
 
 import java.util.Locale;
 
+import com.medici.app.controller.ExaminationPageController;
 import com.medici.app.controller.FlipperMenuController;
-import com.medici.app.controller.HomePageController;
 import com.medici.app.controller.LeftDrawerMenuController;
 import com.medici.app.model.EventMessage;
 
@@ -28,7 +28,7 @@ public class MainActivity extends Activity
 	private ImageView					listMenuBtn				= null;
 	private LeftDrawerMenuController	menuHandler				= null;
 	private FlipperMenuController		flipperMenuController	= null;
-	private HomePageController			homePageController		= null;
+	private ExaminationPageController	examinationPage			= null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -51,10 +51,12 @@ public class MainActivity extends Activity
 		flipperMenuController = new FlipperMenuController(this, selfHandler);
 
 		/** init home page */
-		homePageController = new HomePageController(this, selfHandler);
+		examinationPage = new ExaminationPageController(this, selfHandler);
 
 		getDeviceLanguage();
-		//	homePageController.setTabButton(0);
+
+		/** show drawer left */
+		drawerLayout.openDrawer(Gravity.LEFT);
 	}
 
 	private void getDeviceLanguage()
@@ -205,7 +207,6 @@ public class MainActivity extends Activity
 												case EventMessage.MSG_LOGIN: // login success
 													flipperMenuController.setHideEnable(true);
 													flipperMenuController.close();
-													homePageController.setTabButton(0);
 													break;
 												case EventMessage.MSG_SHOW_LOGIN:
 													showLoginActivity();

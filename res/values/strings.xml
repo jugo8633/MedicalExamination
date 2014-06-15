@@ -38,5 +38,10 @@
     <string name="smoking">Smoking</string>
     <string name="age">Age</string>
     <string name="single_run">Single Run</string>
+    <string name="patient:">Patient:</string>
+    <string name="visual_acuity">Visual Acuity</string>
+    <string name="where_the_E_opens">where the “E” opens</string>
+    <string name="caretaker:">Caretaker:</string>
+    <string name="hold_device_at_arm_length">Hold device at Arm length - May help Patient input response</string>
 
 </resources>

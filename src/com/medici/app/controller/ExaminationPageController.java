@@ -8,16 +8,16 @@ import com.medici.app.model.Type;
 import android.app.Activity;
 import android.os.Handler;
 
-public class BasicTestPageController extends TestListController
+public class ExaminationPageController extends TestListController
 {
 	private int		TEST_EYE		= Type.INVALID;
 	private int		TEST_HEAR		= Type.INVALID;
 	private int		TEST_TREMBLE	= Type.INVALID;
 	private Handler	theHandler		= null;
 
-	public BasicTestPageController(Activity activity, Handler handler)
+	public ExaminationPageController(Activity activity, Handler handler)
 	{
-		super(activity, R.id.listViewBasicTest);
+		super(activity, R.id.listViewExamination);
 		TEST_EYE = super.addItem(R.drawable.sight, null);
 		TEST_HEAR = super.addItem(R.drawable.headphones, null);
 		TEST_TREMBLE = super.addItem(R.drawable.hand_shake, null);
