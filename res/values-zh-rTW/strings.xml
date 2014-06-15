@@ -37,5 +37,6 @@
     <string name="register">註冊帳號</string>
     <string name="smoking">吸菸</string>
     <string name="age">年齡</string>
+    <string name="single_run">單機執行</string>
 
 </resources>

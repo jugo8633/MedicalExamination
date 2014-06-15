@@ -30,12 +30,12 @@
                 android:src="@drawable/news" />
         </RelativeLayout>
 
-        <com.medical.medicalexamination.view.TabButton
+        <com.medici.app.view.TabButton
             android:id="@+id/tabButtonHomePageMedicalTest"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/RelativeLayoutHomePageNews" >
-        </com.medical.medicalexamination.view.TabButton>
+        </com.medici.app.view.TabButton>
 
         <View
             android:id="@+id/up_line"
