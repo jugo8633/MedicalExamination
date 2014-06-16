@@ -88,6 +88,10 @@
         <item name="android:windowEnterAnimation">@anim/slide_in_from_bottom</item> <!-- 从下面弹出时的动画 -->
         <item name="android:windowExitAnimation">@anim/slide_out_from_bottom</item> <!-- 从上面下滑到底部时的动画 -->
     </style>
-    <!--  -->
+
+    <style name="Translucent_NoTitle" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item> <!-- 设置自定义布局的背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item> <!-- 设置window背景透明，也就是去边框 -->
+    </style>
 
 </resources>

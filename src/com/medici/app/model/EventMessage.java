@@ -28,6 +28,7 @@ public class EventMessage
 	public static final int	MSG_TEST_END_EYE			= MSG_CUSTOM + 18;
 	public static final int	MSG_TEST_END_HEAR			= MSG_CUSTOM + 19;
 	public static final int	MSG_SHOW_TEST_ATTENTION		= MSG_CUSTOM + 20;
+	public static final int	MSG_CLOSE_MESSAGE_DIALOG	= MSG_CUSTOM + 21;
 
 	/**
 	 * @author jugo

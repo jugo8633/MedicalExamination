@@ -1,11 +1,13 @@
 package com.medici.app;
 
-import com.medici.app.R.id;
+import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
 import com.medici.app.view.ShapButton;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.ViewGroup.LayoutParams;
 
 public class LoginActivity extends Activity
@@ -39,10 +41,25 @@ public class LoginActivity extends Activity
 			public void OnButtonClicked(boolean bSelected)
 			{
 				btnLogin.setClick(false);
-				Global.showDidlog(LoginActivity.this, LoginActivity.this.getString(R.string.app_name),
+				Global.showDidlog(LoginActivity.this, selfHandler, LoginActivity.this.getString(R.string.app_name),
 						LoginActivity.this.getString(R.string.single_run_message));
-			//	LoginActivity.this.finish();
 			}
 		});
 	}
+
+	private Handler	selfHandler	= new Handler()
+								{
+
+									@Override
+									public void handleMessage(Message msg)
+									{
+										switch (msg.what)
+										{
+										case EventMessage.MSG_CLOSE_MESSAGE_DIALOG:
+											LoginActivity.this.finish();
+											break;
+										}
+									}
+
+								};
 }
