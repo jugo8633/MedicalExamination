@@ -50,6 +50,10 @@ public class ExaminationActivity extends Activity
 		trembleTestController.setExamination(true);
 	}
 
+	public void showEyeExamination()
+	{
+		flipper.setDisplayedChild(0);
+	}
 	private Handler	selfHandler	= new Handler()
 								{
 

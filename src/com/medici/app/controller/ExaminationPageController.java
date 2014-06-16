@@ -5,6 +5,7 @@ import java.util.List;
 import com.medici.app.R;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
+import com.medici.app.model.Logs;
 import com.medici.app.model.Type;
 import com.medici.app.model.Global;
 
@@ -80,6 +81,7 @@ public class ExaminationPageController extends ExaminationListController
 	@Override
 	protected void onItemSelected(int nPosition)
 	{
+		Logs.showTrace("##########################" + nPosition);
 		notifyTestItemSelected(nPosition);
 	}
 }

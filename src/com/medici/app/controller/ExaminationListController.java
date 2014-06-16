@@ -1,6 +1,7 @@
 package com.medici.app.controller;
 
 import com.medici.app.R;
+import com.medici.app.model.Logs;
 import com.medici.app.model.Type;
 
 import android.app.Activity;
@@ -9,12 +10,16 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -129,6 +134,26 @@ public abstract class ExaminationListController
 			textView = (TextView) view.findViewById(R.id.textViewCaretakerOption);
 			textView.setText(listItem.get(position).mstrCaretakerDo);
 
+			view.setOnClickListener(new OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
+				{
+					Logs.showTrace("###################click");
+				}
+			});
+
+			LinearLayout linearMain = (LinearLayout) view.findViewById(R.id.LinearLayoutTextMain);
+			linearMain.setOnClickListener(new OnClickListener()
+			{
+
+				@Override
+				public void onClick(View v)
+				{
+					Logs.showTrace("###################ontouch222222");
+				}
+			});
+
 			return view;
 		}
 
@@ -176,6 +201,8 @@ public abstract class ExaminationListController
 														public void onItemClick(AdapterView<?> parent, View view,
 																int position, long id)
 														{
+															Logs.showTrace("onItemClick#######################"
+																	+ position);
 															onItemSelected(position);
 														}
 													};
