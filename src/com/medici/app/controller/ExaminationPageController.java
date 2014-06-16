@@ -1,45 +1,73 @@
 package com.medici.app.controller;
 
+import java.util.List;
+
 import com.medici.app.R;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Type;
+import com.medici.app.model.Global;
 
 import android.app.Activity;
 import android.os.Handler;
 
-public class ExaminationPageController extends TestListController
+public class ExaminationPageController extends ExaminationListController
 {
-	private int		TEST_EYE		= Type.INVALID;
-	private int		TEST_HEAR		= Type.INVALID;
-	private int		TEST_TREMBLE	= Type.INVALID;
-	private Handler	theHandler		= null;
+	private int		EXAMINATION_EYE			= Type.INVALID;
+	private int		EXAMINATION_HEAR		= Type.INVALID;
+	private int		EXAMINATION_TREMBLE		= Type.INVALID;
+	private int		EXAMINATION_ATTENTION	= Type.INVALID;
+	private int		EXAMINATION_LANGUAGE	= Type.INVALID;
+	private int		EXAMINATION_SPATIAL		= Type.INVALID;
+	private int		EXAMINATION_MEMORY		= Type.INVALID;
+	private Handler	theHandler				= null;
 
 	public ExaminationPageController(Activity activity, Handler handler)
 	{
 		super(activity, R.id.listViewExamination);
-		TEST_EYE = super.addItem(R.drawable.sight, null);
-		TEST_HEAR = super.addItem(R.drawable.headphones, null);
-		TEST_TREMBLE = super.addItem(R.drawable.hand_shake, null);
+		EXAMINATION_EYE = setListItem(R.drawable.sight, R.string.visual_acuity, R.string.where_the_E_opens,
+				R.string.hold_device_at_arm_length, R.drawable.finger);
+		EXAMINATION_HEAR = setListItem(R.drawable.headphones, R.string.audio_acuity, R.string.yes_no,
+				R.string.provide_ear_phones, R.drawable.finger);
+		EXAMINATION_TREMBLE = setListItem(R.drawable.hand_shake, R.string.tremor_test, R.string.holds_tablet,
+				R.string.instructs_and_starts_test, R.drawable.tremor);
+		EXAMINATION_ATTENTION = setListItem(R.drawable.expression, R.string.attention, R.string.yes_no,
+				R.string.facilitate_answer_input, Type.INVALID);
+		EXAMINATION_LANGUAGE = setListItem(R.drawable.talking_icon, R.string.language, R.string.yes_no,
+				R.string.facilitate_answer_input, Type.INVALID);
+		EXAMINATION_SPATIAL = setListItem(R.drawable.memory_card, R.string.visual_spatial,
+				R.string.test_patient_visual_spatial, R.string.monitor, Type.INVALID);
+		EXAMINATION_MEMORY = setListItem(R.drawable.memory_brain, R.string.memory,
+				R.string.test_short_term_and_long_term_memory, R.string.monitor, Type.INVALID);
 		super.updateList();
 
 		theHandler = handler;
 	}
 
+	private int setListItem(int nIconResId, int nTitle, int nPatientDo, int nCaretakerDo, int nResIdPatientDoImage)
+	{
+		return super.addItem(nIconResId, Global.str(nTitle), Global.str(nPatientDo), Global.str(nCaretakerDo),
+				nResIdPatientDoImage);
+	}
+
 	private void notifyTestItemSelected(int nPosition)
 	{
 		int nWhat = Type.INVALID;
-		if (TEST_EYE == nPosition)
+		if (EXAMINATION_EYE == nPosition)
 		{
 			nWhat = EventMessage.MSG_SHOW_TEST_EYE;
 		}
-		else if (TEST_HEAR == nPosition)
+		else if (EXAMINATION_HEAR == nPosition)
 		{
 			nWhat = EventMessage.MSG_SHOW_TEST_HEAR;
 		}
-		else if (TEST_TREMBLE == nPosition)
+		else if (EXAMINATION_TREMBLE == nPosition)
 		{
 			nWhat = EventMessage.MSG_SHOW_TEST_TREMBLE;
+		}
+		else if (EXAMINATION_ATTENTION == nPosition)
+		{
+			nWhat = EventMessage.MSG_SHOW_TEST_ATTENTION;
 		}
 		else
 		{

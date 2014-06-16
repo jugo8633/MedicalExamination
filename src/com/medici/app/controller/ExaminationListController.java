@@ -5,10 +5,11 @@ import com.medici.app.model.Type;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -16,17 +17,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-public abstract class TestListController
+public abstract class ExaminationListController
 {
 	private ListView				listView	= null;
 	private LayoutInflater			inflater	= null;
-	private BasicTestListAdapter	listAdapter	= null;
+	private ExaminationListAdapter	listAdapter	= null;
 
-	public TestListController(Activity activity, int nListResId)
+	public ExaminationListController(Activity activity, int nListResId)
 	{
 		super();
-		listAdapter = new BasicTestListAdapter();
+		listAdapter = new ExaminationListAdapter();
 		inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		listView = (ListView) activity.findViewById(nListResId);
 	}
@@ -42,28 +44,36 @@ public abstract class TestListController
 		}
 	}
 
-	protected int addItem(int nIconResId, String strDesc)
+	protected int addItem(int nIconResId, String strTitle, String strPatientDo, String strCaretakerDo,
+			int nResIdPatientDoImage)
 	{
-		return listAdapter.addItem(nIconResId, strDesc);
+		return listAdapter.addItem(nIconResId, strTitle, strPatientDo, strCaretakerDo, nResIdPatientDoImage);
 	}
 
-	private class BasicTestListAdapter extends BaseAdapter
+	private class ExaminationListAdapter extends BaseAdapter
 	{
 		class ItemData
 		{
-			int		mnIconId	= Type.INVALID;
-			String	mstrDesc	= null;
+			public int		mnIconId				= Type.INVALID;
+			public String	mstrTitle				= null;
+			public String	mstrPatientDo			= null;
+			public String	mstrCaretakerDo			= null;
+			public int		mnResIdPatientDoImage	= Type.INVALID;
 
-			public ItemData(int nIconId, String strDesc)
+			public ItemData(int nIconId, String strTitle, String strPatientDo, String strCaretakerDo,
+					int nResIdPatientDoImage)
 			{
 				mnIconId = nIconId;
-				mstrDesc = strDesc;
+				mstrTitle = strTitle;
+				mstrPatientDo = strPatientDo;
+				mstrCaretakerDo = strCaretakerDo;
+				mnResIdPatientDoImage = nResIdPatientDoImage;
 			}
 		}
 
 		private SparseArray<ItemData>	listItem	= null;
 
-		public BasicTestListAdapter()
+		public ExaminationListAdapter()
 		{
 			listItem = new SparseArray<ItemData>();
 		}
@@ -89,21 +99,53 @@ public abstract class TestListController
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
+			ImageView imageView = null;
+			TextView textView = null;
+
 			View view = inflater.inflate(R.layout.medical_test_item, null);
 			RelativeLayout layoutIconBackgroun = (RelativeLayout) view
 					.findViewById(R.id.RelativeLayoutTestIconBackgroun);
-			ImageView imageIcon = (ImageView) view.findViewById(R.id.imageViewTestIcon);
+			imageView = (ImageView) view.findViewById(R.id.imageViewTestIcon);
 
 			setLayoutBackground(layoutIconBackgroun, position);
-			imageIcon.setImageResource(listItem.get(position).mnIconId);
+			imageView.setImageResource(listItem.get(position).mnIconId);
+
+			textView = (TextView) view.findViewById(R.id.textViewTitle);
+			setTitle(textView, listItem.get(position).mstrTitle);
+
+			imageView = (ImageView) view.findViewById(R.id.imageViewPatient);
+			if (Type.INVALID != listItem.get(position).mnResIdPatientDoImage)
+			{
+				imageView.setImageResource(listItem.get(position).mnResIdPatientDoImage);
+			}
+			else
+			{
+				imageView.setVisibility(View.GONE);
+			}
+
+			textView = (TextView) view.findViewById(R.id.textViewPatientOption);
+			textView.setText(listItem.get(position).mstrPatientDo);
+
+			textView = (TextView) view.findViewById(R.id.textViewCaretakerOption);
+			textView.setText(listItem.get(position).mstrCaretakerDo);
 
 			return view;
 		}
 
-		public int addItem(int nIconResId, String strDesc)
+		public int addItem(int nIconId, String strTitle, String strPatientDo, String strCaretakerDo,
+				int nResIdPatientDoImage)
 		{
-			listItem.append(listItem.size(), new ItemData(nIconResId, strDesc));
+			listItem.append(listItem.size(), new ItemData(nIconId, strTitle, strPatientDo, strCaretakerDo,
+					nResIdPatientDoImage));
 			return (listItem.size() - 1);
+		}
+
+		private void setTitle(TextView textView, String strText)
+		{
+
+			SpannableString content = new SpannableString(strText);
+			content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+			textView.setText(content);
 		}
 
 	}

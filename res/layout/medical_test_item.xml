@@ -74,6 +74,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/content_descript"
+                        android:maxHeight="70dp"
+                        android:maxWidth="125dp"
                         android:src="@drawable/finger" />
 
                     <TextView

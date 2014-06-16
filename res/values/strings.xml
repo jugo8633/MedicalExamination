@@ -43,5 +43,17 @@
     <string name="where_the_E_opens">where the “E” opens</string>
     <string name="caretaker:">Caretaker:</string>
     <string name="hold_device_at_arm_length">Hold device at Arm length - May help Patient input response</string>
+    <string name="audio_acuity">Audio Acuity</string>
+    <string name="yes_no">Yes / No</string>
+    <string name="provide_ear_phones">Provide ear phones</string>
+    <string name="tremor_test">Tremor Test</string>
+    <string name="holds_tablet">Hold’s tablet</string>
+    <string name="instructs_and_starts_test">Instructs and starts test</string>
+    <string name="attention">Attention</string>
+    <string name="facilitate_answer_input">Facilitate answer input</string>
+    <string name="visual_spatial">Visual Spatial</string>
+    <string name="test_patient_visual_spatial">Test Patient Visual Spatial</string>
+    <string name="monitor">Monitor</string>
+    <string name="test_short_term_and_long_term_memory">Test Short term and long term memory</string>
 
 </resources>

@@ -6,6 +6,7 @@ import com.medici.app.controller.ExaminationPageController;
 import com.medici.app.controller.FlipperMenuController;
 import com.medici.app.controller.LeftDrawerMenuController;
 import com.medici.app.model.EventMessage;
+import com.medici.app.model.Global;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -34,6 +35,7 @@ public class MainActivity extends Activity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		Global.theActivity = this;
 
 		/** init orientation*/
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
