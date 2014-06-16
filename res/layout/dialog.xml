@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.medici.app"
+    style="@style/Translucent_NoTitle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutDialogMain"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/menu_option" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutDialogMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:paddingBottom="40dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp" >
+
+            <ImageView
+                android:id="@+id/imageViewInfo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_descript"
+                android:scaleType="fitXY"
+                android:src="@drawable/info" />
+
+            <View
+                android:id="@+id/separate_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/separate_line" />
+
+            <TextView
+                android:id="@+id/textViewDialogMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Black_Gray" />
+
+<View
+                android:id="@+id/separate_line2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/separate_line" />
+
+<com.medici.app.view.ShapButton
+    android:id="@+id/shapButtonDialogOK"
+    android:layout_width="80dp"
+    android:layout_height="30dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="10dp"
+    app:borderColor="@color/Black_Gray"
+    app:borderColorClick="@color/Focus_Blue"
+    app:text="@string/ok"
+    app:textColor="@color/Black_Gray"
+    app:textColorClick="@color/Focus_Blue" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
