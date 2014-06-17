@@ -46,10 +46,14 @@ public class ExaminationActivity extends Activity
 		if (Type.INVALID != nRunExam)
 		{
 			mbSingleRun = true;
-			flipper.setDisplayedChild(nRunExam);
+		}
+		else
+		{
+			nRunExam = 0; // full examination
 		}
 
 		initExamination(!mbSingleRun);
+		showExam(nRunExam);
 	}
 
 	private void initExamination(boolean bFullRun)
@@ -67,6 +71,23 @@ public class ExaminationActivity extends Activity
 		flipper.setDisplayedChild(0);
 	}
 
+	public void showExam(int nExam)
+	{
+		flipper.setDisplayedChild(nExam);
+		switch (nExam)
+		{
+		case 0: // eye examination
+			eyeTestController.init();
+			break;
+		case 1: // hear examination
+			hearTestController.init();
+			break;
+		case 2:
+			trembleTestController.init();
+			break;
+		}
+	}
+
 	private Handler	selfHandler	= new Handler()
 								{
 
@@ -75,18 +96,15 @@ public class ExaminationActivity extends Activity
 									{
 										switch (msg.what)
 										{
-										case EventMessage.MSG_FLIPPER_CLOSE:
-											//close();
-											break;
 										case EventMessage.MSG_TEST_END_EYE:
 										case EventMessage.MSG_TEST_END_HEAR:
-											flipper.showNext();
-											if (flipper.getDisplayedChild() == 2)
-											{
-												trembleTestController.init();
-											}
+											showExam(flipper.getDisplayedChild() + 1);
 											break;
-
+										case EventMessage.MSG_HEADER_SELECT_CLOSE:
+											ExaminationActivity.this.finish();
+											break;
+										case EventMessage.MSG_HEADER_SELECT_INFO:
+											break;
 										}
 									}
 

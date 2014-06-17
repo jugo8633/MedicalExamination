@@ -4,6 +4,8 @@ import com.medici.app.R;
 import com.medici.app.model.Device;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
+import com.medici.app.model.Global;
+import com.medici.app.model.Logs;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -52,6 +54,12 @@ public class EyeTestController extends TestAreaController
 	{
 		mnLevel = 0;
 		setLevel(0);
+		showInfo();
+	}
+
+	private void showInfo()
+	{
+		Global.showDidlog(theActivity, selfHandler, null, Global.str(R.string.where_the_E_opens));
 	}
 
 	public void setExamination(boolean bSet)
@@ -153,6 +161,13 @@ public class EyeTestController extends TestAreaController
 	@Override
 	protected boolean onClose()
 	{
+		return false;
+	}
+
+	@Override
+	protected boolean onInfo()
+	{
+		showInfo();
 		return false;
 	}
 }

@@ -17,6 +17,10 @@ public class ImageViewTouchHandler
 
 	public void setTouchEvent(View view, final Handler handler)
 	{
+		if (null == view)
+		{
+			return;
+		}
 		view.setOnTouchListener(new OnTouchListener()
 		{
 			@Override

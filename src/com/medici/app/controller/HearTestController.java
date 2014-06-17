@@ -1,7 +1,5 @@
 package com.medici.app.controller;
 
-import java.io.IOException;
-
 import com.medici.app.R;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
@@ -302,6 +300,12 @@ public class HearTestController extends TestAreaController
 		mPlayer.setVolume(1.0f, 1.0f);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
 
+		return false;
+	}
+
+	@Override
+	protected boolean onInfo()
+	{
 		return false;
 	}
 }

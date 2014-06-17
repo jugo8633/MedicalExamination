@@ -72,4 +72,11 @@ public class Comprehension1Controller extends TestAreaController
 		numberPicker1.setValue(0);
 		numberPicker2.setValue(0);
 	}
+
+	@Override
+	protected boolean onInfo()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

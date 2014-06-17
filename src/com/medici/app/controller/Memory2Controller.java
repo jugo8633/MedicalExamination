@@ -64,4 +64,11 @@ public class Memory2Controller extends TestAreaController
 									}
 								};
 
+	@Override
+	protected boolean onInfo()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

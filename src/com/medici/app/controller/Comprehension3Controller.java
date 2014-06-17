@@ -86,4 +86,11 @@ public class Comprehension3Controller extends TestAreaController
 									}
 								};
 
+	@Override
+	protected boolean onInfo()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

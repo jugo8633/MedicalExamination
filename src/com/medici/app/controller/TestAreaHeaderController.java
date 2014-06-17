@@ -23,10 +23,16 @@ public class TestAreaHeaderController
 	private Handler					notifyHandler		= null;
 	private ImageViewTouchHandler	imageViewHandler	= null;
 	private OnClosedListener		onClosedListener	= null;
+	private OnInfoedListener		onInfoedListener	= null;
 
 	public interface OnClosedListener
 	{
-		void OnClosed();
+		void onClosed();
+	}
+
+	public interface OnInfoedListener
+	{
+		void onInfoed();
 	}
 
 	public void setOnClosedListener(OnClosedListener listener)
@@ -34,6 +40,14 @@ public class TestAreaHeaderController
 		if (null != listener)
 		{
 			onClosedListener = listener;
+		}
+	}
+
+	public void setOnInfoedListener(OnInfoedListener listener)
+	{
+		if (null != listener)
+		{
+			onInfoedListener = listener;
 		}
 	}
 
@@ -58,13 +72,14 @@ public class TestAreaHeaderController
 
 	public void close()
 	{
-		onClosedListener.OnClosed();
-		EventHandler.notify(notifyHandler, EventMessage.MSG_FLIPPER_CLOSE, 0, 0, null);
+		onClosedListener.onClosed();
+		EventHandler.notify(notifyHandler, EventMessage.MSG_HEADER_SELECT_CLOSE, 0, 0, null);
 	}
 
 	private void info()
 	{
-
+		onInfoedListener.onInfoed();
+		EventHandler.notify(notifyHandler, EventMessage.MSG_HEADER_SELECT_INFO, 0, 0, null);
 	}
 
 	public void hideHeader(boolean bHide)

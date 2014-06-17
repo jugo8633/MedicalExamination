@@ -42,6 +42,8 @@ public abstract class TestAreaController
 
 	protected abstract boolean onClose();
 
+	protected abstract boolean onInfo();
+
 	protected void initHeader(ViewGroup parent)
 	{
 		if (null != parent)
@@ -50,9 +52,17 @@ public abstract class TestAreaController
 			headerController.setOnClosedListener(new TestAreaHeaderController.OnClosedListener()
 			{
 				@Override
-				public void OnClosed()
+				public void onClosed()
 				{
 					onClose();
+				}
+			});
+			headerController.setOnInfoedListener(new TestAreaHeaderController.OnInfoedListener()
+			{
+				@Override
+				public void onInfoed()
+				{
+					onInfo();
 				}
 			});
 		}
