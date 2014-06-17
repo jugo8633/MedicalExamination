@@ -3,6 +3,7 @@ package com.medici.app.controller;
 import com.medici.app.R;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
+import com.medici.app.model.Global;
 
 import android.animation.Animator;
 import android.animation.Animator.AnimatorListener;
@@ -61,6 +62,7 @@ public class HearTestController extends TestAreaController
 		mbSpeakerShake = false;
 		mPlayer.setVolume(0.0f, 1.0f);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
+		showInfo();
 	}
 
 	@Override
@@ -245,6 +247,11 @@ public class HearTestController extends TestAreaController
 
 	}
 
+	private void showInfo()
+	{
+		Global.showDidlog(theActivity, selfHandler, null, Global.str(R.string.exam_hear_info));
+	}
+
 	private AnimatorListener	shakeListener	= new AnimatorListener()
 												{
 													@Override
@@ -306,6 +313,7 @@ public class HearTestController extends TestAreaController
 	@Override
 	protected boolean onInfo()
 	{
+		showInfo();
 		return false;
 	}
 }

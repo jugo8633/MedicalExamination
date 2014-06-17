@@ -57,5 +57,6 @@
     <string name="test_patient_visual_spatial">Test Patient Visual Spatial</string>
     <string name="monitor">Monitor</string>
     <string name="test_short_term_and_long_term_memory">Test Short term and long term memory</string>
+    <string name="exam_hear_info">Hear the tone.</string>
 
 </resources>
