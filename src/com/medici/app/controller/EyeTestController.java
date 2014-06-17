@@ -123,7 +123,7 @@ public class EyeTestController extends TestAreaController
 			break;
 		case R.id.imageViewArrowUp:
 			break;
-		case R.id.imageViewHearLeft:
+		case R.id.imageViewHearOk:
 			break;
 		case R.id.imageViewArrowDown:
 			break;

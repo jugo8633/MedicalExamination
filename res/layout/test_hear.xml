@@ -11,6 +11,8 @@
 
         <include
             android:id="@+id/subTestAreaHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             layout="@layout/test_area_header" />
 
@@ -22,22 +24,13 @@
             android:layout_marginTop="120dp" >
 
             <ImageView
-                android:id="@+id/imageViewSpeakerLeft"
+                android:id="@+id/imageViewSpeaker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:contentDescription="@string/content_descript"
                 android:src="@drawable/speaker_black" />
 
-            <ImageView
-                android:id="@+id/imageViewSpeakerRight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:contentDescription="@string/content_descript"
-                android:src="@drawable/speaker_black" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -48,28 +41,28 @@
             android:layout_marginBottom="40dp" >
 
             <ImageView
-                android:id="@+id/imageViewHearLeft"
+                android:id="@+id/imageViewHearOk"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="40dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/content_descript"
                 android:scaleType="fitXY"
-                android:src="@drawable/e_left" />
+                android:src="@drawable/ok" />
 
             <ImageView
-                android:id="@+id/imageViewHearRight"
+                android:id="@+id/imageViewHearNo"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="40dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/content_descript"
                 android:scaleType="fitXY"
-                android:src="@drawable/e_right" />
+                android:src="@drawable/close" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -79,17 +72,34 @@
             android:layout_above="@+id/RelativeLayoutHearingArrowMain"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp" >
-
-            <ImageView
-                android:id="@+id/imageViewHearPlay"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/content_descript"
-                android:scaleType="fitXY"
-                android:src="@drawable/play" />
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textViewHearHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subTestAreaHeader"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:text="@string/do_i_hear_a_tone"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/green"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewOnAir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/RelativeLayoutHearingMain"
+            android:background="@color/Black"
+            android:gravity="center_horizontal"
+            android:text="@string/on_air"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/red"
+            android:textSize="100sp"
+            android:textStyle="bold" />
+
     </RelativeLayout>
 
 </RelativeLayout>

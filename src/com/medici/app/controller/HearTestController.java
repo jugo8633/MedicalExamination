@@ -20,9 +20,7 @@ import android.widget.RelativeLayout;
 
 public class HearTestController extends TestAreaController
 {
-	private ImageView		imgViewSpeakerLeft	= null;
-	private ImageView		imgViewSpeakerRight	= null;
-	private ImageView		imgPlay				= null;
+	private ImageView		imageViewSpeaker	= null;
 
 	private int				mnLevel				= 0;
 	private MediaPlayer		mPlayer				= null;
@@ -31,8 +29,10 @@ public class HearTestController extends TestAreaController
 	private boolean			mbSpeakerShake		= false;
 	private int				mnShakeMsg			= 666;
 
-	private int[]			listImgViewResId	= { R.id.imageViewHearLeft, R.id.imageViewHearRight,
-			R.id.imageViewHearPlay				};
+	private int[]			listImgViewResId	= { R.id.imageViewHearOk, R.id.imageViewHearNo, };
+	private int[]			listSound			= { R.raw.sin_6000hz_6dbfs_5s, R.raw.sin_3500hz_6dbfs_5s,
+			R.raw.sin_2000hz_6dbfs_5s, R.raw.sin_1000hz_6dbfs_5s, R.raw.sin_500hz_6dbfs_5s, R.raw.sin_300hz_6dbfs_5s,
+			R.raw.sin_150hz_6dbfs_5s, R.raw.sin_60hz_6dbfs_3s, R.raw.sin_30hz_6dbfs_5s };
 
 	public HearTestController(Activity activity, Handler handler)
 	{
@@ -50,7 +50,7 @@ public class HearTestController extends TestAreaController
 			@Override
 			public void onCompletion(MediaPlayer mp)
 			{
-				setPlayIcon(false);
+
 			}
 		});
 		audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
@@ -60,7 +60,7 @@ public class HearTestController extends TestAreaController
 	public void init()
 	{
 		mbSpeakerShake = false;
-		mPlayer.setVolume(0.0f, 1.0f);
+		mPlayer.setVolume(1.0f, 1.0f);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
 		showInfo();
 	}
@@ -80,9 +80,8 @@ public class HearTestController extends TestAreaController
 		initHeader(mainLayout);
 		addImageViewResId(mainLayout, listImgViewResId, selfHandler);
 
-		imgViewSpeakerLeft = (ImageView) mainLayout.findViewById(R.id.imageViewSpeakerLeft);
-		imgViewSpeakerRight = (ImageView) mainLayout.findViewById(R.id.imageViewSpeakerRight);
-		imgPlay = (ImageView) mainLayout.findViewById(R.id.imageViewHearPlay);
+		imageViewSpeaker = (ImageView) mainLayout.findViewById(R.id.imageViewSpeaker);
+
 	}
 
 	public void setExamination(boolean bSet)
@@ -100,9 +99,9 @@ public class HearTestController extends TestAreaController
 
 		switch (nArrow)
 		{
-		case R.id.imageViewHearLeft:
+		case R.id.imageViewHearOk:
 			break;
-		case R.id.imageViewHearRight:
+		case R.id.imageViewHearNo:
 			break;
 		}
 		++mnLevel;
@@ -158,25 +157,11 @@ public class HearTestController extends TestAreaController
 	{
 		switch (nResId)
 		{
-		case R.id.imageViewHearLeft:
-		case R.id.imageViewHearRight:
+		case R.id.imageViewHearOk:
+		case R.id.imageViewHearNo:
 			checkAnswer(nResId);
 			break;
-		case R.id.imageViewHearPlay:
-			setPlayIcon(playSound());
-			break;
-		}
-	}
 
-	private void setPlayIcon(boolean bPlay)
-	{
-		if (bPlay)
-		{
-			imgPlay.setImageResource(R.drawable.pause);
-		}
-		else
-		{
-			imgPlay.setImageResource(R.drawable.play);
 		}
 	}
 
@@ -201,46 +186,32 @@ public class HearTestController extends TestAreaController
 	{
 		if (!mbSpeakerShake)
 		{
-			imgViewSpeakerLeft.animate().setListener(null);
-			imgViewSpeakerLeft.animate().scaleX(1.0f).setDuration(100)
+			imageViewSpeaker.animate().setListener(null);
+			imageViewSpeaker.animate().scaleX(1.0f).setDuration(100)
 					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerLeft.animate().scaleY(1.0f).setDuration(100)
+			imageViewSpeaker.animate().scaleY(1.0f).setDuration(100)
 					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerLeft.clearAnimation();
-
-			imgViewSpeakerRight.animate().scaleX(1.0f).setDuration(100)
-					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerRight.animate().scaleY(1.0f).setDuration(100)
-					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerRight.clearAnimation();
+			imageViewSpeaker.clearAnimation();
 
 			return;
 		}
 		if (bShake)
 		{
 			mnShakeMsg = 666;
-			imgViewSpeakerLeft.animate().setListener(null);
-			imgViewSpeakerRight.animate().scaleX(1.1f).setDuration(50)
+			imageViewSpeaker.animate().setListener(null);
+			imageViewSpeaker.animate().scaleX(1.1f).setDuration(50)
 					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerRight.animate().scaleY(1.1f).setDuration(50)
-					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerLeft.animate().scaleX(1.1f).setDuration(50)
-					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerLeft.animate().scaleY(1.1f).setDuration(50)
+			imageViewSpeaker.animate().scaleY(1.1f).setDuration(50)
 					.setInterpolator(new AccelerateDecelerateInterpolator()).setListener(shakeListener);
 
 		}
 		else
 		{
 			mnShakeMsg = 777;
-			imgViewSpeakerLeft.animate().setListener(null);
-			imgViewSpeakerRight.animate().scaleX(1.0f).setDuration(200)
+			imageViewSpeaker.animate().setListener(null);
+			imageViewSpeaker.animate().scaleX(1.0f).setDuration(200)
 					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerRight.animate().scaleY(1.0f).setDuration(200)
-					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerLeft.animate().scaleX(1.0f).setDuration(200)
-					.setInterpolator(new AccelerateDecelerateInterpolator());
-			imgViewSpeakerLeft.animate().scaleY(1.0f).setDuration(200)
+			imageViewSpeaker.animate().scaleY(1.0f).setDuration(200)
 					.setInterpolator(new AccelerateDecelerateInterpolator()).setListener(shakeListener);
 
 		}
@@ -302,7 +273,6 @@ public class HearTestController extends TestAreaController
 		mbSpeakerShake = false;
 		mPlayer.pause();
 		mPlayer.seekTo(0);
-		setPlayIcon(false);
 
 		mPlayer.setVolume(1.0f, 1.0f);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
