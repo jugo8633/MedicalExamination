@@ -5,13 +5,17 @@ import com.medici.app.model.Global;
 import com.medici.app.view.ShapButton;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.ViewGroup.LayoutParams;
+import android.view.inputmethod.InputMethodManager;
 
 public class LoginActivity extends Activity
 {
+	private ProgressDialog	progress	= null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -31,7 +35,9 @@ public class LoginActivity extends Activity
 			@Override
 			public void OnButtonClicked(boolean bSelected)
 			{
+				Global.hideIME(LoginActivity.this);
 				btnSingleRun.setClick(false);
+				startLogin();
 			}
 		});
 
@@ -40,11 +46,37 @@ public class LoginActivity extends Activity
 			@Override
 			public void OnButtonClicked(boolean bSelected)
 			{
+				Global.hideIME(LoginActivity.this);
 				btnLogin.setClick(false);
 				Global.showDidlog(LoginActivity.this, selfHandler, LoginActivity.this.getString(R.string.app_name),
 						LoginActivity.this.getString(R.string.single_run_message));
 			}
 		});
+	}
+
+	private void startLogin()
+	{
+		progress = ProgressDialog.show(this, this.getString(R.string.login), null, false);
+
+		new Thread()
+		{
+			public void run()
+			{
+				try
+				{
+					sleep(3000);
+				}
+				catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+				finally
+				{
+					progress.dismiss();
+					LoginActivity.this.finish();
+				}
+			}
+		}.start();
 	}
 
 	private Handler	selfHandler	= new Handler()
