@@ -14,7 +14,7 @@ public class EventMessage
 	public static final int	MSG_SHOW_LOGIN				= MSG_CUSTOM + 4;
 	public static final int	MSG_SHOW_HISTORY			= MSG_CUSTOM + 5;
 	public static final int	MSG_SELECTED				= MSG_CUSTOM + 6;
-	public static final int	MSG_TEST_SELECTED			= MSG_CUSTOM + 7;
+	public static final int	MSG_EXAM_SELECTED			= MSG_CUSTOM + 7;
 	public static final int	MSG_SHOW_TEST_EYE			= MSG_CUSTOM + 8;
 	public static final int	MSG_SHOW_TEST_HEAR			= MSG_CUSTOM + 9;
 	public static final int	MSG_SHOW_TEST_TREMBLE		= MSG_CUSTOM + 10;

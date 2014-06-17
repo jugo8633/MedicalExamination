@@ -1,11 +1,8 @@
 package com.medici.app.controller;
 
-import java.util.List;
-
 import com.medici.app.R;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
-import com.medici.app.model.Logs;
 import com.medici.app.model.Type;
 import com.medici.app.model.Global;
 
@@ -14,13 +11,13 @@ import android.os.Handler;
 
 public class ExaminationPageController extends ExaminationListController
 {
-	private int		EXAMINATION_EYE			= Type.INVALID;
-	private int		EXAMINATION_HEAR		= Type.INVALID;
-	private int		EXAMINATION_TREMBLE		= Type.INVALID;
-	private int		EXAMINATION_ATTENTION	= Type.INVALID;
-	private int		EXAMINATION_LANGUAGE	= Type.INVALID;
-	private int		EXAMINATION_SPATIAL		= Type.INVALID;
-	private int		EXAMINATION_MEMORY		= Type.INVALID;
+	public int		EXAMINATION_EYE			= Type.INVALID;
+	public int		EXAMINATION_HEAR		= Type.INVALID;
+	public int		EXAMINATION_TREMBLE		= Type.INVALID;
+	public int		EXAMINATION_ATTENTION	= Type.INVALID;
+	public int		EXAMINATION_LANGUAGE	= Type.INVALID;
+	public int		EXAMINATION_SPATIAL		= Type.INVALID;
+	public int		EXAMINATION_MEMORY		= Type.INVALID;
 	private Handler	theHandler				= null;
 
 	public ExaminationPageController(Activity activity, Handler handler)
@@ -53,35 +50,35 @@ public class ExaminationPageController extends ExaminationListController
 
 	private void notifyTestItemSelected(int nPosition)
 	{
-		int nWhat = Type.INVALID;
-		if (EXAMINATION_EYE == nPosition)
-		{
-			nWhat = EventMessage.MSG_SHOW_TEST_EYE;
-		}
-		else if (EXAMINATION_HEAR == nPosition)
-		{
-			nWhat = EventMessage.MSG_SHOW_TEST_HEAR;
-		}
-		else if (EXAMINATION_TREMBLE == nPosition)
-		{
-			nWhat = EventMessage.MSG_SHOW_TEST_TREMBLE;
-		}
-		else if (EXAMINATION_ATTENTION == nPosition)
-		{
-			nWhat = EventMessage.MSG_SHOW_TEST_ATTENTION;
-		}
-		else
-		{
-			return;
-		}
+		//		int nWhat = Type.INVALID;
+		//		if (EXAMINATION_EYE == nPosition)
+		//		{
+		//			nWhat = EventMessage.MSG_SHOW_TEST_EYE;
+		//		}
+		//		else if (EXAMINATION_HEAR == nPosition)
+		//		{
+		//			nWhat = EventMessage.MSG_SHOW_TEST_HEAR;
+		//		}
+		//		else if (EXAMINATION_TREMBLE == nPosition)
+		//		{
+		//			nWhat = EventMessage.MSG_SHOW_TEST_TREMBLE;
+		//		}
+		//		else if (EXAMINATION_ATTENTION == nPosition)
+		//		{
+		//			nWhat = EventMessage.MSG_SHOW_TEST_ATTENTION;
+		//		}
+		//		else
+		//		{
+		//			return;
+		//		}
 
-		EventHandler.notify(theHandler, nWhat, 0, 0, null);
+		//EventHandler.notify(theHandler, EventMessage.MSG_EXAM_SELECTED, nPosition, 0, null);
 	}
 
 	@Override
 	protected void onItemSelected(int nPosition)
 	{
-		Logs.showTrace("##########################" + nPosition);
-		notifyTestItemSelected(nPosition);
+		EventHandler.notify(theHandler, EventMessage.MSG_EXAM_SELECTED, nPosition, 0, null);
+		//notifyTestItemSelected(nPosition);
 	}
 }

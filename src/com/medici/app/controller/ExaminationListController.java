@@ -1,7 +1,6 @@
 package com.medici.app.controller;
 
 import com.medici.app.R;
-import com.medici.app.model.Logs;
 import com.medici.app.model.Type;
 
 import android.app.Activity;
@@ -10,13 +9,9 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,7 +40,6 @@ public abstract class ExaminationListController
 		if (null != listView)
 		{
 			listView.setAdapter(listAdapter);
-			listView.setOnItemClickListener(itemClickListener);
 		}
 	}
 
@@ -102,7 +96,7 @@ public abstract class ExaminationListController
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent)
+		public View getView(final int position, View convertView, ViewGroup parent)
 		{
 			ImageView imageView = null;
 			TextView textView = null;
@@ -139,7 +133,7 @@ public abstract class ExaminationListController
 				@Override
 				public void onClick(View v)
 				{
-					Logs.showTrace("###################click");
+					onItemSelected(position);
 				}
 			});
 
@@ -150,7 +144,7 @@ public abstract class ExaminationListController
 				@Override
 				public void onClick(View v)
 				{
-					Logs.showTrace("###################ontouch222222");
+					onItemSelected(position);
 				}
 			});
 
@@ -173,37 +167,25 @@ public abstract class ExaminationListController
 			textView.setText(content);
 		}
 
-	}
-
-	private void setLayoutBackground(ViewGroup viewGroup, int nPosition)
-	{
-		int nItem = nPosition % 3;
-		switch (nItem)
+		private void setLayoutBackground(ViewGroup viewGroup, int nPosition)
 		{
-		case 0:
-			viewGroup.setBackgroundResource(R.drawable.arrow_yellow);
-			break;
-		case 1:
-			viewGroup.setBackgroundResource(R.drawable.arrow_blue);
-			break;
-		case 2:
-			viewGroup.setBackgroundResource(R.drawable.arrow_red);
-			break;
-		default:
-			viewGroup.setBackgroundResource(R.drawable.arrow_yellow);
-			break;
+			int nItem = nPosition % 3;
+			switch (nItem)
+			{
+			case 0:
+				viewGroup.setBackgroundResource(R.drawable.arrow_yellow);
+				break;
+			case 1:
+				viewGroup.setBackgroundResource(R.drawable.arrow_blue);
+				break;
+			case 2:
+				viewGroup.setBackgroundResource(R.drawable.arrow_red);
+				break;
+			default:
+				viewGroup.setBackgroundResource(R.drawable.arrow_yellow);
+				break;
+			}
 		}
 	}
 
-	private OnItemClickListener	itemClickListener	= new OnItemClickListener()
-													{
-														@Override
-														public void onItemClick(AdapterView<?> parent, View view,
-																int position, long id)
-														{
-															Logs.showTrace("onItemClick#######################"
-																	+ position);
-															onItemSelected(position);
-														}
-													};
 }

@@ -9,8 +9,10 @@ import com.medici.app.controller.Memory1Controller;
 import com.medici.app.controller.Memory2Controller;
 import com.medici.app.controller.TrembleTestController;
 import com.medici.app.model.EventMessage;
+import com.medici.app.model.Type;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -29,6 +31,7 @@ public class ExaminationActivity extends Activity
 	private Comprehension3Controller	comprehension3Controller	= null;
 	private Memory1Controller			memory1Controller			= null;
 	private Memory2Controller			memory2Controller			= null;
+	private boolean						mbSingleRun					= false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -37,23 +40,33 @@ public class ExaminationActivity extends Activity
 		setContentView(R.layout.examination);
 		getWindow().setLayout(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		flipper = (ViewFlipper) this.findViewById(R.id.viewFlipperExamination);
-		initExamination();
+
+		Intent intent = getIntent();
+		int nRunExam = intent.getIntExtra("EXAM", 0);
+		if (Type.INVALID != nRunExam)
+		{
+			mbSingleRun = true;
+			flipper.setDisplayedChild(nRunExam);
+		}
+
+		initExamination(!mbSingleRun);
 	}
 
-	private void initExamination()
+	private void initExamination(boolean bFullRun)
 	{
 		eyeTestController = new EyeTestController(this, selfHandler);
-		eyeTestController.setExamination(true);
+		eyeTestController.setExamination(bFullRun);
 		hearTestController = new HearTestController(this, selfHandler);
-		hearTestController.setExamination(true);
+		hearTestController.setExamination(bFullRun);
 		trembleTestController = new TrembleTestController(this, selfHandler);
-		trembleTestController.setExamination(true);
+		trembleTestController.setExamination(bFullRun);
 	}
 
 	public void showEyeExamination()
 	{
 		flipper.setDisplayedChild(0);
 	}
+
 	private Handler	selfHandler	= new Handler()
 								{
 

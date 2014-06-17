@@ -3,10 +3,10 @@ package com.medici.app;
 import java.util.Locale;
 
 import com.medici.app.controller.ExaminationPageController;
-import com.medici.app.controller.FlipperMenuController;
 import com.medici.app.controller.LeftDrawerMenuController;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
+import com.medici.app.model.Type;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,11 +25,10 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity
 {
-	private DrawerLayout				drawerLayout			= null;
-	private ImageView					listMenuBtn				= null;
-	private LeftDrawerMenuController	menuHandler				= null;
-	private FlipperMenuController		flipperMenuController	= null;
-	private ExaminationPageController	examinationPage			= null;
+	private DrawerLayout				drawerLayout	= null;
+	private ImageView					listMenuBtn		= null;
+	private LeftDrawerMenuController	menuHandler		= null;
+	private ExaminationPageController	examinationPage	= null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -48,9 +47,6 @@ public class MainActivity extends Activity
 
 		/** init left drawer menu */
 		menuHandler = new LeftDrawerMenuController(this, selfHandler);
-
-		/** init flipper menu */
-		flipperMenuController = new FlipperMenuController(this, selfHandler);
 
 		/** init home page */
 		examinationPage = new ExaminationPageController(this, selfHandler);
@@ -128,21 +124,16 @@ public class MainActivity extends Activity
 		}
 	}
 
-	private void showSensorActivity()
-	{
-		Intent intent = new Intent(MainActivity.this, SensorActivity.class);
-		startActivity(intent);
-	}
-
 	private void showPersonInfoActivity()
 	{
 		Intent intent = new Intent(MainActivity.this, PersonInfoActivity.class);
 		startActivity(intent);
 	}
 
-	private void showExaminationActivity()
+	private void showExaminationActivity(int nExam)
 	{
 		Intent intent = new Intent(MainActivity.this, ExaminationActivity.class);
+		intent.putExtra("EXAM", nExam);
 		startActivity(intent);
 	}
 
@@ -158,34 +149,35 @@ public class MainActivity extends Activity
 		startActivity(intent);
 	}
 
-	private void showTest(int nWhat)
+	private void showExam(int nExam)
 	{
-		switch (nWhat)
+		if (examinationPage.EXAMINATION_EYE == nExam)
 		{
-		case EventMessage.MSG_SHOW_TEST_EYE:
-			flipperMenuController.showEyeTest();
-			break;
-		case EventMessage.MSG_SHOW_TEST_HEAR:
-			flipperMenuController.showHearTest();
-			break;
-		case EventMessage.MSG_SHOW_TEST_TREMBLE:
-			showSensorActivity();
-			break;
-		case EventMessage.MSG_SHOW_TEST_EXPRESSION:
-			flipperMenuController.showComprehension1();
-			break;
-		case EventMessage.MSG_SHOW_TEST_PUZZLE:
-			flipperMenuController.showComprehension2();
-			break;
-		case EventMessage.MSG_SHOW_TEST_WORD:
-			flipperMenuController.showComprehension3();
-			break;
-		case EventMessage.MSG_SHOW_TEST_CARD:
-			flipperMenuController.showMemory1();
-			break;
-		case EventMessage.MSG_SHOW_TEST_SHAPE:
-			flipperMenuController.showMemory2();
-			break;
+			showExaminationActivity(0);
+		}
+		else if (examinationPage.EXAMINATION_HEAR == nExam)
+		{
+			showExaminationActivity(1);
+		}
+		else if (examinationPage.EXAMINATION_TREMBLE == nExam)
+		{
+			showExaminationActivity(2);
+		}
+		else if (examinationPage.EXAMINATION_ATTENTION == nExam)
+		{
+
+		}
+		else if (examinationPage.EXAMINATION_LANGUAGE == nExam)
+		{
+
+		}
+		else if (examinationPage.EXAMINATION_MEMORY == nExam)
+		{
+
+		}
+		else if (examinationPage.EXAMINATION_SPATIAL == nExam)
+		{
+
 		}
 	}
 
@@ -206,10 +198,6 @@ public class MainActivity extends Activity
 											{
 												switch (msg.what)
 												{
-												case EventMessage.MSG_LOGIN: // login success
-													flipperMenuController.setHideEnable(true);
-													flipperMenuController.close();
-													break;
 												case EventMessage.MSG_SHOW_LOGIN:
 													showLoginActivity();
 													break;
@@ -217,22 +205,14 @@ public class MainActivity extends Activity
 													showPersonInfoActivity();
 													break;
 												case EventMessage.MSG_SHOW_EXAMINATION:
-													showExaminationActivity();
+													showExaminationActivity(Type.INVALID);
 													break;
 												case EventMessage.MSG_SHOW_HISTORY:
 													showHistoryActivity();
 													break;
-												case EventMessage.MSG_SHOW_TEST_EYE:
-												case EventMessage.MSG_SHOW_TEST_HEAR:
-												case EventMessage.MSG_SHOW_TEST_TREMBLE:
-												case EventMessage.MSG_SHOW_TEST_EXPRESSION:
-												case EventMessage.MSG_SHOW_TEST_PUZZLE:
-												case EventMessage.MSG_SHOW_TEST_WORD:
-												case EventMessage.MSG_SHOW_TEST_CARD:
-												case EventMessage.MSG_SHOW_TEST_SHAPE:
-													showTest(msg.what);
+												case EventMessage.MSG_EXAM_SELECTED:
+													showExam(msg.arg1);
 													break;
-
 												}
 											}
 
