@@ -2,6 +2,7 @@ package com.medici.app;
 
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
+import com.medici.app.model.Type;
 import com.medici.app.view.ShapButton;
 
 import android.app.Activity;
@@ -49,7 +50,7 @@ public class LoginActivity extends Activity
 				Global.hideIME(LoginActivity.this);
 				btnLogin.setClick(false);
 				Global.showDidlog(LoginActivity.this, selfHandler, LoginActivity.this.getString(R.string.app_name),
-						LoginActivity.this.getString(R.string.single_run_message));
+						LoginActivity.this.getString(R.string.single_run_message), Type.INVALID);
 			}
 		});
 	}

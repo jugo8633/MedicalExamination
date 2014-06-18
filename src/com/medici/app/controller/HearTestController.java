@@ -14,20 +14,31 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class HearTestController extends TestAreaController
 {
 	private ImageView		imageViewSpeaker	= null;
-
 	private int				mnLevel				= 0;
 	private MediaPlayer		mPlayer				= null;
 	private AudioManager	audioManager		= null;
 	private int				mnMaxVolume			= 0;
 	private boolean			mbSpeakerShake		= false;
-	private int				mnShakeMsg			= 666;
+	private int				SPEAKER_NOTIFY		= Global.getUserId();
+	private final int		TIMER_COUNTDOWN		= Global.getUserId();
+	private final int		RESULT_CLOSE		= Global.getUserId();
+	private final int		INFO_CLOSE			= Global.getUserId();
+	private ImageView		mivOk				= null;
+	private ImageView		mivNo				= null;
+	private TextView		mtvExamHint			= null;
+	private TextView		mtvOnAir			= null;
+	private int				mnCount				= 0;
+	private Activity		theActivity			= null;
+	private int				mnExamResult		= 0;
 
 	private int[]			listImgViewResId	= { R.id.imageViewHearOk, R.id.imageViewHearNo, };
 	private int[]			listSound			= { R.raw.sin_6000hz_6dbfs_5s, R.raw.sin_3500hz_6dbfs_5s,
@@ -37,32 +48,24 @@ public class HearTestController extends TestAreaController
 	public HearTestController(Activity activity, Handler handler)
 	{
 		super(activity, handler);
+		theActivity = activity;
 		initView(activity);
 
-		mPlayer = MediaPlayer.create(activity, R.raw.hear_test);
-		mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-		/*
-		 * try { mPlayer.prepare(); } catch (IllegalStateException e) {
-		 * e.printStackTrace(); } catch (IOException e) { e.printStackTrace(); }
-		 */
-		mPlayer.setOnCompletionListener(new OnCompletionListener()
-		{
-			@Override
-			public void onCompletion(MediaPlayer mp)
-			{
-
-			}
-		});
 		audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
 		mnMaxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 	}
 
 	public void init()
 	{
+		Global.timerStop();
+		releasePlayer();
+		mnExamResult = 0;
+		mnCount = 0;
+		showExamHint(false);
+		showOnAir(false, null);
 		mbSpeakerShake = false;
-		mPlayer.setVolume(1.0f, 1.0f);
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
-		showInfo();
+		showInfo(selfHandler);
 	}
 
 	@Override
@@ -81,7 +84,42 @@ public class HearTestController extends TestAreaController
 		addImageViewResId(mainLayout, listImgViewResId, selfHandler);
 
 		imageViewSpeaker = (ImageView) mainLayout.findViewById(R.id.imageViewSpeaker);
+		mtvExamHint = (TextView) mainLayout.findViewById(R.id.textViewHearHint);
+		mtvOnAir = (TextView) mainLayout.findViewById(R.id.textViewOnAir);
+		mivOk = (ImageView) mainLayout.findViewById(R.id.imageViewHearOk);
+		mivNo = (ImageView) mainLayout.findViewById(R.id.imageViewHearNo);
+	}
 
+	private void showExamHint(boolean bShow)
+	{
+		if (bShow)
+		{
+			mtvExamHint.setVisibility(View.VISIBLE);
+			mivOk.setVisibility(View.VISIBLE);
+			mivNo.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			mtvExamHint.setVisibility(View.INVISIBLE);
+			mivOk.setVisibility(View.INVISIBLE);
+			mivNo.setVisibility(View.INVISIBLE);
+		}
+	}
+
+	private void showOnAir(boolean bShow, String strText)
+	{
+		if (bShow)
+		{
+			if (null != strText)
+			{
+				mtvOnAir.setText(strText);
+			}
+			mtvOnAir.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			mtvOnAir.setVisibility(View.INVISIBLE);
+		}
 	}
 
 	public void setExamination(boolean bSet)
@@ -90,67 +128,40 @@ public class HearTestController extends TestAreaController
 		setExaminationMode(bSet);
 	}
 
-	private void checkAnswer(int nArrow)
+	private void checkAnswer(int nAns)
 	{
-		if (!mPlayer.isPlaying())
-		{
-			return;
-		}
-
-		switch (nArrow)
+		switch (nAns)
 		{
 		case R.id.imageViewHearOk:
+			mnExamResult = mnLevel;
 			break;
 		case R.id.imageViewHearNo:
 			break;
 		}
 		++mnLevel;
-		if (5 < mnLevel)
+		if (listSound.length <= mnLevel)
 		{
-			mnLevel = 0;
+			--mnLevel;
 			if (getExaminationMode())
 			{
 				EventHandler.notify(notifyHandler, EventMessage.MSG_TEST_END_HEAR, 0, 0, null);
 			}
 			else
 			{
-				close();
+				showExamResult();
 			}
 		}
-		setLevel(mnLevel);
+		else
+		{
+			showExamHint(false);
+			showOnAir(true, theActivity.getString(R.string.on_air));
+			playSound(mnLevel);
+		}
 	}
 
-	private void setLevel(int nLevel)
+	private void showExamResult()
 	{
-		int nCurrentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-
-		switch (nLevel)
-		{
-		case 1:
-			mPlayer.setVolume(1.0f, 0.0f);
-			break;
-		case 2:
-			mPlayer.setVolume(0.0f, 1.0f);
-			break;
-		case 3:
-			mPlayer.setVolume(0.0f, 1.0f);
-			break;
-		case 4:
-			mPlayer.setVolume(1.0f, 0.0f);
-			break;
-		case 5:
-			mPlayer.setVolume(0.0f, 1.0f);
-			break;
-
-		}
-
-		nCurrentVolume -= nLevel;
-		if (0 >= nCurrentVolume)
-		{
-			nCurrentVolume = 1;
-		}
-		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, nCurrentVolume, AudioManager.FLAG_PLAY_SOUND);
-
+		Global.showDidlog(theActivity, selfHandler, null, "Result： Level is " + mnExamResult, RESULT_CLOSE);
 	}
 
 	private void touchHandler(final int nResId)
@@ -165,20 +176,29 @@ public class HearTestController extends TestAreaController
 		}
 	}
 
-	private boolean playSound()
+	private void soundComplete()
 	{
-		if (!mPlayer.isPlaying())
-		{
-			mbSpeakerShake = true;
-			mPlayer.start();
-			speakerShake(true);
-		}
-		else
-		{
-			mbSpeakerShake = false;
-			mPlayer.pause();
-		}
+		mbSpeakerShake = false;
+		showExamHint(true);
+		showOnAir(false, null);
+	}
 
+	private boolean playSound(int nLevel)
+	{
+		releasePlayer();
+		mPlayer = MediaPlayer.create(theActivity, listSound[nLevel]);
+		mPlayer.setOnCompletionListener(new OnCompletionListener()
+		{
+			@Override
+			public void onCompletion(MediaPlayer mp)
+			{
+				soundComplete();
+			}
+		});
+		mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+		mbSpeakerShake = true;
+		mPlayer.start();
+		speakerShake(true);
 		return mPlayer.isPlaying();
 	}
 
@@ -197,7 +217,7 @@ public class HearTestController extends TestAreaController
 		}
 		if (bShake)
 		{
-			mnShakeMsg = 666;
+			SPEAKER_NOTIFY = 666;
 			imageViewSpeaker.animate().setListener(null);
 			imageViewSpeaker.animate().scaleX(1.1f).setDuration(50)
 					.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -207,7 +227,7 @@ public class HearTestController extends TestAreaController
 		}
 		else
 		{
-			mnShakeMsg = 777;
+			SPEAKER_NOTIFY = 777;
 			imageViewSpeaker.animate().setListener(null);
 			imageViewSpeaker.animate().scaleX(1.0f).setDuration(200)
 					.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -218,9 +238,48 @@ public class HearTestController extends TestAreaController
 
 	}
 
-	private void showInfo()
+	private void showInfo(Handler notifyHandler)
 	{
-		Global.showDidlog(theActivity, selfHandler, null, Global.str(R.string.exam_hear_info));
+		Global.showDidlog(theActivity, notifyHandler, null, Global.str(R.string.exam_hear_info), INFO_CLOSE);
+	}
+
+	private void onTimer(int nId)
+	{
+		if (nId == TIMER_COUNTDOWN)
+		{
+			++mnCount;
+			showOnAir(true, Integer.toString(Math.abs(4 - mnCount)));
+			if (3 < mnCount)
+			{
+				Global.timerStop();
+				showExamHint(false);
+				showOnAir(true, theActivity.getString(R.string.on_air));
+				mnLevel = 0;
+				playSound(mnLevel);
+			}
+		}
+	}
+
+	private void onDialog(int nId)
+	{
+		if (RESULT_CLOSE == nId)
+		{
+			close();
+		}
+
+		if (INFO_CLOSE == nId)
+		{
+			Global.timerStart(1000, 1000, selfHandler, TIMER_COUNTDOWN);
+		}
+	}
+
+	private void releasePlayer()
+	{
+		if (null != mPlayer)
+		{
+			mPlayer.release();
+			mPlayer = null;
+		}
 	}
 
 	private AnimatorListener	shakeListener	= new AnimatorListener()
@@ -233,7 +292,7 @@ public class HearTestController extends TestAreaController
 													@Override
 													public void onAnimationEnd(Animator animation)
 													{
-														EventHandler.notify(selfHandler, mnShakeMsg, 0, 0, null);
+														EventHandler.notify(selfHandler, SPEAKER_NOTIFY, 0, 0, null);
 													}
 
 													@Override
@@ -263,6 +322,13 @@ public class HearTestController extends TestAreaController
 														case 777:
 															speakerShake(true);
 															break;
+														case EventMessage.MSG_CLOSE_MESSAGE_DIALOG:
+															onDialog(msg.arg1);
+															break;
+														case EventMessage.MSG_ON_TIMER:
+															onTimer(msg.arg1);
+															break;
+
 														}
 													}
 												};
@@ -270,20 +336,18 @@ public class HearTestController extends TestAreaController
 	@Override
 	protected boolean onClose()
 	{
+		Global.timerStop();
+
 		mbSpeakerShake = false;
-		mPlayer.pause();
-		mPlayer.seekTo(0);
-
-		mPlayer.setVolume(1.0f, 1.0f);
+		releasePlayer();
 		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
-
 		return false;
 	}
 
 	@Override
 	protected boolean onInfo()
 	{
-		showInfo();
+		showInfo(null);
 		return false;
 	}
 }

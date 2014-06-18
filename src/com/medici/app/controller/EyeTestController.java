@@ -5,7 +5,7 @@ import com.medici.app.model.Device;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
-import com.medici.app.model.Logs;
+import com.medici.app.model.Type;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -17,10 +17,12 @@ import android.widget.RelativeLayout;
 
 public class EyeTestController extends TestAreaController
 {
+	private final int		RESULT_CLOSE		= Global.getUserId();
 	private ImageView		imgViewE			= null;
 	private RelativeLayout	layoutE				= null;
 	private SparseIntArray	listTestData		= null;
 	private int				mnLevel				= 0;
+	private int				mnExamResult		= 0;
 
 	private int[]			listImgViewResId	= { R.id.imageViewArrowUp, R.id.imageViewArrowDown,
 			R.id.imageViewArrowLeft, R.id.imageViewArrowRight };
@@ -52,6 +54,7 @@ public class EyeTestController extends TestAreaController
 
 	public void init()
 	{
+		mnExamResult = 0;
 		mnLevel = 0;
 		setLevel(0);
 		showInfo();
@@ -59,7 +62,7 @@ public class EyeTestController extends TestAreaController
 
 	private void showInfo()
 	{
-		Global.showDidlog(theActivity, selfHandler, null, Global.str(R.string.where_the_E_opens));
+		Global.showDidlog(theActivity, selfHandler, null, Global.str(R.string.where_the_E_opens), Type.INVALID);
 	}
 
 	public void setExamination(boolean bSet)
@@ -120,12 +123,28 @@ public class EyeTestController extends TestAreaController
 		switch (nArrow)
 		{
 		case R.id.imageViewArrowRight:
+			if (0 == mnLevel || 4 == mnLevel)
+			{
+				mnExamResult = mnLevel;
+			}
 			break;
 		case R.id.imageViewArrowUp:
+			if (1 == mnLevel || 7 == mnLevel)
+			{
+				mnExamResult = mnLevel;
+			}
 			break;
-		case R.id.imageViewHearOk:
+		case R.id.imageViewArrowLeft:
+			if (3 == mnLevel || 5 == mnLevel)
+			{
+				mnExamResult = mnLevel;
+			}
 			break;
 		case R.id.imageViewArrowDown:
+			if (2 == mnLevel || 6 == mnLevel)
+			{
+				mnExamResult = mnLevel;
+			}
 			break;
 		}
 		++mnLevel;
@@ -138,10 +157,23 @@ public class EyeTestController extends TestAreaController
 			}
 			else
 			{
-				close();
+				showExamResult();
 			}
 		}
 		setLevel(mnLevel);
+	}
+
+	private void showExamResult()
+	{
+		Global.showDidlog(theActivity, selfHandler, null, "Result： Level is " + mnExamResult, RESULT_CLOSE);
+	}
+
+	private void onDialog(int nId)
+	{
+		if (RESULT_CLOSE == nId)
+		{
+			close();
+		}
 	}
 
 	private Handler	selfHandler	= new Handler()
@@ -153,6 +185,9 @@ public class EyeTestController extends TestAreaController
 										{
 										case EventMessage.MSG_SELECTED:
 											checkAnswer(msg.arg1);
+											break;
+										case EventMessage.MSG_CLOSE_MESSAGE_DIALOG:
+											onDialog(msg.arg1);
 											break;
 										}
 									}

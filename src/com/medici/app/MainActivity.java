@@ -6,6 +6,7 @@ import com.medici.app.controller.ExaminationPageController;
 import com.medici.app.controller.LeftDrawerMenuController;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
+import com.medici.app.model.Logs;
 import com.medici.app.model.Type;
 
 import android.app.Activity;
@@ -19,6 +20,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;

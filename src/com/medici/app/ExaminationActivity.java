@@ -9,6 +9,8 @@ import com.medici.app.controller.Memory1Controller;
 import com.medici.app.controller.Memory2Controller;
 import com.medici.app.controller.TrembleTestController;
 import com.medici.app.model.EventMessage;
+import com.medici.app.model.Global;
+import com.medici.app.model.Logs;
 import com.medici.app.model.Type;
 
 import android.app.Activity;
@@ -16,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ViewFlipper;
 
@@ -54,6 +57,14 @@ public class ExaminationActivity extends Activity
 
 		initExamination(!mbSingleRun);
 		showExam(nRunExam);
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		Logs.showTrace("destory #########################");
+		hearTestController.init();
+		super.onDestroy();
 	}
 
 	private void initExamination(boolean bFullRun)
