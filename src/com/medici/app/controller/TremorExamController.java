@@ -20,14 +20,13 @@ import android.widget.TextView;
 
 public class TremorExamController extends TestAreaController
 {
-	private final int		TIMER_COUNTDOWN		= Global.getUserId();
-	private SensorManager	sensorManager		= null;
-	private TremorView		tremorView			= null;
-	private TextView		tvTremorValue		= null;
-	private int				mnExamResult		= 0;
-	private boolean			mbRegisterSensor	= false;
-	private int				mnCount				= 0;
-	private final int		SENSOR_EDGE			= 2;
+	private final int		TIMER_COUNTDOWN	= Global.getUserId();
+	private SensorManager	sensorManager	= null;
+	private TremorView		tremorView		= null;
+	private TextView		tvTremorValue	= null;
+	private int				mnExamResult	= 0;
+	private int				mnCount			= 0;
+	private final int		SENSOR_EDGE		= 2;
 
 	public TremorExamController(Activity activity, Handler handler)
 	{
@@ -78,16 +77,15 @@ public class TremorExamController extends TestAreaController
 
 	private void startSensor()
 	{
-		mbRegisterSensor = mbRegisterSensor ? false : true;
-		if (mbRegisterSensor)
-		{
-			sensorManager.registerListener(sensorEventListener,
-					sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_NORMAL);
-		}
-		else
-		{
-			sensorManager.unregisterListener(sensorEventListener);
-		}
+
+		sensorManager.registerListener(sensorEventListener, sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
+				SensorManager.SENSOR_DELAY_NORMAL);
+
+	}
+
+	private void stopSensor()
+	{
+		sensorManager.unregisterListener(sensorEventListener);
 	}
 
 	private void onTimer(int nId)
@@ -120,17 +118,20 @@ public class TremorExamController extends TestAreaController
 	private SensorEventListener	sensorEventListener	= new SensorEventListener()
 													{
 
+														private float	yAcceleration	= 0.0f;
+														private float	xAcceleration	= 0.0f;
+
 														@Override
 														public void onSensorChanged(SensorEvent event)
 														{
 															if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)
 															{
-																// Set sensor values as acceleration
-																float yAcceleration = event.values[1];
-																float xAcceleration = event.values[2];
+																yAcceleration = event.values[1];
+																xAcceleration = event.values[2];
 
 																if (SENSOR_EDGE < xAcceleration
 																		|| SENSOR_EDGE < yAcceleration
+
 																		|| (0 - SENSOR_EDGE) > xAcceleration
 																		|| (0 - SENSOR_EDGE) > yAcceleration)
 																{
@@ -164,8 +165,8 @@ public class TremorExamController extends TestAreaController
 	{
 		mnCount = 0;
 		Global.timerStop();
-		sensorManager.unregisterListener(sensorEventListener);
-		mbRegisterSensor = false;
+		stopSensor();
+		//mbRegisterSensor = false;
 		setTremorValue(theActivity.getString(R.string.ready));
 	}
 
