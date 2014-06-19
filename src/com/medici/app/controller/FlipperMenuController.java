@@ -17,8 +17,8 @@ public class FlipperMenuController
 
 	private FlipperView					flipperView					= null;
 	private LoginController				loginController				= null;
-	private EyeTestController			eyeTestController			= null;
-	private HearTestController			hearTestController			= null;
+	private VisualExamController			eyeTestController			= null;
+	private AudioExamController			hearTestController			= null;
 	private Comprehension1Controller	comprehension1Controller	= null;
 	private Comprehension2Controller	comprehension2Controller	= null;
 	private Comprehension3Controller	comprehension3Controller	= null;
@@ -76,9 +76,9 @@ public class FlipperMenuController
 		}
 
 		loginController = new LoginController(activity, handler);
-		eyeTestController = new EyeTestController(activity, selfHandler);
+		eyeTestController = new VisualExamController(activity, selfHandler);
 		eyeTestController.setExamination(false);
-		hearTestController = new HearTestController(activity, selfHandler);
+		hearTestController = new AudioExamController(activity, selfHandler);
 		hearTestController.setExamination(false);
 		comprehension1Controller = new Comprehension1Controller(activity, selfHandler);
 		comprehension2Controller = new Comprehension2Controller(activity, selfHandler);

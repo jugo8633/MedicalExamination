@@ -60,5 +60,7 @@
     <string name="exam_hear_info">Hear the tone.</string>
     <string name="do_i_hear_a_tone">Do I hear a tone ?</string>
     <string name="on_air">ON AIR</string>
+    <string name="ready">Ready</string>
+    <string name="start">Start</string>
 
 </resources>

@@ -17,16 +17,16 @@
             android:outAnimation="@anim/slide_out_to_top" >
 
             <include
-                android:id="@+id/subEyeTest"
+                android:id="@+id/subVisualExam"
                 layout="@layout/test_eye" />
 
             <include
-                android:id="@+id/subHearTest"
+                android:id="@+id/subAudioExam"
                 layout="@layout/test_hear" />
 
             <include
-                android:id="@+id/subTrembleTest"
-                layout="@layout/test_tremble" />
+                android:id="@+id/subTremorExam"
+                layout="@layout/test_tremor" />
         </ViewFlipper>
     </RelativeLayout>
 

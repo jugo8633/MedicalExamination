@@ -20,7 +20,7 @@ public class Memory2Controller extends TestAreaController
 	}
 
 	@Override
-	protected void init()
+	public void init()
 	{
 
 	}
@@ -67,8 +67,13 @@ public class Memory2Controller extends TestAreaController
 	@Override
 	protected boolean onInfo()
 	{
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void release()
+	{
+		
 	}
 
 }

@@ -32,6 +32,8 @@ public class EventMessage
 	public static final int	MSG_HEADER_SELECT_CLOSE		= MSG_CUSTOM + 22;
 	public static final int	MSG_HEADER_SELECT_INFO		= MSG_CUSTOM + 23;
 	public static final int	MSG_ON_TIMER				= MSG_CUSTOM + 24;
+	public static final int	MSG_DIALOG_CLOSE_INFO		= MSG_CUSTOM + 25;
+	public static final int	MSG_DIALOG_CLOSE_RESULT		= MSG_CUSTOM + 26;
 
 	/**
 	 * @author jugo

@@ -20,7 +20,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class HearTestController extends TestAreaController
+public class AudioExamController extends TestAreaController
 {
 	private ImageView		imageViewSpeaker	= null;
 	private int				mnLevel				= 0;
@@ -30,8 +30,6 @@ public class HearTestController extends TestAreaController
 	private boolean			mbSpeakerShake		= false;
 	private int				SPEAKER_NOTIFY		= Global.getUserId();
 	private final int		TIMER_COUNTDOWN		= Global.getUserId();
-	private final int		RESULT_CLOSE		= Global.getUserId();
-	private final int		INFO_CLOSE			= Global.getUserId();
 	private ImageView		mivOk				= null;
 	private ImageView		mivNo				= null;
 	private TextView		mtvExamHint			= null;
@@ -45,7 +43,7 @@ public class HearTestController extends TestAreaController
 			R.raw.sin_2000hz_6dbfs_5s, R.raw.sin_1000hz_6dbfs_5s, R.raw.sin_500hz_6dbfs_5s, R.raw.sin_300hz_6dbfs_5s,
 			R.raw.sin_150hz_6dbfs_5s, R.raw.sin_60hz_6dbfs_3s, R.raw.sin_30hz_6dbfs_5s };
 
-	public HearTestController(Activity activity, Handler handler)
+	public AudioExamController(Activity activity, Handler handler)
 	{
 		super(activity, handler);
 		theActivity = activity;
@@ -57,14 +55,9 @@ public class HearTestController extends TestAreaController
 
 	public void init()
 	{
-		Global.timerStop();
-		releasePlayer();
-		mnExamResult = 0;
-		mnCount = 0;
+		release();
 		showExamHint(false);
 		showOnAir(false, null);
-		mbSpeakerShake = false;
-		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
 		showInfo(selfHandler);
 	}
 
@@ -161,7 +154,8 @@ public class HearTestController extends TestAreaController
 
 	private void showExamResult()
 	{
-		Global.showDidlog(theActivity, selfHandler, null, "Result： Level is " + mnExamResult, RESULT_CLOSE);
+		Global.showDidlog(theActivity, selfHandler, null, "Result： Level is " + mnExamResult,
+				EventMessage.MSG_DIALOG_CLOSE_RESULT);
 	}
 
 	private void touchHandler(final int nResId)
@@ -240,7 +234,8 @@ public class HearTestController extends TestAreaController
 
 	private void showInfo(Handler notifyHandler)
 	{
-		Global.showDidlog(theActivity, notifyHandler, null, Global.str(R.string.exam_hear_info), INFO_CLOSE);
+		Global.showDidlog(theActivity, notifyHandler, null, Global.str(R.string.exam_hear_info),
+				EventMessage.MSG_DIALOG_CLOSE_INFO);
 	}
 
 	private void onTimer(int nId)
@@ -262,12 +257,12 @@ public class HearTestController extends TestAreaController
 
 	private void onDialog(int nId)
 	{
-		if (RESULT_CLOSE == nId)
+		if (EventMessage.MSG_DIALOG_CLOSE_RESULT == nId)
 		{
 			close();
 		}
 
-		if (INFO_CLOSE == nId)
+		if (EventMessage.MSG_DIALOG_CLOSE_INFO == nId)
 		{
 			Global.timerStart(1000, 1000, selfHandler, TIMER_COUNTDOWN);
 		}
@@ -280,6 +275,16 @@ public class HearTestController extends TestAreaController
 			mPlayer.release();
 			mPlayer = null;
 		}
+	}
+
+	public void release()
+	{
+		mnExamResult = 0;
+		mnCount = 0;
+		Global.timerStop();
+		mbSpeakerShake = false;
+		releasePlayer();
+		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
 	}
 
 	private AnimatorListener	shakeListener	= new AnimatorListener()
@@ -336,11 +341,7 @@ public class HearTestController extends TestAreaController
 	@Override
 	protected boolean onClose()
 	{
-		Global.timerStop();
-
-		mbSpeakerShake = false;
-		releasePlayer();
-		audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mnMaxVolume / 2, AudioManager.FLAG_PLAY_SOUND);
+		release();
 		return false;
 	}
 

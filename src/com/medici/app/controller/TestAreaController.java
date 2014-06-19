@@ -38,7 +38,9 @@ public abstract class TestAreaController
 		super.finalize();
 	}
 
-	protected abstract void init();
+	public abstract void init();
+
+	public abstract void release();
 
 	protected abstract boolean onClose();
 

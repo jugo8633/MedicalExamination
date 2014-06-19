@@ -141,7 +141,12 @@ public class TrembleTestController extends TestAreaController
 	@Override
 	protected boolean onInfo()
 	{
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void release()
+	{
+		
 	}
 }

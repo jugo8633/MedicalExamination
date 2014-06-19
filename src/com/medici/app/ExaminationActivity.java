@@ -3,13 +3,13 @@ package com.medici.app;
 import com.medici.app.controller.Comprehension1Controller;
 import com.medici.app.controller.Comprehension2Controller;
 import com.medici.app.controller.Comprehension3Controller;
-import com.medici.app.controller.EyeTestController;
-import com.medici.app.controller.HearTestController;
+import com.medici.app.controller.TremorExamController;
+import com.medici.app.controller.VisualExamController;
+import com.medici.app.controller.AudioExamController;
 import com.medici.app.controller.Memory1Controller;
 import com.medici.app.controller.Memory2Controller;
 import com.medici.app.controller.TrembleTestController;
 import com.medici.app.model.EventMessage;
-import com.medici.app.model.Global;
 import com.medici.app.model.Logs;
 import com.medici.app.model.Type;
 
@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.KeyEvent;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ViewFlipper;
 
@@ -26,9 +25,11 @@ public class ExaminationActivity extends Activity
 {
 
 	private ViewFlipper					flipper						= null;
-	private EyeTestController			eyeTestController			= null;
-	private HearTestController			hearTestController			= null;
-	private TrembleTestController		trembleTestController		= null;
+	private VisualExamController		eyeTestController			= null;
+	private AudioExamController			hearTestController			= null;
+	private TremorExamController		tremorExamController		= null;
+
+	//	private TrembleTestController		trembleTestController		= null;
 	private Comprehension1Controller	comprehension1Controller	= null;
 	private Comprehension2Controller	comprehension2Controller	= null;
 	private Comprehension3Controller	comprehension3Controller	= null;
@@ -62,19 +63,25 @@ public class ExaminationActivity extends Activity
 	@Override
 	protected void onDestroy()
 	{
-		Logs.showTrace("destory #########################");
-		hearTestController.init();
+		releaseExamination();
 		super.onDestroy();
 	}
 
 	private void initExamination(boolean bFullRun)
 	{
-		eyeTestController = new EyeTestController(this, selfHandler);
+		eyeTestController = new VisualExamController(this, selfHandler);
 		eyeTestController.setExamination(bFullRun);
-		hearTestController = new HearTestController(this, selfHandler);
+		hearTestController = new AudioExamController(this, selfHandler);
 		hearTestController.setExamination(bFullRun);
-		trembleTestController = new TrembleTestController(this, selfHandler);
-		trembleTestController.setExamination(bFullRun);
+		tremorExamController = new TremorExamController(this, selfHandler);
+		tremorExamController.setExamination(bFullRun);
+	}
+
+	private void releaseExamination()
+	{
+		eyeTestController.release();
+		hearTestController.release();
+		tremorExamController.release();
 	}
 
 	public void showEyeExamination()
@@ -93,8 +100,8 @@ public class ExaminationActivity extends Activity
 		case 1: // hear examination
 			hearTestController.init();
 			break;
-		case 2:
-			trembleTestController.init();
+		case 2: // tremor examination
+			tremorExamController.init();
 			break;
 		}
 	}

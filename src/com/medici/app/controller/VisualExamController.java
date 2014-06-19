@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-public class EyeTestController extends TestAreaController
+public class VisualExamController extends TestAreaController
 {
 	private final int		RESULT_CLOSE		= Global.getUserId();
 	private ImageView		imgViewE			= null;
@@ -27,7 +27,7 @@ public class EyeTestController extends TestAreaController
 	private int[]			listImgViewResId	= { R.id.imageViewArrowUp, R.id.imageViewArrowDown,
 			R.id.imageViewArrowLeft, R.id.imageViewArrowRight };
 
-	public EyeTestController(Activity activity, Handler handler)
+	public VisualExamController(Activity activity, Handler handler)
 	{
 		super(activity, handler);
 		initView(activity, handler);
@@ -204,5 +204,11 @@ public class EyeTestController extends TestAreaController
 	{
 		showInfo();
 		return false;
+	}
+
+	@Override
+	public void release()
+	{
+		
 	}
 }

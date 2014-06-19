@@ -48,7 +48,7 @@ public class Comprehension3Controller extends TestAreaController
 	}
 
 	@Override
-	protected void init()
+	public void init()
 	{
 		numberPicker1_1.setValue(0);
 		numberPicker1_2.setValue(0);
@@ -89,8 +89,13 @@ public class Comprehension3Controller extends TestAreaController
 	@Override
 	protected boolean onInfo()
 	{
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void release()
+	{
+		
 	}
 
 }

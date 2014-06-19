@@ -32,7 +32,7 @@ public class Comprehension2Controller extends TestAreaController
 	}
 
 	@Override
-	protected void init()
+	public void init()
 	{
 		editText1.setText(null);
 		editText2.setText(null);
@@ -71,8 +71,13 @@ public class Comprehension2Controller extends TestAreaController
 	@Override
 	protected boolean onInfo()
 	{
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void release()
+	{
+		
 	}
 
 }
