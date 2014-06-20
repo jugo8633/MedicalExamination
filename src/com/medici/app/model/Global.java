@@ -105,9 +105,10 @@ public abstract class Global
 
 		timerStop();
 
+		timer = new Timer();
 		if (0 < period)
 		{
-			timer = new Timer();
+
 			timer.schedule(new TimerTask()
 			{
 				@Override
@@ -135,6 +136,7 @@ public abstract class Global
 		if (null != timer)
 		{
 			timer.cancel();
+			timer = null;
 		}
 	}
 }

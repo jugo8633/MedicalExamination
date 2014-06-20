@@ -102,10 +102,11 @@ public class TremorView extends View
 				if (mLastX >= mWidth)
 				{
 					mLastX = 0;
+
 					final Canvas cavas = mCanvas;
 					cavas.drawColor(0xFFFFFFFF);
-					mPaint.setColor(0xFF777777);
-					cavas.drawLine(0, mYOffset, mWidth, mYOffset, mPaint);
+				//	mPaint.setColor(0xFF777777);
+				//	cavas.drawLine(0, mYOffset, mWidth, mYOffset, mPaint);
 				}
 				canvas.drawBitmap(mBitmap, 0, 0, null);
 			}

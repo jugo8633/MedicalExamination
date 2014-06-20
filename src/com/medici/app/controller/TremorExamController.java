@@ -1,13 +1,15 @@
 package com.medici.app.controller;
 
 import com.medici.app.R;
+import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
+import com.medici.app.model.Logs;
+import com.medici.app.model.Type;
 import com.medici.app.view.TremorView;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -21,10 +23,11 @@ import android.widget.TextView;
 public class TremorExamController extends TestAreaController
 {
 	private final int		TIMER_COUNTDOWN	= Global.getUserId();
+	private final int		TIMER_EXAM_END	= Global.getUserId();
 	private SensorManager	sensorManager	= null;
 	private TremorView		tremorView		= null;
 	private TextView		tvTremorValue	= null;
-	private int				mnExamResult	= 0;
+	private int				mnExamResult	= 10;
 	private int				mnCount			= 0;
 	private final int		SENSOR_EDGE		= 2;
 
@@ -77,10 +80,10 @@ public class TremorExamController extends TestAreaController
 
 	private void startSensor()
 	{
-
 		sensorManager.registerListener(sensorEventListener, sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
 				SensorManager.SENSOR_DELAY_NORMAL);
 
+		Global.timerStart(10 * 1000, Type.INVALID, selfHandler, TIMER_EXAM_END);
 	}
 
 	private void stopSensor()
@@ -90,7 +93,7 @@ public class TremorExamController extends TestAreaController
 
 	private void onTimer(int nId)
 	{
-		if (nId == TIMER_COUNTDOWN)
+		if (TIMER_COUNTDOWN == nId)
 		{
 			++mnCount;
 			setTremorValue(Integer.toString(Math.abs(4 - mnCount)));
@@ -101,6 +104,26 @@ public class TremorExamController extends TestAreaController
 				startSensor();
 			}
 		}
+
+		// examination end
+		if (TIMER_EXAM_END == nId)
+		{
+			stopSensor();
+			if (getExaminationMode())
+			{
+				EventHandler.notify(notifyHandler, EventMessage.MSG_TEST_END_TREMOR, 0, 0, null);
+			}
+			else
+			{
+				showExamResult();
+			}
+		}
+	}
+
+	private void showExamResult()
+	{
+		Global.showDidlog(theActivity, selfHandler, null, "Result： Level is " + mnExamResult,
+				EventMessage.MSG_DIALOG_CLOSE_RESULT);
 	}
 
 	private void addPoint(final float point)
@@ -115,35 +138,44 @@ public class TremorExamController extends TestAreaController
 		});
 	}
 
+	private void sensorEventHandler(SensorEvent event)
+	{
+		float yAcceleration = 0.0f;
+		float xAcceleration = 0.0f;
+
+		if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)
+		{
+			yAcceleration = event.values[1];
+			xAcceleration = event.values[2];
+
+			if (SENSOR_EDGE < xAcceleration || SENSOR_EDGE < yAcceleration
+
+			|| (0 - SENSOR_EDGE) > xAcceleration || (0 - SENSOR_EDGE) > yAcceleration)
+			{
+				float nAvg = (xAcceleration + yAcceleration) / 2;
+
+				int nValue = (int) Math.abs(nAvg);
+				setTremorValue(Float.toString(nValue));
+				addPoint(nValue);
+				if ((2 < nAvg && 10 > nAvg) || (40 < nAvg) || (38 > nAvg))
+				{
+					--mnExamResult;
+				}
+			}
+			else
+			{
+				setTremorValue(Float.toString(0.0f));
+			}
+		}
+
+	}
+
 	private SensorEventListener	sensorEventListener	= new SensorEventListener()
 													{
-
-														private float	yAcceleration	= 0.0f;
-														private float	xAcceleration	= 0.0f;
-
 														@Override
 														public void onSensorChanged(SensorEvent event)
 														{
-															if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)
-															{
-																yAcceleration = event.values[1];
-																xAcceleration = event.values[2];
-
-																if (SENSOR_EDGE < xAcceleration
-																		|| SENSOR_EDGE < yAcceleration
-
-																		|| (0 - SENSOR_EDGE) > xAcceleration
-																		|| (0 - SENSOR_EDGE) > yAcceleration)
-																{
-																	float nAvg = (xAcceleration + yAcceleration) / 2;
-																	setTremorValue(Float.toString(nAvg));
-																	addPoint(Math.abs(nAvg));
-																}
-																else
-																{
-																	setTremorValue(Float.toString(0.0f));
-																}
-															}
+															sensorEventHandler(event);
 														}
 
 														@Override
@@ -163,10 +195,10 @@ public class TremorExamController extends TestAreaController
 	@Override
 	public void release()
 	{
+		mnExamResult = 10;
 		mnCount = 0;
 		Global.timerStop();
 		stopSensor();
-		//mbRegisterSensor = false;
 		setTremorValue(theActivity.getString(R.string.ready));
 	}
 
