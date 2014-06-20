@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutSpatialMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <include
+            android:id="@+id/subTestAreaHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            layout="@layout/test_area_header" />
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutComprehensionMain1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/subTestAreaHeader"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/menu_option" >
+
+            <ImageView
+                android:id="@+id/imageViewNumber97"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_descript"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/number_97" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/imageViewNumber97"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/textViewNumber97"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/what_is_number"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/Blue"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/textViewNumber97"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <NumberPicker
+                        android:id="@+id/numberPickerNumber1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" />
+
+                    <NumberPicker
+                        android:id="@+id/numberPickerNumber1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutComprehensionMain2"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/RelativeLayoutComprehensionMain1"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:background="@drawable/menu_option" >
+
+            <ImageView
+                android:id="@+id/imageViewNumber62"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_descript"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/number_62" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/imageViewNumber62"
+                android:gravity="center" >
+
+                <TextView
+                    android:id="@+id/textViewNumber62"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/what_is_number"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/Blue"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/textViewNumber62"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <NumberPicker
+                        android:id="@+id/numberPickerNumber2_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" />
+
+                    <NumberPicker
+                        android:id="@+id/numberPickerNumber2_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutComprehensionMainFinish"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/header_bar" >
+
+            <ImageView
+                android:id="@+id/imageViewComprehension1OK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_descript"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ok" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
