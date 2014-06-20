@@ -27,6 +27,22 @@
             <include
                 android:id="@+id/subTremorExam"
                 layout="@layout/test_tremor" />
+
+            <include
+                android:id="@+id/subAttentionExam"
+                layout="@layout/test_attention" />
+
+            <include
+                android:id="@+id/subLanguage"
+                layout="@layout/test_language" />
+
+            <include
+                android:id="@+id/subSpatial"
+                layout="@layout/test_spatial" />
+
+            <include
+                android:id="@+id/subMemory"
+                layout="@layout/test_memory" />
         </ViewFlipper>
     </RelativeLayout>
 

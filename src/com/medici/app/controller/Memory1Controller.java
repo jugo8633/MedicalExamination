@@ -46,6 +46,12 @@ public class Memory1Controller extends TestAreaController
 		setTimerTask();
 	}
 
+	public void setExamination(boolean bSet)
+	{
+		hideHeader(bSet);
+		setExaminationMode(bSet);
+	}
+
 	private void setTimerTask()
 	{
 		mTimer = new Timer();
@@ -71,7 +77,7 @@ public class Memory1Controller extends TestAreaController
 
 	private void initView(Activity activity, Handler handler)
 	{
-		parent = (ViewGroup) activity.findViewById(R.id.RelativeLayoutMemory1Main);
+		parent = (ViewGroup) activity.findViewById(R.id.RelativeLayoutMemoryMain);
 		initHeader(parent);
 		addImageViewResId(parent, listImgViewResId, selfHandler);
 	}
@@ -359,6 +365,6 @@ public class Memory1Controller extends TestAreaController
 	@Override
 	public void release()
 	{
-		
+
 	}
 }

@@ -81,8 +81,8 @@ public class TremorExamController extends TestAreaController
 	private void startSensor()
 	{
 		sensorManager.registerListener(sensorEventListener,
-				sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION | Sensor.TYPE_ACCELEROMETER),
-				SensorManager.SENSOR_DELAY_NORMAL);
+				sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION ),
+				SensorManager.SENSOR_DELAY_GAME);
 
 		Global.timerStart(10 * 1000, Type.INVALID, selfHandler, TIMER_EXAM_END);
 	}
@@ -169,12 +169,12 @@ public class TremorExamController extends TestAreaController
 			}
 		}
 
-		if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
-		{
-			float x = Math.abs(event.values[SensorManager.DATA_X]);
-			float y = Math.abs(event.values[SensorManager.DATA_Y]);
-			float z = Math.abs(event.values[SensorManager.DATA_Z]);
-		}
+		//		if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+		//		{
+		//			float x = Math.abs(event.values[SensorManager.DATA_X]);
+		//			float y = Math.abs(event.values[SensorManager.DATA_Y]);
+		//			float z = Math.abs(event.values[SensorManager.DATA_Z]);
+		//		}
 
 	}
 

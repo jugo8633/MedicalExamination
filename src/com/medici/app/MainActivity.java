@@ -167,19 +167,19 @@ public class MainActivity extends Activity
 		}
 		else if (examinationPage.EXAMINATION_ATTENTION == nExam)
 		{
-
+			showExaminationActivity(3);
 		}
 		else if (examinationPage.EXAMINATION_LANGUAGE == nExam)
 		{
-
+			showExaminationActivity(4);
 		}
 		else if (examinationPage.EXAMINATION_MEMORY == nExam)
 		{
-
+			showExaminationActivity(6);
 		}
 		else if (examinationPage.EXAMINATION_SPATIAL == nExam)
 		{
-
+			showExaminationActivity(5);
 		}
 	}
 

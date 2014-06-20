@@ -15,7 +15,7 @@ public class TremorView extends View
 	private Paint	mPaint		= new Paint();
 	private Canvas	mCanvas		= new Canvas();
 
-	private float	mSpeed		= 5.0f;		//更改顯示速度(寬窄)，數字越小顯示越密;最小設1.0f。
+	private float	mSpeed		= 2.0f;		//更改顯示速度(寬窄)，數字越小顯示越密;最小設1.0f。
 	private float	mLastX;
 	private float	mScale;
 	private float	mLastValue;
@@ -44,13 +44,13 @@ public class TremorView extends View
 
 	private void init()
 	{
-		mColor = Color.argb(192, 64, 128, 64); //定義顏色ARGB
+		mColor = Color.argb(192, 64, 200, 64); //定義顏色ARGB
 		mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 		mPaint.setDither(true);
 		mPaint.setStyle(Paint.Style.STROKE);
 		mPaint.setStrokeJoin(Paint.Join.ROUND);
 		mPaint.setStrokeCap(Paint.Cap.ROUND);
-		mPaint.setStrokeWidth(4);
+		mPaint.setStrokeWidth(3);
 		this.setPadding(0, 20, 0, 20);
 	}
 

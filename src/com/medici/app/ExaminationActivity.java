@@ -75,6 +75,8 @@ public class ExaminationActivity extends Activity
 		hearTestController.setExamination(bFullRun);
 		tremorExamController = new TremorExamController(this, selfHandler);
 		tremorExamController.setExamination(bFullRun);
+		memory1Controller = new Memory1Controller(this, selfHandler);
+		memory1Controller.setExamination(bFullRun);
 	}
 
 	private void releaseExamination()
@@ -102,6 +104,9 @@ public class ExaminationActivity extends Activity
 			break;
 		case 2: // tremor examination
 			tremorExamController.init();
+			break;
+		case 6:
+			memory1Controller.init();
 			break;
 		}
 	}
