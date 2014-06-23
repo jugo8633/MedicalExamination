@@ -192,7 +192,7 @@ public class AudioExamController extends TestAreaController
 		mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 		mbSpeakerShake = true;
 		mPlayer.start();
-		speakerShake(true);
+		//		speakerShake(true);
 		return mPlayer.isPlaying();
 	}
 

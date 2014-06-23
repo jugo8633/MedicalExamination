@@ -20,16 +20,15 @@
             android:id="@+id/RelativeLayoutHearingMain"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="120dp" >
+            android:layout_below="@+id/textViewHearHint" >
 
             <ImageView
                 android:id="@+id/imageViewSpeaker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
                 android:layout_centerInParent="true"
                 android:contentDescription="@string/content_descript"
-                android:src="@drawable/speaker_black" />
+                android:src="@drawable/headphone_big" />
 
         </RelativeLayout>
 
