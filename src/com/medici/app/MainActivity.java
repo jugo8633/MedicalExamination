@@ -183,6 +183,16 @@ public class MainActivity extends Activity
 		}
 	}
 
+	private void onDialog(int nId)
+	{
+		switch (nId)
+		{
+		case EventMessage.MSG_SINGLE_RUN_INFO:
+			drawerLayout.closeDrawers();
+			break;
+		}
+	}
+
 	private OnClickListener	buttonClick	= new OnClickListener()
 										{
 											@Override
@@ -214,6 +224,9 @@ public class MainActivity extends Activity
 													break;
 												case EventMessage.MSG_EXAM_SELECTED:
 													showExam(msg.arg1);
+													break;
+												case EventMessage.MSG_CLOSE_MESSAGE_DIALOG:
+													onDialog(msg.arg1);
 													break;
 												}
 											}

@@ -87,6 +87,18 @@
                 android:contentDescription="@string/content_descript"
                 android:scaleType="fitXY"
                 android:src="@drawable/e_down" />
+
+            <ImageView
+                android:id="@+id/imageViewNoSee"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_alignBottom="@+id/imageViewArrowDown"
+                android:layout_alignLeft="@+id/imageViewArrowLeft"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_descript"
+                android:scaleType="fitXY"
+                android:src="@drawable/no_see" />
+
         </RelativeLayout>
     </RelativeLayout>
 

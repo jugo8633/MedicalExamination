@@ -25,7 +25,7 @@ public class VisualExamController extends TestAreaController
 	private int				mnExamResult		= 0;
 
 	private int[]			listImgViewResId	= { R.id.imageViewArrowUp, R.id.imageViewArrowDown,
-			R.id.imageViewArrowLeft, R.id.imageViewArrowRight };
+			R.id.imageViewArrowLeft, R.id.imageViewArrowRight, R.id.imageViewNoSee };
 
 	public VisualExamController(Activity activity, Handler handler)
 	{
@@ -62,7 +62,7 @@ public class VisualExamController extends TestAreaController
 
 	private void showInfo()
 	{
-		Global.showDidlog(theActivity, selfHandler, null, Global.str(R.string.where_the_E_opens), Type.INVALID);
+		Global.showDidlog(theActivity, selfHandler, null, Global.str(R.string.visual_info), Type.INVALID);
 	}
 
 	public void setExamination(boolean bSet)
@@ -209,6 +209,6 @@ public class VisualExamController extends TestAreaController
 	@Override
 	public void release()
 	{
-		
+
 	}
 }

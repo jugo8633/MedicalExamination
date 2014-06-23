@@ -12,42 +12,104 @@
         android:orientation="vertical"
         android:padding="40dp" >
 
-        <RelativeLayout
-            android:id="@+id/RelativeLayoutLeftDrawerCalendarMain"
+        <LinearLayout
+            android:id="@+id/LinearLayoutSignInMain"
             android:layout_width="match_parent"
-            android:layout_height="60dp" >
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/RelativeLayoutLeftDrawerCreateAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/left_menu_item" >
+
+                <TextView
+                    android:id="@+id/textViewLeftDrawerMenuCreateAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/create_account"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/Gray"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageViewLeftDrawerCreateAccount"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/content_descript"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/personal_info" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/RelativeLayoutLeftDrawerLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/left_menu_item" >
+
+                <TextView
+                    android:id="@+id/textViewLeftDrawerMenuLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/sign_in"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/Gray"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageViewLeftDrawerMenuLogin"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/content_descript"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/login" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            android:id="@+id/subSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            layout="@layout/login"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutLeftDrawerSignInWithGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/sign_in_with_google" >
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/RelativeLayoutLeftDrawerLogin"
+            android:id="@+id/RelativeLayoutLeftDrawerSignInWithFacebook"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/left_menu_item" >
-
-            <TextView
-                android:id="@+id/textViewLeftDrawerMenuLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:text="@string/login"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/Gray"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/imageViewLeftDrawerMenuLogin"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/content_descript"
-                android:padding="5dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/login" />
+            android:layout_marginTop="10dp"
+            android:background="@drawable/sign_in_with_facebook" >
         </RelativeLayout>
 
         <RelativeLayout
@@ -55,7 +117,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/left_menu_item" >
+            android:background="@drawable/left_menu_item"
+            android:visibility="gone" >
 
             <TextView
                 android:id="@+id/textViewLeftDrawerMenuPersonInfo"
@@ -84,10 +147,43 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/RelativeLayoutLeftDrawerExamination"
+            android:id="@+id/RelativeLayoutLeftDrawerSingleRun"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="30dp"
+            android:background="@drawable/left_menu_item" >
+
+            <TextView
+                android:id="@+id/textViewLeftDrawerMenuSingleRun"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/single_run"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Gray"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/imageViewLeftDrawerMenuSingleRun"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/content_descript"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/history" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayoutLeftDrawerExamination"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/left_menu_item" >
 
             <TextView
@@ -96,7 +192,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="@string/examination"
+                android:text="@string/previous_run"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/Gray"
                 android:textSize="20sp" />
@@ -114,39 +210,6 @@
                 android:padding="5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/examination" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/RelativeLayoutLeftDrawerHistory"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/left_menu_item" >
-
-            <TextView
-                android:id="@+id/textViewLeftDrawerMenuHistory"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:text="@string/history"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/Gray"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/imageViewLeftDrawerMenuHistory"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/content_descript"
-                android:padding="5dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/history" />
         </RelativeLayout>
     </LinearLayout>
 

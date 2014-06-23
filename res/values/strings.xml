@@ -23,7 +23,7 @@
     <string name="hint_login_name">Account</string>
     <string name="hint_login_password">Password</string>
     <string name="login_error">Login Error</string>
-    <string name="single_run_message">If You Login Medici, You can store your Examination in Medici</string>
+    <string name="single_run_message">Login To MediciToday.com to keep your records and better monitoring.</string>
     <string name="history">History</string>
     <string name="basic_test">Basic Test</string>
     <string name="attentiveness">Attentiveness</string>
@@ -62,5 +62,9 @@
     <string name="on_air">ON AIR</string>
     <string name="ready">Ready</string>
     <string name="start">Start</string>
+    <string name="create_account">Create Account</string>
+    <string name="previous_run">Previous run</string>
+    <string name="sign_in">Sign In</string>
+    <string name="visual_info">Select which side “E” Opens.\n\nCaretaker: Holds 1 meter away from patient.</string>
 
 </resources>
