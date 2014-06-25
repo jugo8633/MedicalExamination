@@ -44,7 +44,7 @@ public class TremorExamController extends TestAreaController
 		ViewGroup parent = (ViewGroup) activity.findViewById(R.id.RelativeLayoutTremorMain);
 		initHeader(parent);
 		tremorView = (TremorView) parent.findViewById(R.id.tremorViewTremor);
-		tremorView.setMaxValue(60);
+		tremorView.setMaxValue(40);
 		tvTremorValue = (TextView) parent.findViewById(R.id.textViewTremorValue);
 	}
 
@@ -83,7 +83,7 @@ public class TremorExamController extends TestAreaController
 		sensorManager.registerListener(sensorEventListener, sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
 				SensorManager.SENSOR_DELAY_FASTEST);
 
-		Global.timerStart(10 * 1000, Type.INVALID, selfHandler, TIMER_EXAM_END);
+		Global.timerStart(20 * 1000, Type.INVALID, selfHandler, TIMER_EXAM_END);
 	}
 
 	private void stopSensor()
