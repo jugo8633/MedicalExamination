@@ -10,12 +10,12 @@ import java.net.URL;
 
 import org.apache.http.HttpStatus;
 
-import com.medici.app.LoginActivity;
 import com.medici.app.R;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
 import com.medici.app.model.HttpClientConfig;
+import com.medici.app.model.HttpClientLogin;
 import com.medici.app.model.Logs;
 import com.medici.app.model.NetworkHandler;
 import com.medici.app.view.ShapButton;
@@ -41,6 +41,7 @@ public class LeftDrawerMenuController
 	private boolean			mbShowSignIn		= false;
 	private View			vInclude			= null;
 	private Handler			notifyHandler		= null;
+	private HttpClientLogin	login				= null;
 	private final int[]		listMenuButton		= { R.id.RelativeLayoutLeftDrawerCreateAccount,
 			R.id.RelativeLayoutLeftDrawerLogin, R.id.RelativeLayoutLeftDrawerSignInWithGoogle,
 			R.id.RelativeLayoutLeftDrawerSignInWithFacebook, R.id.RelativeLayoutLeftDrawerExamination,
@@ -77,7 +78,6 @@ public class LeftDrawerMenuController
 			@Override
 			public void OnButtonClicked(boolean bSelected)
 			{
-				// Global.hideIME(theActivity);
 				if (bSelected)
 				{
 					if (btnSignIn.getTag().equals("SIGN"))
@@ -94,104 +94,10 @@ public class LeftDrawerMenuController
 		});
 	}
 
-	public void doLogin(final String strName, final String strPasswd)
-	{
-		AsyncTask<Void, Void, String> shareRegidTask = new AsyncTask<Void, Void, String>()
-		{
-			@Override
-			protected String doInBackground(Void... params)
-			{
-				String result = null;
-				HttpURLConnection conn = null;
-				URL url = null;
-
-				String strUrl = HttpClientConfig.SERVER_URL + "?" + HttpClientConfig.LOGIN_PARAM + "=" + strName;
-
-				Logs.showTrace("medici server connect: " + strUrl);
-
-				try
-				{
-					url = new URL(strUrl);
-					conn = (HttpURLConnection) url.openConnection();
-					conn.setReadTimeout(10000);
-					conn.setConnectTimeout(15000);
-					conn.setRequestMethod("POST");
-					conn.connect();
-
-					// http讀取結果
-					if (HttpStatus.SC_OK == conn.getResponseCode())
-					{
-						// 讀取資料
-						BufferedReader reader = null;
-						reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-
-						if (null != reader)
-						{
-							result = reader.readLine();
-							String line;
-							while ((line = reader.readLine()) != null)
-							{
-								result += line;
-							}
-							reader.close();
-						}
-					}
-
-					return result;
-
-				}
-				catch (MalformedURLException e)
-				{
-					e.printStackTrace();
-				}
-				catch (ProtocolException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				catch (IOException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(String result)
-			{
-				Logs.showTrace("Http client login result: " + result);
-			}
-
-		};
-		shareRegidTask.execute(null, null, null);
-	}
-
 	private void startSignIn()
 	{
-		doLogin("test@gmail.com", null);
-		progress = ProgressDialog.show(theActivity, theActivity.getString(R.string.sign_in), null, false);
-
-		new Thread()
-		{
-			public void run()
-			{
-				try
-				{
-					sleep(3000);
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-				finally
-				{
-					progress.dismiss();
-				}
-			}
-		}.start();
-
+		login = new HttpClientLogin(theActivity);
+		login.login("ssss", "sssss", null);
 	}
 
 	private void startCreateAccount()
@@ -228,7 +134,7 @@ public class LeftDrawerMenuController
 			if (!NetworkHandler.isMobileNetworkAvailable(theActivity))
 			{
 				NetworkHandler.showConnectionNADialog(theActivity);
-				return;
+				//	return;
 			}
 		}
 
