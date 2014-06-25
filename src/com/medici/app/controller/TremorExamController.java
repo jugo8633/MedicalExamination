@@ -80,9 +80,8 @@ public class TremorExamController extends TestAreaController
 
 	private void startSensor()
 	{
-		sensorManager.registerListener(sensorEventListener,
-				sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION ),
-				SensorManager.SENSOR_DELAY_GAME);
+		sensorManager.registerListener(sensorEventListener, sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
+				SensorManager.SENSOR_DELAY_FASTEST);
 
 		Global.timerStart(10 * 1000, Type.INVALID, selfHandler, TIMER_EXAM_END);
 	}
@@ -149,11 +148,10 @@ public class TremorExamController extends TestAreaController
 			yAcceleration = event.values[1];
 			xAcceleration = event.values[2];
 
-			if (SENSOR_EDGE < xAcceleration || SENSOR_EDGE < yAcceleration
-
-			|| (0 - SENSOR_EDGE) > xAcceleration || (0 - SENSOR_EDGE) > yAcceleration)
-			{
-				float nAvg = (xAcceleration + yAcceleration) / 2;
+		//	if (SENSOR_EDGE < xAcceleration || SENSOR_EDGE < yAcceleration
+		//	|| (0 - SENSOR_EDGE) > xAcceleration || (0 - SENSOR_EDGE) > yAcceleration)
+		//	{
+				float nAvg = xAcceleration; //(xAcceleration + yAcceleration) / 2;
 
 				int nValue = (int) Math.abs(nAvg);
 				setTremorValue(Float.toString(nValue));
@@ -162,20 +160,12 @@ public class TremorExamController extends TestAreaController
 				{
 					--mnExamResult;
 				}
-			}
-			else
-			{
-				setTremorValue(Float.toString(0.0f));
-			}
+		//	}
+		//	else
+		//	{
+		//		setTremorValue(Float.toString(0.0f));
+		//	}
 		}
-
-		//		if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
-		//		{
-		//			float x = Math.abs(event.values[SensorManager.DATA_X]);
-		//			float y = Math.abs(event.values[SensorManager.DATA_Y]);
-		//			float z = Math.abs(event.values[SensorManager.DATA_Z]);
-		//		}
-
 	}
 
 	private SensorEventListener	sensorEventListener	= new SensorEventListener()

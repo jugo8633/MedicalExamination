@@ -40,6 +40,7 @@ public abstract class Global
 	public static void showDidlog(final Activity activity, final Handler handler, String strTitle, String strMessage,
 			final int nId)
 	{
+		closeDialog();
 		dialog = new Dialog(activity, R.style.Translucent_NoTitle);
 		dialog.setContentView(R.layout.dialog);
 

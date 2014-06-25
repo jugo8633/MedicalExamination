@@ -65,8 +65,11 @@ public class AudioExamController extends TestAreaController
 	protected void finalize() throws Throwable
 	{
 		audioManager = null;
-		mPlayer.release();
-		mPlayer = null;
+		if (null != mPlayer)
+		{
+			mPlayer.release();
+			mPlayer = null;
+		}
 		super.finalize();
 	}
 
@@ -147,7 +150,7 @@ public class AudioExamController extends TestAreaController
 		else
 		{
 			showExamHint(false);
-			showOnAir(true, theActivity.getString(R.string.on_air));
+			//	showOnAir(true, theActivity.getString(R.string.on_air));
 			playSound(mnLevel);
 		}
 	}
@@ -174,7 +177,7 @@ public class AudioExamController extends TestAreaController
 	{
 		mbSpeakerShake = false;
 		showExamHint(true);
-		showOnAir(false, null);
+		//	showOnAir(false, null);
 	}
 
 	private boolean playSound(int nLevel)
@@ -248,7 +251,7 @@ public class AudioExamController extends TestAreaController
 			{
 				Global.timerStop();
 				showExamHint(false);
-				showOnAir(true, theActivity.getString(R.string.on_air));
+				showOnAir(false, theActivity.getString(R.string.on_air));
 				mnLevel = 0;
 				playSound(mnLevel);
 			}
