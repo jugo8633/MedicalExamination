@@ -1,5 +1,7 @@
 package com.medici.app;
 
+import org.apache.http.HttpStatus;
+
 import com.medici.app.controller.Comprehension1Controller;
 import com.medici.app.controller.Comprehension2Controller;
 import com.medici.app.controller.Comprehension3Controller;
@@ -10,6 +12,8 @@ import com.medici.app.controller.Memory1Controller;
 import com.medici.app.controller.Memory2Controller;
 import com.medici.app.controller.TrembleTestController;
 import com.medici.app.model.EventMessage;
+import com.medici.app.model.Global;
+import com.medici.app.model.HttpClientExamData;
 import com.medici.app.model.Logs;
 import com.medici.app.model.Type;
 
@@ -36,6 +40,7 @@ public class ExaminationActivity extends Activity
 	private Memory1Controller			memory1Controller			= null;
 	private Memory2Controller			memory2Controller			= null;
 	private boolean						mbSingleRun					= false;
+	private HttpClientExamData			httpExam					= null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -58,6 +63,7 @@ public class ExaminationActivity extends Activity
 
 		initExamination(!mbSingleRun);
 		showExam(nRunExam);
+		httpExam = new HttpClientExamData(this);
 	}
 
 	@Override
@@ -111,6 +117,32 @@ public class ExaminationActivity extends Activity
 		}
 	}
 
+	private void endExam()
+	{
+		String strResult = String.format("Total Result:\nVisual：%d\nAudio：%d\nTremor：%d", Global.examData.mnVisual,
+				Global.examData.mnAudio, Global.examData.mnTremor);
+		Global.showDidlog(this, selfHandler, null, strResult, 777788);
+	}
+
+	private void sendExamData()
+	{
+		httpExam.sendExam(selfHandler);
+	}
+
+	private void onDialog(int nId)
+	{
+		switch (nId)
+		{
+		case 777788:
+			sendExamData();
+			break;
+		case EventMessage.HTTP_FAIL:
+		case HttpStatus.SC_OK:
+			this.finish();
+			break;
+		}
+	}
+
 	private Handler	selfHandler	= new Handler()
 								{
 
@@ -123,11 +155,18 @@ public class ExaminationActivity extends Activity
 										case EventMessage.MSG_TEST_END_HEAR:
 											showExam(flipper.getDisplayedChild() + 1);
 											break;
+										case EventMessage.MSG_TEST_END_TREMOR: // end test
+											endExam();
+											break;
 										case EventMessage.MSG_HEADER_SELECT_CLOSE:
 											ExaminationActivity.this.finish();
 											break;
 										case EventMessage.MSG_HEADER_SELECT_INFO:
 											break;
+										case EventMessage.MSG_CLOSE_MESSAGE_DIALOG:
+											onDialog(msg.arg1);
+											break;
+
 										}
 									}
 

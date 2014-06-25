@@ -5,7 +5,7 @@
 
 package com.medici.app.model;
 
-public class EventMessage
+public abstract class EventMessage
 {
 	public static final int	MSG_CUSTOM					= 1024;
 	public static final int	MSG_FLIPPER_CLOSE			= MSG_CUSTOM + 1;
@@ -37,6 +37,8 @@ public class EventMessage
 	public static final int	MSG_TEST_END_TREMOR			= MSG_CUSTOM + 27;
 	public static final int	MSG_SINGLE_RUN_INFO			= MSG_CUSTOM + 28;
 
+	public static final int	HTTP_FAIL					= -1;
+	
 	/**
 	 * @author jugo
 	 * @descript define key code

@@ -109,6 +109,7 @@ public class TremorExamController extends TestAreaController
 		if (TIMER_EXAM_END == nId)
 		{
 			stopSensor();
+			Global.examData.mnTremor = mnExamResult;
 			if (getExaminationMode())
 			{
 				EventHandler.notify(notifyHandler, EventMessage.MSG_TEST_END_TREMOR, 0, 0, null);

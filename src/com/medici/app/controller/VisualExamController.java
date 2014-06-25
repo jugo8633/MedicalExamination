@@ -151,6 +151,7 @@ public class VisualExamController extends TestAreaController
 		if (7 < mnLevel)
 		{
 			mnLevel = 0;
+			Global.examData.mnVisual = mnExamResult;
 			if (getExaminationMode())
 			{
 				EventHandler.notify(notifyHandler, EventMessage.MSG_TEST_END_EYE, 0, 0, null);

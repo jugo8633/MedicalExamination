@@ -138,6 +138,7 @@ public class AudioExamController extends TestAreaController
 		if (listSound.length <= mnLevel)
 		{
 			--mnLevel;
+			Global.examData.mnAudio = mnExamResult;
 			if (getExaminationMode())
 			{
 				EventHandler.notify(notifyHandler, EventMessage.MSG_TEST_END_HEAR, 0, 0, null);

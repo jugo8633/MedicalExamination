@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.apache.http.HttpStatus;
+
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
@@ -13,7 +15,7 @@ import android.os.Message;
 public abstract class HttpClientHandler
 {
 	protected Activity	theActivity	= null;
-	private final int	HTTP_OK		= 200;
+	protected Response	response	= null;
 
 	public class Response
 	{
@@ -24,6 +26,7 @@ public abstract class HttpClientHandler
 	public HttpClientHandler(Activity activity)
 	{
 		theActivity = activity;
+		response = new Response();
 	}
 
 	protected abstract boolean onResponse(int nCode, String strMessage);
@@ -41,7 +44,7 @@ public abstract class HttpClientHandler
 		con.setRequestProperty("Accept-Charset", "ISO-8859-1,utf-8;q=0.7,*;q=0.7");
 		resp.mnCode = con.getResponseCode();
 
-		if (HTTP_OK == resp.mnCode)
+		if (HttpStatus.SC_OK == resp.mnCode)
 		{
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;
@@ -82,7 +85,7 @@ public abstract class HttpClientHandler
 
 		resp.mnCode = con.getResponseCode();
 
-		if (HTTP_OK == resp.mnCode)
+		if (HttpStatus.SC_OK == resp.mnCode)
 		{
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String inputLine;

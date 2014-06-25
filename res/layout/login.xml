@@ -6,7 +6,7 @@
     <RelativeLayout
         android:id="@+id/login_main_layout"
         android:layout_width="360dp"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_centerInParent="true"
         android:background="@drawable/menu_option" >
 
@@ -78,10 +78,8 @@
         <LinearLayout
             android:id="@+id/LinearLayoutLoginButtonMain"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_below="@+id/LinearLayoutLoginEditMain"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -93,13 +91,12 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
                 android:layout_weight="0.5"
                 app:borderColorClick="@color/Focus_Blue"
                 app:text="@string/sign_in"
                 app:textColor="@color/Black_Gray"
                 app:textColorClick="@color/Focus_Blue"
-                app:textSize="24sp" />
+                app:textSize="20sp" />
 
         </LinearLayout>
 

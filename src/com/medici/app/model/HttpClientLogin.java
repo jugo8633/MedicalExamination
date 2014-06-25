@@ -1,5 +1,9 @@
 package com.medici.app.model;
 
+import org.apache.http.HttpStatus;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.medici.app.R;
 
 import android.app.Activity;
@@ -10,14 +14,11 @@ import android.os.Message;
 
 public class HttpClientLogin extends HttpClientHandler
 {
-	private final int		LOGIN_FAIL	= -1;
 	private ProgressDialog	progress	= null;
-	private Response		response	= null;
 
 	public HttpClientLogin(Activity activity)
 	{
 		super(activity);
-		response = new Response();
 	}
 
 	public void login(final String strAccount, final String strPassword, final Handler handler)
@@ -59,10 +60,34 @@ public class HttpClientLogin extends HttpClientHandler
 			progress.dismiss();
 			progress = null;
 		}
-		if (Type.INVALID == nCode)
+
+		if (HttpStatus.SC_OK != nCode)
 		{
-			EventHandler.notify(selfHandler, LOGIN_FAIL, 0, 0, null);
+			EventHandler.notify(selfHandler, EventMessage.HTTP_FAIL, 0, 0, null);
 		}
+		else
+		{
+			JSONObject jsonobj = null;
+			try
+			{
+				jsonobj = new JSONObject(strMessage);
+				String strResult = jsonobj.getString("result");
+				if (strResult.equals("success"))
+				{
+					EventHandler.notify(selfHandler, HttpStatus.SC_OK, 0, 0, null);
+				}
+				else
+				{
+					EventHandler.notify(selfHandler, EventMessage.HTTP_FAIL, 0, 0, null);
+				}
+			}
+			catch (JSONException e)
+			{
+				e.printStackTrace();
+			}
+
+		}
+
 		return false;
 	}
 
@@ -73,8 +98,11 @@ public class HttpClientLogin extends HttpClientHandler
 									{
 										switch (msg.what)
 										{
-										case LOGIN_FAIL:
+										case EventMessage.HTTP_FAIL:
 											Global.showDidlog(theActivity, null, null, "Login Fail", Type.INVALID);
+											break;
+										case HttpStatus.SC_OK:
+											Global.showDidlog(theActivity, null, null, "Login Success", Type.INVALID);
 											break;
 										}
 									}

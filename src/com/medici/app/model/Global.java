@@ -8,7 +8,6 @@ import com.medici.app.view.ShapButton;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -17,11 +16,11 @@ import android.widget.TextView;
 
 public abstract class Global
 {
-	public static Activity			theActivity	= null;
-	public static boolean			mbLogined	= false;
-	private static Dialog			dialog		= null;
-	public static int				mnUserId	= 2048;
-	private static Timer			timer		= null;
+	public static Activity	theActivity	= null;
+	public static boolean	mbLogined	= false;
+	private static Dialog	dialog		= null;
+	public static int		mnUserId	= 2048;
+	private static Timer	timer		= null;
 
 	public static int getUserId()
 	{
@@ -140,5 +139,17 @@ public abstract class Global
 			timer.cancel();
 			timer = null;
 		}
+	}
+
+	/**
+	 * 檢測紀錄
+	 */
+	public static ExaminationData	examData	= new ExaminationData();
+
+	public static class ExaminationData
+	{
+		public int	mnVisual	= Type.INVALID;
+		public int	mnAudio		= Type.INVALID;
+		public int	mnTremor	= Type.INVALID;
 	}
 }

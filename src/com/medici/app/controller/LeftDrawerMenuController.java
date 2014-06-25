@@ -1,29 +1,16 @@
 package com.medici.app.controller;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-
-import org.apache.http.HttpStatus;
-
 import com.medici.app.R;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
-import com.medici.app.model.HttpClientConfig;
 import com.medici.app.model.HttpClientLogin;
-import com.medici.app.model.Logs;
 import com.medici.app.model.NetworkHandler;
 import com.medici.app.view.ShapButton;
 import com.medici.app.view.ShapButton.OnButtonClickedListener;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
@@ -53,6 +40,7 @@ public class LeftDrawerMenuController
 		theActivity = activity;
 		notifyHandler = handler;
 		initView(activity);
+		login = new HttpClientLogin(theActivity);
 	}
 
 	private void initView(Activity activity)
@@ -96,8 +84,7 @@ public class LeftDrawerMenuController
 
 	private void startSignIn()
 	{
-		login = new HttpClientLogin(theActivity);
-		login.login("ssss", "sssss", null);
+		login.login("test@gmail.com", "sssss", null);
 	}
 
 	private void startCreateAccount()
@@ -134,7 +121,7 @@ public class LeftDrawerMenuController
 			if (!NetworkHandler.isMobileNetworkAvailable(theActivity))
 			{
 				NetworkHandler.showConnectionNADialog(theActivity);
-				//	return;
+				return;
 			}
 		}
 
