@@ -16,16 +16,117 @@
             android:layout_alignParentTop="true"
             layout="@layout/test_area_header" />
 
-        <ImageView
-            android:id="@+id/imageViewAttention"
+        <LinearLayout
+            android:id="@+id/LinearLayoutCalendorMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/subTestAreaHeader"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/content_descript"
-            android:scaleType="fitXY"
-            android:src="@drawable/attention" />
+            android:orientation="vertical" >
 
+            <RelativeLayout
+                android:id="@+id/RelativeLayoutCalendorMain"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="20dp"
+                android:layout_weight="0.4"
+                android:background="@drawable/menu_option" >
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/RelativeLayoutQuestionMain"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2" >
+
+                <ImageView
+                    android:id="@+id/imageViewQuestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/content_descript"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/question" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/RelativeLayoutInputMain"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4" >
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayoutCheckMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/normal_bar"
+                    android:paddingRight="20dp" >
+
+                    <ImageView
+                        android:id="@+id/imageViewCheck"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/content_descript"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ok" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayoutMonthBtnMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/RelativeLayoutCheckMain" >
+
+                    <GridLayout
+                        android:id="@+id/GridLayoutMonthMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:columnCount="3"
+                        android:orientation="horizontal"
+                        android:rowCount="4"
+                        android:useDefaultMargins="true" >
+
+                        <TextView
+                            android:id="@+id/textViewJan"
+                            android:layout_gravity="fill"
+                            android:text="Jan"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/Black_Gray" />
+
+                        <TextView
+                            android:id="@+id/textViewFeb"
+                            android:layout_gravity="fill"
+                            android:text="Feb"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/Black_Gray" />
+
+                        <TextView
+                            android:id="@+id/textViewMar"
+                            android:layout_gravity="fill"
+                            android:text="Mar"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/Black_Gray" />
+                    </GridLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayoutDayBtnMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/RelativeLayoutCheckMain"
+                    android:visibility="gone" >
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/RelativeLayoutWeekDayBtnMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" >
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
 
 </RelativeLayout>
