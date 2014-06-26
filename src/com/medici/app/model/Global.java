@@ -3,8 +3,8 @@ package com.medici.app.model;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.jugo.smartwidget.button.ShapButton;
 import com.medici.app.R;
-import com.medici.app.view.ShapButton;
 
 import android.app.Activity;
 import android.app.Dialog;

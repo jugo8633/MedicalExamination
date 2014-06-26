@@ -55,7 +55,7 @@
                 android:layout_height="1dp"
                 android:background="@color/separate_line" />
 
-<com.medici.app.view.ShapButton
+<com.jugo.smartwidget.button.ShapButton
     android:id="@+id/shapButtonDialogOK"
     android:layout_width="120dp"
     android:layout_height="40dp"

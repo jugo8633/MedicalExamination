@@ -1,8 +1,8 @@
 package com.medici.app;
 
+import com.jugo.smartwidget.button.ShapButton;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
-import com.medici.app.view.ShapButton;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

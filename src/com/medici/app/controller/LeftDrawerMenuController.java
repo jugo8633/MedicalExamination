@@ -1,13 +1,13 @@
 package com.medici.app.controller;
 
+import com.jugo.smartwidget.button.ShapButton;
+import com.jugo.smartwidget.button.ShapButton.OnButtonClickedListener;
 import com.medici.app.R;
 import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
 import com.medici.app.model.HttpClientLogin;
 import com.medici.app.model.NetworkHandler;
-import com.medici.app.view.ShapButton;
-import com.medici.app.view.ShapButton.OnButtonClickedListener;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

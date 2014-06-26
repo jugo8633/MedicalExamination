@@ -85,7 +85,7 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp" >
 
-            <com.medici.app.view.ShapButton
+            <com.jugo.smartwidget.button.ShapButton
                 android:id="@+id/shapButtonLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
