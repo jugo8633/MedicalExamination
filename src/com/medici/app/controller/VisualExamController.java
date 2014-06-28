@@ -123,27 +123,44 @@ public class VisualExamController extends TestAreaController
 		switch (nArrow)
 		{
 		case R.id.imageViewArrowRight:
-			if (0 == mnLevel || 4 == mnLevel)
+			if (0 == mnLevel)
 			{
-				mnExamResult = mnLevel;
+				mnExamResult = mnExamResult + 0;
 			}
+			if (4 == mnLevel)
+			{
+				mnExamResult = mnExamResult + 4;
+			}
+			
 			break;
 		case R.id.imageViewArrowUp:
-			if (1 == mnLevel || 7 == mnLevel)
+			if (1 == mnLevel)
 			{
-				mnExamResult = mnLevel;
+				mnExamResult = mnExamResult + 1;
+			}
+			if (7 == mnLevel)
+			{
+				mnExamResult = mnExamResult + 30;
 			}
 			break;
 		case R.id.imageViewArrowLeft:
-			if (3 == mnLevel || 5 == mnLevel)
+			if (3 == mnLevel)
 			{
-				mnExamResult = mnLevel;
+				mnExamResult = mnExamResult + 3;
+			}
+			if (5 == mnLevel)
+			{
+				mnExamResult = mnExamResult + 10;
 			}
 			break;
 		case R.id.imageViewArrowDown:
-			if (2 == mnLevel || 6 == mnLevel)
+			if (2 == mnLevel)
 			{
-				mnExamResult = mnLevel;
+				mnExamResult = mnExamResult + 2;
+			}
+			if (6 == mnLevel)
+			{
+				mnExamResult = mnExamResult + 20;
 			}
 			break;
 		}
@@ -166,7 +183,7 @@ public class VisualExamController extends TestAreaController
 
 	private void showExamResult()
 	{
-		Global.showDidlog(theActivity, selfHandler, null, "Result： Level is " + mnExamResult, RESULT_CLOSE);
+		Global.showDidlog(theActivity, selfHandler, null, "Result嚗� Level is " + mnExamResult, RESULT_CLOSE);
 	}
 
 	private void onDialog(int nId)
