@@ -30,13 +30,91 @@
                 android:layout_margin="20dp"
                 android:layout_weight="0.4"
                 android:background="@drawable/menu_option" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textViewWhat"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:text="What"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/Black"
+                        android:textSize="40sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:orientation="vertical"
+                        android:padding="10dp" >
+
+                        <TextView
+                            android:id="@+id/textViewYear"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/calendar_header"
+                            android:gravity="bottom|center_horizontal"
+                            android:paddingTop="20dp"
+                            android:text="2014"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@color/White"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/calendar_body" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="20dp" >
+
+                                <ImageView
+                                    android:id="@+id/imageView1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="60dp"
+                                    android:src="@drawable/jan" />
+
+                                <ImageView
+                                    android:id="@+id/imageView2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_weight="1"
+                                    android:src="@drawable/day13" />
+
+                                <ImageView
+                                    android:id="@+id/imageView3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="50dp"
+                                    android:layout_gravity="bottom"
+                                    android:src="@drawable/fri" />
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/RelativeLayoutQuestionMain"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.2" >
+                android:layout_weight="0.1" >
 
                 <ImageView
                     android:id="@+id/imageViewQuestion"
@@ -57,18 +135,19 @@
                 <RelativeLayout
                     android:id="@+id/RelativeLayoutCheckMain"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentTop="true"
                     android:background="@drawable/normal_bar"
                     android:paddingRight="20dp" >
 
                     <ImageView
                         android:id="@+id/imageViewCheck"
-                        android:layout_width="40dp"
+                        android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/content_descript"
+                        android:padding="5dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/ok" />
                 </RelativeLayout>
@@ -79,36 +158,184 @@
                     android:layout_height="match_parent"
                     android:layout_below="@+id/RelativeLayoutCheckMain" >
 
-                    <GridLayout
-                        android:id="@+id/GridLayoutMonthMain"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:columnCount="3"
-                        android:orientation="horizontal"
-                        android:rowCount="4"
-                        android:useDefaultMargins="true" >
+                        android:background="@color/Gray"
+                        android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/textViewJan"
-                            android:layout_gravity="fill"
-                            android:text="Jan"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/Black_Gray" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.25"
+                            android:orientation="horizontal" >
 
-                        <TextView
-                            android:id="@+id/textViewFeb"
-                            android:layout_gravity="fill"
-                            android:text="Feb"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/Black_Gray" />
+                            <TextView
+                                android:id="@+id/textViewJan"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.3"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Jan"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
 
-                        <TextView
-                            android:id="@+id/textViewMar"
-                            android:layout_gravity="fill"
-                            android:text="Mar"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:textColor="@color/Black_Gray" />
-                    </GridLayout>
+                            <TextView
+                                android:id="@+id/textViewFeb"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.4"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Feb"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+
+                            <TextView
+                                android:id="@+id/textViewMar"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.3"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Mar"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.25"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/textViewApr"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.3"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Apr"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+
+                            <TextView
+                                android:id="@+id/textViewMay"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.4"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="May"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+
+                            <TextView
+                                android:id="@+id/textViewJun"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.3"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Jun"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.25"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/textViewJuly"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.3"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="July"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+
+                            <TextView
+                                android:id="@+id/textViewAug"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.4"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Aug"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+
+                            <TextView
+                                android:id="@+id/textViewSept"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.3"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Sept"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.25"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/textViewOct"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.3"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Oct"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+
+                            <TextView
+                                android:id="@+id/textViewNov"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.4"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Nov"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+
+                            <TextView
+                                android:id="@+id/textViewDec"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_margin="1dp"
+                                android:layout_weight="0.3"
+                                android:background="@color/White"
+                                android:gravity="center"
+                                android:text="Dec"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="@color/Black" />
+                        </LinearLayout>
+                    </LinearLayout>
                 </RelativeLayout>
 
                 <RelativeLayout

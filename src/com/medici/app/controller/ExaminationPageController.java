@@ -11,14 +11,27 @@ import android.os.Handler;
 
 public class ExaminationPageController extends ExaminationListController
 {
-	public int		EXAMINATION_EYE			= Type.INVALID;
-	public int		EXAMINATION_HEAR		= Type.INVALID;
-	public int		EXAMINATION_TREMBLE		= Type.INVALID;
-	public int		EXAMINATION_ATTENTION	= Type.INVALID;
-	public int		EXAMINATION_LANGUAGE	= Type.INVALID;
-	public int		EXAMINATION_SPATIAL		= Type.INVALID;
-	public int		EXAMINATION_MEMORY		= Type.INVALID;
-	private Handler	theHandler				= null;
+	public int						EXAMINATION_EYE			= Type.INVALID;
+	public int						EXAMINATION_HEAR		= Type.INVALID;
+	public int						EXAMINATION_TREMBLE		= Type.INVALID;
+	public int						EXAMINATION_ATTENTION	= Type.INVALID;
+	public int						EXAMINATION_LANGUAGE	= Type.INVALID;
+	public int						EXAMINATION_SPATIAL		= Type.INVALID;
+	public int						EXAMINATION_MEMORY		= Type.INVALID;
+	private OnItemSelectedListener	onItemSelectedListener	= null;
+
+	public static interface OnItemSelectedListener
+	{
+		void OnItemSelected(int nIndex);
+	}
+
+	public void setOnItemSelectedListener(OnItemSelectedListener listener)
+	{
+		if (null != listener)
+		{
+			onItemSelectedListener = listener;
+		}
+	}
 
 	public ExaminationPageController(Activity activity, Handler handler)
 	{
@@ -38,8 +51,6 @@ public class ExaminationPageController extends ExaminationListController
 		EXAMINATION_MEMORY = setListItem(R.drawable.memory_brain, R.string.memory,
 				R.string.test_short_term_and_long_term_memory, R.string.monitor, Type.INVALID);
 		super.updateList();
-
-		theHandler = handler;
 	}
 
 	private int setListItem(int nIconResId, int nTitle, int nPatientDo, int nCaretakerDo, int nResIdPatientDoImage)
@@ -48,37 +59,9 @@ public class ExaminationPageController extends ExaminationListController
 				nResIdPatientDoImage);
 	}
 
-	private void notifyTestItemSelected(int nPosition)
-	{
-		//		int nWhat = Type.INVALID;
-		//		if (EXAMINATION_EYE == nPosition)
-		//		{
-		//			nWhat = EventMessage.MSG_SHOW_TEST_EYE;
-		//		}
-		//		else if (EXAMINATION_HEAR == nPosition)
-		//		{
-		//			nWhat = EventMessage.MSG_SHOW_TEST_HEAR;
-		//		}
-		//		else if (EXAMINATION_TREMBLE == nPosition)
-		//		{
-		//			nWhat = EventMessage.MSG_SHOW_TEST_TREMBLE;
-		//		}
-		//		else if (EXAMINATION_ATTENTION == nPosition)
-		//		{
-		//			nWhat = EventMessage.MSG_SHOW_TEST_ATTENTION;
-		//		}
-		//		else
-		//		{
-		//			return;
-		//		}
-
-		//EventHandler.notify(theHandler, EventMessage.MSG_EXAM_SELECTED, nPosition, 0, null);
-	}
-
 	@Override
 	protected void onItemSelected(int nPosition)
 	{
-		EventHandler.notify(theHandler, EventMessage.MSG_EXAM_SELECTED, nPosition, 0, null);
-		//notifyTestItemSelected(nPosition);
+		onItemSelectedListener.OnItemSelected(nPosition);
 	}
 }

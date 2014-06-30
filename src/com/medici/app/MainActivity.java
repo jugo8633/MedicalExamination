@@ -51,6 +51,14 @@ public class MainActivity extends Activity
 
 		/** init home page */
 		examinationPage = new ExaminationPageController(this, selfHandler);
+		examinationPage.setOnItemSelectedListener(new ExaminationPageController.OnItemSelectedListener()
+		{
+			@Override
+			public void OnItemSelected(int nIndex)
+			{
+				showExam(nIndex);
+			}
+		});
 
 		getDeviceLanguage();
 
@@ -61,7 +69,6 @@ public class MainActivity extends Activity
 	private void getDeviceLanguage()
 	{
 		String strLanguage = Locale.getDefault().getLanguage();
-
 	}
 
 	private void initDrawerLayout()
@@ -220,9 +227,6 @@ public class MainActivity extends Activity
 													break;
 												case EventMessage.MSG_SHOW_HISTORY:
 													showHistoryActivity();
-													break;
-												case EventMessage.MSG_EXAM_SELECTED:
-													showExam(msg.arg1);
 													break;
 												case EventMessage.MSG_CLOSE_MESSAGE_DIALOG:
 													onDialog(msg.arg1);

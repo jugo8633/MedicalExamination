@@ -35,7 +35,6 @@ public class AudioExamController extends TestAreaController
 	private TextView		mtvExamHint			= null;
 	private TextView		mtvOnAir			= null;
 	private int				mnCount				= 0;
-	private Activity		theActivity			= null;
 	private int				mnExamResult		= 0;
 
 	private int[]			listImgViewResId	= { R.id.imageViewHearOk, R.id.imageViewHearNo, };
@@ -46,7 +45,6 @@ public class AudioExamController extends TestAreaController
 	public AudioExamController(Activity activity, Handler handler)
 	{
 		super(activity, handler);
-		theActivity = activity;
 		initView(activity);
 
 		audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);

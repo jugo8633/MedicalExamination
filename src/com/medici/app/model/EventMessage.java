@@ -36,9 +36,10 @@ public abstract class EventMessage
 	public static final int	MSG_DIALOG_CLOSE_RESULT		= MSG_CUSTOM + 26;
 	public static final int	MSG_TEST_END_TREMOR			= MSG_CUSTOM + 27;
 	public static final int	MSG_SINGLE_RUN_INFO			= MSG_CUSTOM + 28;
+	public static final int	MSG_TEST_END_ATTENTION		= MSG_CUSTOM + 29;
 
 	public static final int	HTTP_FAIL					= -1;
-	
+
 	/**
 	 * @author jugo
 	 * @descript define key code
