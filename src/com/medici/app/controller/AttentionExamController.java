@@ -58,10 +58,8 @@ public class AttentionExamController extends TestAreaController
 		releaseAllBitmap();
 		bmpDay = BitmapFactory.decodeResource(theActivity.getResources(), R.drawable.day13);
 		Rect rect = Utility.getViewRect(ivDay);
-		//	bmpDayMosaic = BitmapHandler.makeMosaic(bmpDay, rect, 40);
-		bmpDayMosaic = BitmapHandler.scaleBitmap(bmpDay, 10);
+		bmpDayMosaic = BitmapHandler.makeMosaic(bmpDay, rect, 45);
 		ivDay.setImageBitmap(bmpDayMosaic);
-		Logs.showTrace("mosaic #################################");
 	}
 
 	private void releaseAllBitmap()
