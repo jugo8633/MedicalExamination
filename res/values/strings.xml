@@ -67,5 +67,8 @@
     <string name="sign_in">Sign In</string>
     <string name="visual_info">Select which side “E” Opens.\n\nCaretaker: Holds 1 meter away from patient.</string>
     <string name="attention_time_info">Answer what date it is.</string>
+    <string name="what_month">What Month is it?</string>
+    <string name="what_day">What is the date?</string>
+    <string name="what_weekday">What is the week day?</string>
 
 </resources>
