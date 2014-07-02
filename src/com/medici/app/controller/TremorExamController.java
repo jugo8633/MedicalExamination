@@ -30,7 +30,7 @@ public class TremorExamController extends TestAreaController
 	private int				mnExamResult	= 10;
 	private int				mnCount			= 0;
 	private final int		SENSOR_EDGE		= 2;
-	private float			m_degree		= 1.5f;
+	private float			m_degree		= 2.0f;
 	private float			temp_x			= 0.0f;
 	private float			temp_y			= 0.0f;
 
@@ -128,7 +128,7 @@ public class TremorExamController extends TestAreaController
 
 	private void showExamResult()
 	{
-		Global.showDidlog(theActivity, selfHandler, null, "Result嚗� Level is " + mnExamResult,
+		Global.showDidlog(theActivity, selfHandler, null, "Result： Level is " + mnExamResult,
 				EventMessage.MSG_DIALOG_CLOSE_RESULT);
 	}
 
@@ -153,6 +153,8 @@ public class TremorExamController extends TestAreaController
 		{
 			yAcceleration = event.values[1];
 			xAcceleration = event.values[2];
+			if (temp_y != 0 && temp_x != 0)
+			{
 				float nAvg = (float) Math.sqrt((yAcceleration - temp_y) * (yAcceleration - temp_y) + (xAcceleration - temp_x) * (xAcceleration - temp_x)); //(xAcceleration + yAcceleration) / 2;
 
 				//int nValue = (int) Math.abs(nAvg);
@@ -164,6 +166,7 @@ public class TremorExamController extends TestAreaController
 				{
 					--mnExamResult;
 				}
+			}
 			temp_y = yAcceleration;
 			temp_x = xAcceleration;
 		}

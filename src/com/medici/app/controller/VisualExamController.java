@@ -183,7 +183,7 @@ public class VisualExamController extends TestAreaController
 
 	private void showExamResult()
 	{
-		Global.showDidlog(theActivity, selfHandler, null, "Resultåš—ï¿½ Level is " + mnExamResult, RESULT_CLOSE);
+		Global.showDidlog(theActivity, selfHandler, null, "Result¡G Level is " + mnExamResult, RESULT_CLOSE);
 	}
 
 	private void onDialog(int nId)
