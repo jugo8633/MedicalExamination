@@ -14,8 +14,14 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Message;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class AttentionExamController extends TestAreaController
@@ -44,6 +50,10 @@ public class AttentionExamController extends TestAreaController
 	private TextView	tvWhat				= null;
 	private int			mnRunMode			= 0;
 
+	private int[]		listBtnMonth		= { R.id.textViewJan, R.id.textViewFeb, R.id.textViewMar, R.id.textViewApr,
+			R.id.textViewMay, R.id.textViewJun, R.id.textViewJuly, R.id.textViewAug, R.id.textViewSept,
+			R.id.textViewOct, R.id.textViewNov, R.id.textViewDec };
+
 	public AttentionExamController(Activity activity, Handler handler)
 	{
 		super(activity, handler);
@@ -69,6 +79,18 @@ public class AttentionExamController extends TestAreaController
 		bmpMonth = BitmapFactory.decodeResource(theActivity.getResources(), R.drawable.jan);
 		bmpDay = BitmapFactory.decodeResource(theActivity.getResources(), R.drawable.day13);
 		bmpWeekDay = BitmapFactory.decodeResource(theActivity.getResources(), R.drawable.fri);
+
+		initMonthBtn(parent);
+	}
+
+	private void initMonthBtn(ViewGroup parent)
+	{
+		TextView tvBtnMonth = null;
+		for (int i = 0; i < listBtnMonth.length; ++i)
+		{
+			tvBtnMonth = (TextView) parent.findViewById(listBtnMonth[i]);
+			tvBtnMonth.setOnTouchListener(ButtonTouchListener);
+		}
 	}
 
 	private void showInfo()
@@ -109,9 +131,13 @@ public class AttentionExamController extends TestAreaController
 			tvWhat.setText(theActivity.getString(R.string.what_month));
 			break;
 		case EXAM_DAY:
+			theActivity.findViewById(R.id.RelativeLayoutMonthBtnMain).setVisibility(View.GONE);
+			theActivity.findViewById(R.id.RelativeLayoutDayBtnMain).setVisibility(View.VISIBLE);
 			tvWhat.setText(theActivity.getString(R.string.what_day));
 			break;
 		case EXAM_WEEKDAY:
+			theActivity.findViewById(R.id.RelativeLayoutDayBtnMain).setVisibility(View.GONE);
+			theActivity.findViewById(R.id.RelativeLayoutWeekDayBtnMain).setVisibility(View.VISIBLE);
 			tvWhat.setText(theActivity.getString(R.string.what_weekday));
 			break;
 		default:
@@ -147,9 +173,8 @@ public class AttentionExamController extends TestAreaController
 			displayMosaic(5);
 			break;
 		default:
+			Global.timerStop();
 			displayMosaic(0);
-			++mnRunMode;
-			switchRunMode(mnRunMode);
 			break;
 		}
 
@@ -255,5 +280,74 @@ public class AttentionExamController extends TestAreaController
 										}
 									}
 								};
+
+	private void ButtonHandler(int nResId)
+	{
+		switchRunMode(++mnRunMode);
+
+		switch (nResId)
+		{
+		case R.id.textViewJan:
+			break;
+		case R.id.textViewFeb:
+			break;
+		case R.id.textViewMar:
+			break;
+		case R.id.textViewApr:
+			break;
+		case R.id.textViewMay:
+			break;
+		case R.id.textViewJun:
+			break;
+		case R.id.textViewJuly:
+			break;
+		case R.id.textViewAug:
+			break;
+		case R.id.textViewSept:
+			break;
+		case R.id.textViewOct:
+			break;
+		case R.id.textViewNov:
+			break;
+		case R.id.textViewDec:
+			break;
+		}
+	}
+
+	private OnTouchListener	ButtonTouchListener	= new OnTouchListener()
+												{
+
+													@Override
+													public boolean onTouch(View v, MotionEvent event)
+													{
+														if (v instanceof TextView)
+														{
+															switch (event.getAction())
+															{
+															case MotionEvent.ACTION_DOWN:
+																v.animate()
+																		.scaleY(0.8f)
+																		.scaleX(0.8f)
+																		.setDuration(100)
+																		.setInterpolator(
+																				new AccelerateDecelerateInterpolator());
+																return true;
+															case MotionEvent.ACTION_UP:
+															case MotionEvent.ACTION_CANCEL:
+																v.animate()
+																		.scaleY(1.0f)
+																		.scaleX(1.0f)
+																		.setDuration(200)
+																		.setInterpolator(
+																				new AccelerateDecelerateInterpolator());
+																v.clearAnimation();
+																ButtonHandler(v.getId());
+																break;
+															}
+														}
+														return false;
+													}
+
+												};
 
 }
