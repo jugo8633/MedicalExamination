@@ -818,7 +818,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
-                    <com.jugo.smartwidget.calendar.Calendar
+                    <com.jugo.smartwidget.calendar.CalendarWidget
                         android:id="@+id/calendarWeekDay"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" >
