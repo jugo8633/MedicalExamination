@@ -3,7 +3,9 @@ package com.medici.app.controller;
 import com.jugo.smartwidget.common.Logs;
 import com.jugo.smartwidget.common.Utility;
 import com.jugo.smartwidget.image.BitmapHandler;
+import com.jugo.smartwidget.calendar.CalendarWidget;
 import com.medici.app.R;
+import com.medici.app.model.EventHandler;
 import com.medici.app.model.EventMessage;
 import com.medici.app.model.Global;
 import com.medici.app.model.Type;
@@ -20,39 +22,46 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class AttentionExamController extends TestAreaController
 {
-	private final int	EXAM_MONTH			= 0;
-	private final int	EXAM_DAY			= 1;
-	private final int	EXAM_WEEKDAY		= 2;
-	private final int	TIMER_COUNTDOWN		= Global.getUserId();
-	private int			mnLevel				= 0;
-	private int			mnExamMonthResult	= Type.INVALID;
-	private int			mnExamDayResult		= Type.INVALID;
-	private int			mnExamWeekDayResult	= Type.INVALID;
-	private int[]		listImgViewResId	= { R.id.imageViewCheck };
-	private Bitmap		bmpDay				= null;
-	private Bitmap		bmpMonth			= null;
-	private Bitmap		bmpWeekDay			= null;
-	private Bitmap		bmpMonthMosaic		= null;
-	private Bitmap		bmpDayMosaic		= null;
-	private Bitmap		bmpWeekDayMosaic	= null;
-	private ImageView	ivDay				= null;
-	private ImageView	ivMonth				= null;
-	private ImageView	ivWeekDay			= null;
-	private Rect		rectMonth			= null;
-	private Rect		rectDay				= null;
-	private Rect		rectWeekDay			= null;
-	private TextView	tvWhat				= null;
-	private int			mnRunMode			= 0;
+	private final int		RESULT_CLOSE		= Global.getUserId();
+	private final int		EXAM_MONTH			= 0;
+	private final int		EXAM_DAY			= 1;
+	private final int		EXAM_WEEKDAY		= 2;
+	private final int		EXAM_END			= 3;
+	private final int		TIMER_COUNTDOWN		= Global.getUserId();
+	private int				mnLevel				= 0;
+	private int				mnExamMonthResult	= Type.INVALID;
+	private int				mnExamDayResult		= Type.INVALID;
+	private int				mnExamWeekDayResult	= Type.INVALID;
+	private int[]			listImgViewResId	= { R.id.imageViewCheck };
+	private Bitmap			bmpDay				= null;
+	private Bitmap			bmpMonth			= null;
+	private Bitmap			bmpWeekDay			= null;
+	private Bitmap			bmpMonthMosaic		= null;
+	private Bitmap			bmpDayMosaic		= null;
+	private Bitmap			bmpWeekDayMosaic	= null;
+	private ImageView		ivDay				= null;
+	private ImageView		ivMonth				= null;
+	private ImageView		ivWeekDay			= null;
+	private Rect			rectMonth			= null;
+	private Rect			rectDay				= null;
+	private Rect			rectWeekDay			= null;
+	private TextView		tvWhat				= null;
+	private int				mnRunMode			= 0;
+	private CalendarWidget	calendarWidget		= null;
+	private int				mnDay				= Type.INVALID;
 
-	private int[]		listBtnMonth		= { R.id.textViewJan, R.id.textViewFeb, R.id.textViewMar, R.id.textViewApr,
-			R.id.textViewMay, R.id.textViewJun, R.id.textViewJuly, R.id.textViewAug, R.id.textViewSept,
-			R.id.textViewOct, R.id.textViewNov, R.id.textViewDec };
+	private int[]			listBtnMonth		= { R.id.textViewJan, R.id.textViewFeb, R.id.textViewMar,
+			R.id.textViewApr, R.id.textViewMay, R.id.textViewJun, R.id.textViewJuly, R.id.textViewAug,
+			R.id.textViewSept, R.id.textViewOct, R.id.textViewNov, R.id.textViewDec };
+
+	private int[]			listBtnWeekday		= { R.id.buttonSun, R.id.buttonMon, R.id.buttonTue, R.id.buttonWed,
+			R.id.buttonThu, R.id.buttonFri, R.id.buttonSat };
 
 	public AttentionExamController(Activity activity, Handler handler)
 	{
@@ -79,8 +88,22 @@ public class AttentionExamController extends TestAreaController
 		bmpMonth = BitmapFactory.decodeResource(theActivity.getResources(), R.drawable.jan);
 		bmpDay = BitmapFactory.decodeResource(theActivity.getResources(), R.drawable.day13);
 		bmpWeekDay = BitmapFactory.decodeResource(theActivity.getResources(), R.drawable.fri);
+		mnDay = 13;
+
+		calendarWidget = (CalendarWidget) parent.findViewById(R.id.calendarWeekDay);
+		calendarWidget.showMonthYear(false);
+		calendarWidget.showWeekDay(false);
+		calendarWidget.setOnDaySelectedListener(new CalendarWidget.OnDaySelectedListener()
+		{
+			@Override
+			public void onDaySelected(int nDay)
+			{
+				daySelected(nDay);
+			}
+		});
 
 		initMonthBtn(parent);
+		initWeekdayBtn(parent);
 	}
 
 	private void initMonthBtn(ViewGroup parent)
@@ -90,6 +113,16 @@ public class AttentionExamController extends TestAreaController
 		{
 			tvBtnMonth = (TextView) parent.findViewById(listBtnMonth[i]);
 			tvBtnMonth.setOnTouchListener(ButtonTouchListener);
+		}
+	}
+
+	private void initWeekdayBtn(ViewGroup parent)
+	{
+		Button btn = null;
+		for (int i = 0; i < listBtnWeekday.length; ++i)
+		{
+			btn = (Button) parent.findViewById(listBtnWeekday[i]);
+			btn.setOnClickListener(ButtonClickListener);
 		}
 	}
 
@@ -123,8 +156,10 @@ public class AttentionExamController extends TestAreaController
 
 	private void switchRunMode(int nMode)
 	{
+		mnRunMode = nMode;
 		Global.timerStop();
 		mnLevel = 0;
+
 		switch (nMode)
 		{
 		case EXAM_MONTH:
@@ -140,11 +175,27 @@ public class AttentionExamController extends TestAreaController
 			theActivity.findViewById(R.id.RelativeLayoutWeekDayBtnMain).setVisibility(View.VISIBLE);
 			tvWhat.setText(theActivity.getString(R.string.what_weekday));
 			break;
+		case EXAM_END:
+			if (getExaminationMode())
+			{
+				EventHandler.notify(notifyHandler, EventMessage.MSG_TEST_END_ATTENTION, 0, 0, null);
+			}
+			else
+			{
+				showExamResult();
+			}
+			break;
 		default:
 			tvWhat.setText(null);
 			return;
 		}
 		Global.timerStart(2000, 2000, selfHandler, TIMER_COUNTDOWN);
+	}
+
+	private void showExamResult()
+	{
+		Global.showDidlog(theActivity, selfHandler, null, "Result： Level is\n" + mnExamMonthResult + "\n"
+				+ mnExamDayResult + "\n" + mnExamWeekDayResult, RESULT_CLOSE);
 	}
 
 	private void setMosaic(int nLevel)
@@ -250,6 +301,11 @@ public class AttentionExamController extends TestAreaController
 
 	private void onDialog(int nId)
 	{
+		if (RESULT_CLOSE == nId)
+		{
+			close();
+		}
+
 		if (EventMessage.MSG_DIALOG_CLOSE_RESULT == nId)
 		{
 			close();
@@ -281,13 +337,26 @@ public class AttentionExamController extends TestAreaController
 									}
 								};
 
+	private void daySelected(int nDay)
+	{
+
+		mnExamDayResult = -1;
+		if (mnDay == nDay)
+		{
+			mnExamDayResult = mnLevel;
+		}
+		switchRunMode(EXAM_WEEKDAY);
+	}
+
 	private void ButtonHandler(int nResId)
 	{
-		switchRunMode(++mnRunMode);
+
+		mnExamMonthResult = -1;
 
 		switch (nResId)
 		{
 		case R.id.textViewJan:
+			mnExamMonthResult = mnLevel;
 			break;
 		case R.id.textViewFeb:
 			break;
@@ -312,11 +381,35 @@ public class AttentionExamController extends TestAreaController
 		case R.id.textViewDec:
 			break;
 		}
+		switchRunMode(EXAM_DAY);
+	}
+
+	private void onButtonClick(int nId)
+	{
+		mnExamWeekDayResult = -1;
+		switch (nId)
+		{
+		case R.id.buttonSun:
+			break;
+		case R.id.buttonMon:
+			break;
+		case R.id.buttonTue:
+			break;
+		case R.id.buttonWed:
+			break;
+		case R.id.buttonThu:
+			break;
+		case R.id.buttonFri:
+			mnExamWeekDayResult = mnLevel;
+			break;
+		case R.id.buttonSat:
+			break;
+		}
+		switchRunMode(EXAM_END);
 	}
 
 	private OnTouchListener	ButtonTouchListener	= new OnTouchListener()
 												{
-
 													@Override
 													public boolean onTouch(View v, MotionEvent event)
 													{
@@ -348,6 +441,18 @@ public class AttentionExamController extends TestAreaController
 														return false;
 													}
 
+												};
+
+	private OnClickListener	ButtonClickListener	= new OnClickListener()
+												{
+													@Override
+													public void onClick(View v)
+													{
+														if (v instanceof Button)
+														{
+															onButtonClick(v.getId());
+														}
+													}
 												};
 
 }

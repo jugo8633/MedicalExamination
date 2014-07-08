@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/buttonSun"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/button_red"
+        android:gravity="center"
+        android:text="SUN"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonMon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/buttonTue"
+        android:layout_toLeftOf="@+id/buttonTue"
+        android:background="@drawable/button_blue"
+        android:gravity="center"
+        android:text="MON"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonTue"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/buttonSun"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="15dp"
+        android:background="@drawable/button_blue"
+        android:gravity="center"
+        android:text="TUE"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonWed"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/buttonTue"
+        android:layout_toRightOf="@+id/buttonTue"
+        android:background="@drawable/button_blue"
+        android:gravity="center"
+        android:text="WED"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonFri"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/buttonTue"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/button_blue"
+        android:gravity="center"
+        android:text="FRI"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonThu"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/buttonFri"
+        android:layout_toLeftOf="@+id/buttonFri"
+        android:background="@drawable/button_blue"
+        android:gravity="center"
+        android:text="THU"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonSat"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/buttonFri"
+        android:layout_toRightOf="@+id/buttonFri"
+        android:background="@drawable/button_blue"
+        android:gravity="center"
+        android:text="SAT"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
