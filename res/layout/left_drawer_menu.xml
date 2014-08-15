@@ -101,9 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/sign_in_with_google"
-            android:visibility="gone" >
-
+            android:background="@drawable/sign_in_with_google" >
         </RelativeLayout>
 
         <RelativeLayout
@@ -111,9 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/sign_in_with_facebook"
-            android:visibility="gone" >
-
+            android:background="@drawable/sign_in_with_facebook" >
         </RelativeLayout>
 
         <RelativeLayout
