@@ -30,6 +30,9 @@ public class TremorExamController extends TestAreaController
 	private int				mnExamResult	= 10;
 	private int				mnCount			= 0;
 	private final int		SENSOR_EDGE		= 2;
+	private float			m_degree		= 2.0f;
+	private float			temp_x			= 0.0f;
+	private float			temp_y			= 0.0f;
 
 	public TremorExamController(Activity activity, Handler handler)
 	{
@@ -109,6 +112,8 @@ public class TremorExamController extends TestAreaController
 		if (TIMER_EXAM_END == nId)
 		{
 			stopSensor();
+			if (mnExamResult < 0)
+				mnExamResult = 0;
 			Global.examData.mnTremor = mnExamResult;
 			if (getExaminationMode())
 			{
@@ -143,29 +148,27 @@ public class TremorExamController extends TestAreaController
 	{
 		float yAcceleration = 0.0f;
 		float xAcceleration = 0.0f;
-
+		
 		if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)
 		{
 			yAcceleration = event.values[1];
 			xAcceleration = event.values[2];
+			if (temp_y != 0 && temp_x != 0)
+			{
+				float nAvg = (float) Math.sqrt((yAcceleration - temp_y) * (yAcceleration - temp_y) + (xAcceleration - temp_x) * (xAcceleration - temp_x)); //(xAcceleration + yAcceleration) / 2;
 
-		//	if (SENSOR_EDGE < xAcceleration || SENSOR_EDGE < yAcceleration
-		//	|| (0 - SENSOR_EDGE) > xAcceleration || (0 - SENSOR_EDGE) > yAcceleration)
-		//	{
-				float nAvg = xAcceleration; //(xAcceleration + yAcceleration) / 2;
-
-				int nValue = (int) Math.abs(nAvg);
-				setTremorValue(Float.toString(nValue));
-				addPoint(nValue);
-				if ((2 < nAvg && 10 > nAvg) || (40 < nAvg) || (38 > nAvg))
+				//int nValue = (int) Math.abs(nAvg);
+				setTremorValue(Float.toString(nAvg));
+				addPoint(nAvg);
+				
+				
+				if (m_degree < nAvg )
 				{
 					--mnExamResult;
 				}
-		//	}
-		//	else
-		//	{
-		//		setTremorValue(Float.toString(0.0f));
-		//	}
+			}
+			temp_y = yAcceleration;
+			temp_x = xAcceleration;
 		}
 	}
 
